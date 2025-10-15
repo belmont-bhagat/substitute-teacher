@@ -1,0 +1,48 @@
+{
+  "name": "substitute-teacher",
+  "version": "1.0.0",
+  "description": "A complete full-stack authentication application with Spring Boot backend and React frontend",
+  "main": "index.js",
+  "scripts": {
+    "setup": "./scripts/setup.sh",
+    "start": "./scripts/start-all.sh",
+    "stop": "./scripts/stop-all.sh",
+    "dev": "./scripts/dev.sh",
+    "build": "./scripts/build.sh",
+    "test": "./scripts/test.sh",
+    "clean": "./scripts/clean.sh",
+    "docs": "./scripts/generate-docs.sh"
+  },
+  "keywords": [
+    "spring-boot",
+    "react",
+    "typescript",
+    "mongodb",
+    "jwt",
+    "authentication",
+    "full-stack",
+    "education",
+    "learning"
+  ],
+  "author": "Belmont Bhagat",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/belmont-bhagat/substitute-teacher.git"
+  },
+  "bugs": {
+    "url": "https://github.com/belmont-bhagat/substitute-teacher/issues"
+  },
+  "homepage": "https://github.com/belmont-bhagat/substitute-teacher#readme",
+  "engines": {
+    "node": ">=18.0.0",
+    "java": ">=17"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "workspaces": [
+    "simple-login-frontend",
+    "mongo-auth-service"
+  ]
+}

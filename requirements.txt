@@ -1,0 +1,18 @@
+# Python Dependencies for MongoDB Authentication Service
+# This file lists all Python packages required for the optional mongo-auth-service
+
+# Core dependencies
+flask==2.3.3
+pymongo==4.5.0
+bcrypt==4.0.1
+python-dotenv==1.0.0
+
+# Development dependencies
+pytest==7.4.2
+pytest-flask==1.2.0
+black==23.7.0
+flake8==6.0.0
+
+# Optional: For API documentation
+flask-restx==1.1.0
+flask-cors==4.0.0
