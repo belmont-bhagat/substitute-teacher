@@ -2,9 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../lib/api';
 import { clearToken } from '../lib/auth';
-import Card from '../components/Card';
+import { Card } from '../components/Card';
 import Button from '../components/Button';
-import Input from '../components/Input';
 
 interface User {
   id: string;
@@ -122,13 +121,13 @@ const UsersDashboard: React.FC = () => {
               <label htmlFor="search" className="block text-sm font-medium text-gray-700 mb-2">
                 Search Users
               </label>
-              <Input
+              <input
                 id="search"
                 type="text"
                 placeholder="Search by username or email..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                icon="🔍"
+                className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-gray-900"
               />
             </div>
             <div>
