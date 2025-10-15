@@ -117,10 +117,12 @@ public class AuthController {
 
         // Get all users from database
         List<UserDocument> users = authService.getAllUsers();
-        List<Map<String, String>> userList = users.stream()
+        List<Map<String, Object>> userList = users.stream()
                 .map(user -> {
-                    Map<String, String> userInfo = new HashMap<>();
+                    Map<String, Object> userInfo = new HashMap<>();
+                    userInfo.put("id", user.getId());
                     userInfo.put("username", user.getUsername());
+                    userInfo.put("email", user.getEmail() != null ? user.getEmail() : "");
                     userInfo.put("role", user.getRole() != null ? user.getRole() : "instructor");
                     return userInfo;
                 })

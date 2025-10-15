@@ -18,6 +18,7 @@ public class DataSeeder {
                 admin.setUsername("admin");
                 admin.setPasswordHash(BCrypt.hashpw("password", BCrypt.gensalt()));
                 admin.setRole("instructor");
+                admin.setEmail("admin@example.com");
                 return userRepository.save(admin);
             });
 
@@ -29,6 +30,7 @@ public class DataSeeder {
                     student.setUsername(uname);
                     student.setPasswordHash(BCrypt.hashpw("password", BCrypt.gensalt()));
                     student.setRole("student");
+                    student.setEmail(uname + "@student.example.com");
                     return userRepository.save(student);
                 });
             }
