@@ -50,7 +50,15 @@ export default function ProfilePage() {
                   <dd className="col-span-2 text-right text-gray-900 capitalize">{profile.role}</dd>
                 </div>
               </dl>
-              <button onClick={handleLogout} className="w-full bg-gray-900 text-white py-2 rounded-md hover:bg-black">Logout</button>
+              <div className="space-y-3">
+                <button 
+                  onClick={() => navigate('/dashboard/users')} 
+                  className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700"
+                >
+                  View Users Dashboard
+                </button>
+                <button onClick={handleLogout} className="w-full bg-gray-900 text-white py-2 rounded-md hover:bg-black">Logout</button>
+              </div>
             </div>
           ) : (
             <div className="py-6 text-center text-gray-500">Loading…</div>

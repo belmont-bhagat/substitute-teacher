@@ -2,6 +2,7 @@
   "info": {
     "_postman_id": "d3a0a5fd-1b0e-4f2d-9e0b-0f2c9a7b90f1",
     "name": "Simple Login API",
+    "description": "Complete API collection for the Simple Login application with user dashboard functionality. Includes authentication, profile management, and user listing endpoints.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [
@@ -14,7 +15,12 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"username\": \"admin\",\n  \"password\": \"password\"\n}"
+          "raw": "{\n  \"username\": \"admin\",\n  \"password\": \"password\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
         },
         "url": {
           "raw": "{{base_url}}/api/login",
@@ -40,6 +46,56 @@
               "    if (data.token) {",
               "      pm.environment.set('token', data.token);",
               "      pm.test('Token captured', function () { pm.expect(data.token).to.be.a('string'); });",
+              "    }",
+              "  } catch (e) { /* ignore */ }",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Login as Student (POST /api/login)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"student1\",\n  \"password\": \"password\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/api/login",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "login"
+          ]
+        },
+        "description": "Login as a student user to test student role authentication and access to dashboard."
+      },
+      "response": [],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "// Save token from login to environment variable",
+              "if (pm.response.code === 200) {",
+              "  try {",
+              "    const data = pm.response.json();",
+              "    if (data.token) {",
+              "      pm.environment.set('token', data.token);",
+              "      pm.test('Student token captured', function () { pm.expect(data.token).to.be.a('string'); });",
               "    }",
               "  } catch (e) { /* ignore */ }",
               "}"
@@ -85,9 +141,100 @@
             "api",
             "users"
           ]
-        }
+        },
+        "description": "Retrieves a list of all users in the system with their details including ID, username, email, and role. Requires authentication."
       },
-      "response": []
+      "response": [
+        {
+          "name": "Success Response",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}", "type": "text" }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/users",
+              "host": ["{{base_url}}"],
+              "path": ["api", "users"]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            { "key": "Content-Type", "value": "application/json" }
+          ],
+          "cookie": [],
+          "body": "{\n  \"count\": 11,\n  \"users\": [\n    {\n      \"id\": \"68efc1d8bb9e021c29f5408e\",\n      \"username\": \"admin\",\n      \"email\": \"admin@example.com\",\n      \"role\": \"instructor\"\n    },\n    {\n      \"id\": \"68f00e34cb34860e47e3e284\",\n      \"username\": \"student1\",\n      \"email\": \"student1@student.example.com\",\n      \"role\": \"student\"\n    },\n    {\n      \"id\": \"68f00e34cb34860e47e3e285\",\n      \"username\": \"student2\",\n      \"email\": \"student2@student.example.com\",\n      \"role\": \"student\"\n    }\n  ]\n}"
+        },
+        {
+          "name": "Unauthorized Response",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/users",
+              "host": ["{{base_url}}"],
+              "path": ["api", "users"]
+            }
+          },
+          "status": "Unauthorized",
+          "code": 401,
+          "_postman_previewlanguage": "json",
+          "header": [
+            { "key": "Content-Type", "value": "application/json" }
+          ],
+          "cookie": [],
+          "body": "{\n  \"error\": \"Unauthorized\"\n}"
+        }
+      ],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "// Test successful response",
+              "if (pm.response.code === 200) {",
+              "  const data = pm.response.json();",
+              "  ",
+              "  pm.test('Response has count field', function () {",
+              "    pm.expect(data).to.have.property('count');",
+              "    pm.expect(data.count).to.be.a('number');",
+              "  });",
+              "  ",
+              "  pm.test('Response has users array', function () {",
+              "    pm.expect(data).to.have.property('users');",
+              "    pm.expect(data.users).to.be.an('array');",
+              "  });",
+              "  ",
+              "  pm.test('Users have required fields', function () {",
+              "    if (data.users.length > 0) {",
+              "      const user = data.users[0];",
+              "      pm.expect(user).to.have.property('id');",
+              "      pm.expect(user).to.have.property('username');",
+              "      pm.expect(user).to.have.property('email');",
+              "      pm.expect(user).to.have.property('role');",
+              "    }",
+              "  });",
+              "  ",
+              "  pm.test('Count matches users array length', function () {",
+              "    pm.expect(data.count).to.equal(data.users.length);",
+              "  });",
+              "}",
+              "",
+              "// Test unauthorized response",
+              "if (pm.response.code === 401) {",
+              "  const data = pm.response.json();",
+              "  pm.test('Unauthorized response has error', function () {",
+              "    pm.expect(data).to.have.property('error');",
+              "    pm.expect(data.error).to.equal('Unauthorized');",
+              "  });",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
     }
   ]
 }
