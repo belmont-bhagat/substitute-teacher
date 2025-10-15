@@ -25,4 +25,8 @@ public class AuthService {
         String hash = user.getPasswordHash();
         return hash != null && BCrypt.checkpw(rawPassword, hash);
     }
+
+    public Optional<UserDocument> getUser(String username) {
+        return userRepository.findByUsername(username);
+    }
 }

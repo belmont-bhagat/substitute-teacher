@@ -17,8 +17,21 @@ public class DataSeeder {
                 UserDocument admin = new UserDocument();
                 admin.setUsername("admin");
                 admin.setPasswordHash(BCrypt.hashpw("password", BCrypt.gensalt()));
+                admin.setRole("instructor");
                 return userRepository.save(admin);
             });
+
+            // Seed students student1..student10 with role=student, password=password
+            for (int i = 1; i <= 10; i++) {
+                final String uname = "student" + i;
+                userRepository.findByUsername(uname).orElseGet(() -> {
+                    UserDocument student = new UserDocument();
+                    student.setUsername(uname);
+                    student.setPasswordHash(BCrypt.hashpw("password", BCrypt.gensalt()));
+                    student.setRole("student");
+                    return userRepository.save(student);
+                });
+            }
         };
     }
 }

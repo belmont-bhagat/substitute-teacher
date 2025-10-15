@@ -73,8 +73,10 @@ public class AuthController {
             String token = authHeader.substring("Bearer ".length());
             String subject = jwtService.validateAndGetSubject(token);
             if (subject != null) {
+                // fetch role from DB if available
+                String role = authService.getUser(subject).map(u -> u.getRole() != null ? u.getRole() : "instructor").orElse("instructor");
                 response.put("username", subject);
-                response.put("role", "instructor");
+                response.put("role", role);
                 return ResponseEntity.ok(response);
             }
         }

@@ -16,6 +16,8 @@ public class UserDocument {
 
     private String passwordHash;
 
+    private String role;
+
     public String getId() { return id; }
     public void setId(String id) { this.id = id; }
 
@@ -24,4 +26,7 @@ public class UserDocument {
 
     public String getPasswordHash() { return passwordHash; }
     public void setPasswordHash(String passwordHash) { this.passwordHash = passwordHash; }
+
+    public String getRole() { return role; }
+    public void setRole(String role) { this.role = role; }
 }
