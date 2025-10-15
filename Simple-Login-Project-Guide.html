@@ -1,0 +1,1991 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Simple-Login-Project-Guide</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="/dev/fd/12" />
+</head>
+<body>
+<h1 id="simple-login-application---complete-student-guide">Simple Login
+Application - Complete Student Guide</h1>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol type="1">
+<li><a href="#project-overview">Project Overview</a></li>
+<li><a href="#architecture-overview">Architecture Overview</a></li>
+<li><a href="#technology-stack">Technology Stack</a></li>
+<li><a href="#project-structure">Project Structure</a></li>
+<li><a href="#backend-implementation">Backend Implementation</a></li>
+<li><a href="#frontend-implementation">Frontend Implementation</a></li>
+<li><a href="#database-integration">Database Integration</a></li>
+<li><a href="#authentication--security">Authentication &amp;
+Security</a></li>
+<li><a href="#api-documentation">API Documentation</a></li>
+<li><a href="#user-dashboard">User Dashboard</a></li>
+<li><a href="#testing--quality-assurance">Testing &amp; Quality
+Assurance</a></li>
+<li><a href="#deployment--setup">Deployment &amp; Setup</a></li>
+<li><a href="#troubleshooting">Troubleshooting</a></li>
+<li><a href="#best-practices">Best Practices</a></li>
+<li><a href="#reference-section">Reference Section</a></li>
+</ol>
+<hr />
+<h2 id="project-overview">Project Overview</h2>
+<h3 id="what-is-this-project">What is this Project?</h3>
+<p>The Simple Login Application is a full-stack web application that
+demonstrates modern authentication, user management, and dashboard
+functionality. It serves as a comprehensive learning project that
+covers:</p>
+<ul>
+<li><strong>Backend Development</strong>: Spring Boot REST API with
+MongoDB</li>
+<li><strong>Frontend Development</strong>: React with TypeScript and
+modern UI</li>
+<li><strong>Authentication</strong>: JWT-based security</li>
+<li><strong>Database</strong>: MongoDB integration</li>
+<li><strong>User Management</strong>: Role-based access control</li>
+<li><strong>Dashboard</strong>: Interactive user interface with search
+and filtering</li>
+</ul>
+<h3 id="learning-objectives">Learning Objectives</h3>
+<p>By completing this project, students will understand:</p>
+<ol type="1">
+<li><strong>Full-Stack Development</strong>: How frontend and backend
+communicate</li>
+<li><strong>REST API Design</strong>: Creating and consuming web
+services</li>
+<li><strong>Authentication</strong>: Implementing secure login
+systems</li>
+<li><strong>Database Integration</strong>: Working with NoSQL
+databases</li>
+<li><strong>Modern Frontend</strong>: React hooks, routing, and state
+management</li>
+<li><strong>Security Best Practices</strong>: JWT tokens, password
+hashing, CORS</li>
+<li><strong>Testing</strong>: API testing with Postman</li>
+<li><strong>Version Control</strong>: Git workflow and
+collaboration</li>
+</ol>
+<h3 id="project-features">Project Features</h3>
+<ul>
+<li>✅ <strong>User Authentication</strong>: Login with JWT tokens</li>
+<li>✅ <strong>Role-Based Access</strong>: Instructor and Student
+roles</li>
+<li>✅ <strong>User Dashboard</strong>: View and manage all users</li>
+<li>✅ <strong>Search &amp; Filter</strong>: Find users by name, email,
+or role</li>
+<li>✅ <strong>Responsive Design</strong>: Works on desktop and
+mobile</li>
+<li>✅ <strong>API Testing</strong>: Complete Postman collection</li>
+<li>✅ <strong>Database Integration</strong>: MongoDB with user
+seeding</li>
+</ul>
+<hr />
+<h2 id="architecture-overview">Architecture Overview</h2>
+<h3 id="system-architecture">System Architecture</h3>
+<pre><code>┌─────────────────┐    HTTP/HTTPS    ┌─────────────────┐
+│   Frontend      │◄─────────────────┤   Backend       │
+│   (React)       │                  │   (Spring Boot)  │
+│   Port: 5173    │                  │   Port: 8080    │
+└─────────────────┘                  └─────────────────┘
+                                              │
+                                              │ MongoDB Protocol
+                                              ▼
+                                     ┌─────────────────┐
+                                     │   Database      │
+                                     │   (MongoDB)     │
+                                     │   Port: 27017   │
+                                     └─────────────────┘</code></pre>
+<h3 id="data-flow">Data Flow</h3>
+<ol type="1">
+<li><strong>User Login</strong>: Frontend sends credentials → Backend
+validates → Returns JWT</li>
+<li><strong>API Requests</strong>: Frontend includes JWT in headers →
+Backend validates → Returns data</li>
+<li><strong>User Dashboard</strong>: Frontend requests user list →
+Backend queries MongoDB → Returns formatted data</li>
+<li><strong>Search/Filter</strong>: Frontend filters data client-side
+for responsive UI</li>
+</ol>
+<h3 id="security-flow">Security Flow</h3>
+<pre><code>User Login → Password Verification → JWT Generation → Token Storage → API Authentication</code></pre>
+<hr />
+<h2 id="technology-stack">Technology Stack</h2>
+<h3 id="backend-technologies">Backend Technologies</h3>
+<table>
+<thead>
+<tr>
+<th>Technology</th>
+<th>Version</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Java</strong></td>
+<td>17+</td>
+<td>Programming language</td>
+</tr>
+<tr>
+<td><strong>Spring Boot</strong></td>
+<td>3.1.5</td>
+<td>Framework for REST APIs</td>
+</tr>
+<tr>
+<td><strong>Spring Data MongoDB</strong></td>
+<td>-</td>
+<td>Database integration</td>
+</tr>
+<tr>
+<td><strong>Maven</strong></td>
+<td>-</td>
+<td>Build and dependency management</td>
+</tr>
+<tr>
+<td><strong>Lombok</strong></td>
+<td>-</td>
+<td>Reduces boilerplate code</td>
+</tr>
+<tr>
+<td><strong>JJWT</strong></td>
+<td>0.11.5</td>
+<td>JWT token handling</td>
+</tr>
+<tr>
+<td><strong>MongoDB</strong></td>
+<td>Latest</td>
+<td>NoSQL database</td>
+</tr>
+</tbody>
+</table>
+<h3 id="frontend-technologies">Frontend Technologies</h3>
+<table>
+<thead>
+<tr>
+<th>Technology</th>
+<th>Version</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>React</strong></td>
+<td>18.2.0</td>
+<td>UI framework</td>
+</tr>
+<tr>
+<td><strong>TypeScript</strong></td>
+<td>5.9.3</td>
+<td>Type-safe JavaScript</td>
+</tr>
+<tr>
+<td><strong>Vite</strong></td>
+<td>7.1.7</td>
+<td>Build tool and dev server</td>
+</tr>
+<tr>
+<td><strong>React Router DOM</strong></td>
+<td>6.22.3</td>
+<td>Client-side routing</td>
+</tr>
+<tr>
+<td><strong>Axios</strong></td>
+<td>1.12.2</td>
+<td>HTTP client for API calls</td>
+</tr>
+<tr>
+<td><strong>TailwindCSS</strong></td>
+<td>4.1.14</td>
+<td>Utility-first CSS framework</td>
+</tr>
+</tbody>
+</table>
+<h3 id="development-tools">Development Tools</h3>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Postman</strong></td>
+<td>API testing and documentation</td>
+</tr>
+<tr>
+<td><strong>Git</strong></td>
+<td>Version control</td>
+</tr>
+<tr>
+<td><strong>Docker</strong></td>
+<td>MongoDB containerization</td>
+</tr>
+<tr>
+<td><strong>VS Code</strong></td>
+<td>Code editor</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="project-structure">Project Structure</h2>
+<h3 id="directory-layout">Directory Layout</h3>
+<pre><code>substitute-teacher/
+├── simple-login-backend/          # Spring Boot backend
+│   ├── src/main/java/com/example/simpleloginbackend/
+│   │   ├── SimpleLoginBackendApplication.java
+│   │   ├── controller/
+│   │   │   └── AuthController.java
+│   │   ├── model/
+│   │   │   ├── LoginRequest.java
+│   │   │   └── UserDocument.java
+│   │   ├── repository/
+│   │   │   └── UserRepository.java
+│   │   ├── service/
+│   │   │   ├── AuthService.java
+│   │   │   └── JwtService.java
+│   │   ├── config/
+│   │   │   ├── JwtConfig.java
+│   │   │   └── DataSeeder.java
+│   │   └── resources/
+│   │       └── application.properties
+│   └── pom.xml
+├── simple-login-frontend/         # React frontend
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── AuthLayout.tsx
+│   │   │   ├── Button.tsx
+│   │   │   ├── Card.tsx
+│   │   │   └── Input.tsx
+│   │   ├── pages/
+│   │   │   ├── LoginPage.tsx
+│   │   │   ├── ProfilePage.tsx
+│   │   │   └── UsersDashboard.tsx
+│   │   ├── lib/
+│   │   │   ├── auth.ts
+│   │   │   └── api.ts
+│   │   ├── main.tsx
+│   │   └── index.css
+│   ├── package.json
+│   └── vite.config.ts
+├── postman/                       # API testing
+│   └── Simple-Login.postman_collection.json
+└── README.md</code></pre>
+<h3 id="key-files-explained">Key Files Explained</h3>
+<h4 id="backend-files">Backend Files</h4>
+<ul>
+<li><strong><code>AuthController.java</code></strong>: Handles all API
+endpoints</li>
+<li><strong><code>UserDocument.java</code></strong>: MongoDB document
+model</li>
+<li><strong><code>AuthService.java</code></strong>: Business logic for
+authentication</li>
+<li><strong><code>JwtService.java</code></strong>: JWT token generation
+and validation</li>
+<li><strong><code>DataSeeder.java</code></strong>: Seeds initial users
+into database</li>
+</ul>
+<h4 id="frontend-files">Frontend Files</h4>
+<ul>
+<li><strong><code>main.tsx</code></strong>: Application entry point with
+routing</li>
+<li><strong><code>LoginPage.tsx</code></strong>: User login
+interface</li>
+<li><strong><code>ProfilePage.tsx</code></strong>: User profile
+display</li>
+<li><strong><code>UsersDashboard.tsx</code></strong>: User management
+dashboard</li>
+<li><strong><code>api.ts</code></strong>: Axios configuration for API
+calls</li>
+<li><strong><code>auth.ts</code></strong>: Token management
+utilities</li>
+</ul>
+<hr />
+<h2 id="backend-implementation">Backend Implementation</h2>
+<h3 id="spring-boot-configuration">Spring Boot Configuration</h3>
+<h4 id="application-properties-application.properties">Application
+Properties (<code>application.properties</code>)</h4>
+<pre class="properties"><code># Server Configuration
+server.port=8080
+spring.application.name=simple-login-backend
+
+# MongoDB Configuration
+spring.data.mongodb.uri=${MONGO_URI:mongodb://localhost:27017/simple_login}
+
+# JWT Configuration
+auth.jwt.secret=${AUTH_JWT_SECRET:a-very-long-and-secure-secret-key-for-jwt-signing-and-verification-at-least-64-characters-long}
+auth.jwt.expiration-ms=3600000 # 1 hour
+
+# Logging Configuration
+logging.level.com.example.simpleloginbackend=INFO</code></pre>
+<h4 id="maven-dependencies-pom.xml">Maven Dependencies
+(<code>pom.xml</code>)</h4>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode xml"><code class="sourceCode xml"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">dependencies</span>&gt;</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">&lt;!-- Spring Boot Starters --&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">dependency</span>&gt;</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">groupId</span>&gt;org.springframework.boot&lt;/<span class="kw">groupId</span>&gt;</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">artifactId</span>&gt;spring-boot-starter-web&lt;/<span class="kw">artifactId</span>&gt;</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    &lt;/<span class="kw">dependency</span>&gt;</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">dependency</span>&gt;</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">groupId</span>&gt;org.springframework.boot&lt;/<span class="kw">groupId</span>&gt;</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">artifactId</span>&gt;spring-boot-starter-data-mongodb&lt;/<span class="kw">artifactId</span>&gt;</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    &lt;/<span class="kw">dependency</span>&gt;</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">dependency</span>&gt;</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">groupId</span>&gt;org.springframework.boot&lt;/<span class="kw">groupId</span>&gt;</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">artifactId</span>&gt;spring-boot-devtools&lt;/<span class="kw">artifactId</span>&gt;</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    &lt;/<span class="kw">dependency</span>&gt;</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    <span class="co">&lt;!-- JWT Dependencies --&gt;</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">dependency</span>&gt;</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">groupId</span>&gt;io.jsonwebtoken&lt;/<span class="kw">groupId</span>&gt;</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">artifactId</span>&gt;jjwt-api&lt;/<span class="kw">artifactId</span>&gt;</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">version</span>&gt;0.11.5&lt;/<span class="kw">version</span>&gt;</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    &lt;/<span class="kw">dependency</span>&gt;</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">dependency</span>&gt;</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">groupId</span>&gt;io.jsonwebtoken&lt;/<span class="kw">groupId</span>&gt;</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">artifactId</span>&gt;jjwt-impl&lt;/<span class="kw">artifactId</span>&gt;</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">version</span>&gt;0.11.5&lt;/<span class="kw">version</span>&gt;</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">scope</span>&gt;runtime&lt;/<span class="kw">scope</span>&gt;</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>    &lt;/<span class="kw">dependency</span>&gt;</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>    <span class="co">&lt;!-- Utilities --&gt;</span></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">dependency</span>&gt;</span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">groupId</span>&gt;org.projectlombok&lt;/<span class="kw">groupId</span>&gt;</span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">artifactId</span>&gt;lombok&lt;/<span class="kw">artifactId</span>&gt;</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>    &lt;/<span class="kw">dependency</span>&gt;</span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">dependencies</span>&gt;</span></code></pre></div>
+<h3 id="data-models">Data Models</h3>
+<h4 id="user-document-userdocument.java">User Document
+(<code>UserDocument.java</code>)</h4>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="at">@Data</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="at">@Document</span><span class="op">(</span>collection <span class="op">=</span> <span class="st">&quot;users&quot;</span><span class="op">)</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="kw">class</span> UserDocument <span class="op">{</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">@Id</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">private</span> <span class="bu">String</span> id<span class="op">;</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">private</span> <span class="bu">String</span> username<span class="op">;</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">private</span> <span class="bu">String</span> passwordHash<span class="op">;</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">private</span> <span class="bu">String</span> role<span class="op">;</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">private</span> <span class="bu">String</span> email<span class="op">;</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h4 id="login-request-loginrequest.java">Login Request
+(<code>LoginRequest.java</code>)</h4>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="at">@Data</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="kw">class</span> LoginRequest <span class="op">{</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">private</span> <span class="bu">String</span> username<span class="op">;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">private</span> <span class="bu">String</span> password<span class="op">;</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h3 id="api-endpoints">API Endpoints</h3>
+<h4 id="authentication-controller-authcontroller.java">Authentication
+Controller (<code>AuthController.java</code>)</h4>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="at">@RestController</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="at">@RequestMapping</span><span class="op">(</span><span class="st">&quot;/api&quot;</span><span class="op">)</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="at">@CrossOrigin</span><span class="op">(</span>origins <span class="op">=</span> <span class="st">&quot;*&quot;</span><span class="op">)</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="kw">class</span> AuthController <span class="op">{</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">// POST /api/login</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">@PostMapping</span><span class="op">(</span><span class="st">&quot;/login&quot;</span><span class="op">)</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> ResponseEntity<span class="op">&lt;</span><span class="bu">Map</span><span class="op">&lt;</span><span class="bu">String</span><span class="op">,</span> <span class="bu">String</span><span class="op">&gt;&gt;</span> <span class="fu">login</span><span class="op">(</span><span class="at">@RequestBody</span> LoginRequest loginRequest<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Validate credentials and return JWT token</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    <span class="co">// GET /api/profile</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">@GetMapping</span><span class="op">(</span><span class="st">&quot;/profile&quot;</span><span class="op">)</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> ResponseEntity<span class="op">&lt;</span><span class="bu">Map</span><span class="op">&lt;</span><span class="bu">String</span><span class="op">,</span> <span class="bu">String</span><span class="op">&gt;&gt;</span> <span class="fu">getProfile</span><span class="op">(</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>            <span class="at">@RequestHeader</span><span class="op">(</span>value <span class="op">=</span> <span class="st">&quot;Authorization&quot;</span><span class="op">,</span> required <span class="op">=</span> <span class="kw">false</span><span class="op">)</span> <span class="bu">String</span> authHeader<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Validate JWT and return user profile</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    <span class="co">// GET /api/users</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">@GetMapping</span><span class="op">(</span><span class="st">&quot;/users&quot;</span><span class="op">)</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> ResponseEntity<span class="op">&lt;</span><span class="bu">Map</span><span class="op">&lt;</span><span class="bu">String</span><span class="op">,</span> <span class="bu">Object</span><span class="op">&gt;&gt;</span> <span class="fu">getAllUsers</span><span class="op">(</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>            <span class="at">@RequestHeader</span><span class="op">(</span>value <span class="op">=</span> <span class="st">&quot;Authorization&quot;</span><span class="op">,</span> required <span class="op">=</span> <span class="kw">false</span><span class="op">)</span> <span class="bu">String</span> authHeader<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Return list of all users</span></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h3 id="service-layer">Service Layer</h3>
+<h4 id="authentication-service-authservice.java">Authentication Service
+(<code>AuthService.java</code>)</h4>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="at">@Service</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="kw">class</span> AuthService <span class="op">{</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">boolean</span> <span class="fu">validateCredentials</span><span class="op">(</span><span class="bu">String</span> username<span class="op">,</span> <span class="bu">String</span> rawPassword<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Verify password against stored hash</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> Optional<span class="op">&lt;</span>UserDocument<span class="op">&gt;</span> <span class="fu">getUser</span><span class="op">(</span><span class="bu">String</span> username<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Find user by username</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="bu">List</span><span class="op">&lt;</span>UserDocument<span class="op">&gt;</span> <span class="fu">getAllUsers</span><span class="op">()</span> <span class="op">{</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Return all users from database</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h4 id="jwt-service-jwtservice.java">JWT Service
+(<code>JwtService.java</code>)</h4>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="at">@Service</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="kw">class</span> JwtService <span class="op">{</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="bu">String</span> <span class="fu">generateToken</span><span class="op">(</span><span class="bu">String</span> username<span class="op">,</span> <span class="bu">String</span> role<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Create JWT with user claims</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="bu">String</span> <span class="fu">validateAndGetSubject</span><span class="op">(</span><span class="bu">String</span> token<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Validate JWT and extract username</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="bu">String</span> <span class="fu">extractRole</span><span class="op">(</span><span class="bu">String</span> token<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Extract role from JWT claims</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h3 id="database-integration">Database Integration</h3>
+<h4 id="repository-interface-userrepository.java">Repository Interface
+(<code>UserRepository.java</code>)</h4>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="kw">interface</span> UserRepository <span class="kw">extends</span> MongoRepository<span class="op">&lt;</span>UserDocument<span class="op">,</span> <span class="bu">String</span><span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    Optional<span class="op">&lt;</span>UserDocument<span class="op">&gt;</span> <span class="fu">findByUsername</span><span class="op">(</span><span class="bu">String</span> username<span class="op">);</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h4 id="data-seeding-dataseeder.java">Data Seeding
+(<code>DataSeeder.java</code>)</h4>
+<div class="sourceCode" id="cb12"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="at">@Configuration</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="kw">class</span> DataSeeder <span class="op">{</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">@Bean</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    CommandLineRunner <span class="fu">seedUsers</span><span class="op">(</span>UserRepository userRepository<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> args <span class="op">-&gt;</span> <span class="op">{</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>            <span class="co">// Seed admin user</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>            <span class="co">// Seed student1 through student10</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>        <span class="op">};</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<hr />
+<h2 id="frontend-implementation">Frontend Implementation</h2>
+<h3 id="react-application-structure">React Application Structure</h3>
+<h4 id="main-application-main.tsx">Main Application
+(<code>main.tsx</code>)</h4>
+<div class="sourceCode" id="cb13"><pre
+class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> React <span class="im">from</span> <span class="st">&#39;react&#39;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ReactDOM <span class="im">from</span> <span class="st">&#39;react-dom/client&#39;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { createBrowserRouter<span class="op">,</span> RouterProvider } <span class="im">from</span> <span class="st">&#39;react-router-dom&#39;</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> <span class="st">&#39;./index.css&#39;</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> LoginPage <span class="im">from</span> <span class="st">&#39;./pages/LoginPage&#39;</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ProfilePage <span class="im">from</span> <span class="st">&#39;./pages/ProfilePage&#39;</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> UsersDashboard <span class="im">from</span> <span class="st">&#39;./pages/UsersDashboard&#39;</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> router <span class="op">=</span> <span class="fu">createBrowserRouter</span>([</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>  { path<span class="op">:</span> <span class="st">&#39;/&#39;</span><span class="op">,</span> element<span class="op">:</span> <span class="op">&lt;</span>LoginPage <span class="op">/&gt;</span> }<span class="op">,</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>  { path<span class="op">:</span> <span class="st">&#39;/login&#39;</span><span class="op">,</span> element<span class="op">:</span> <span class="op">&lt;</span>LoginPage <span class="op">/&gt;</span> }<span class="op">,</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>  { path<span class="op">:</span> <span class="st">&#39;/profile&#39;</span><span class="op">,</span> element<span class="op">:</span> <span class="op">&lt;</span>ProfilePage <span class="op">/&gt;</span> }<span class="op">,</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>  { path<span class="op">:</span> <span class="st">&#39;/dashboard/users&#39;</span><span class="op">,</span> element<span class="op">:</span> <span class="op">&lt;</span>UsersDashboard <span class="op">/&gt;</span> }<span class="op">,</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>])</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>ReactDOM<span class="op">.</span><span class="fu">createRoot</span>(<span class="bu">document</span><span class="op">.</span><span class="fu">getElementById</span>(<span class="st">&#39;root&#39;</span>)<span class="op">!</span>)<span class="op">.</span><span class="fu">render</span>(</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>  <span class="op">&lt;</span>React<span class="op">.</span><span class="at">StrictMode</span><span class="op">&gt;</span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>    <span class="op">&lt;</span>RouterProvider router<span class="op">=</span>{router} <span class="op">/&gt;</span></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>  <span class="op">&lt;/</span>React<span class="op">.</span><span class="at">StrictMode</span><span class="op">&gt;,</span></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<h3 id="api-integration">API Integration</h3>
+<h4 id="axios-configuration-api.ts">Axios Configuration
+(<code>api.ts</code>)</h4>
+<div class="sourceCode" id="cb14"><pre
+class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> axios <span class="im">from</span> <span class="st">&#39;axios&#39;</span><span class="op">;</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { getToken<span class="op">,</span> clearToken } <span class="im">from</span> <span class="st">&#39;./auth&#39;</span><span class="op">;</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> API_BASE_URL <span class="op">=</span> import<span class="op">.</span><span class="at">meta</span><span class="op">.</span><span class="at">env</span><span class="op">.</span><span class="at">VITE_API_BASE_URL</span> <span class="op">||</span> <span class="st">&#39;/api&#39;</span><span class="op">;</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> api <span class="op">=</span> axios<span class="op">.</span><span class="fu">create</span>({</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  baseURL<span class="op">:</span> API_BASE_URL<span class="op">,</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  headers<span class="op">:</span> {</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;Content-Type&#39;</span><span class="op">:</span> <span class="st">&#39;application/json&#39;</span><span class="op">,</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="co">// Request interceptor to add JWT token</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>api<span class="op">.</span><span class="at">interceptors</span><span class="op">.</span><span class="at">request</span><span class="op">.</span><span class="fu">use</span>(</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>  (config) <span class="kw">=&gt;</span> {</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> token <span class="op">=</span> <span class="fu">getToken</span>()<span class="op">;</span></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (token) {</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>      config<span class="op">.</span><span class="at">headers</span><span class="op">.</span><span class="at">Authorization</span> <span class="op">=</span> <span class="vs">`Bearer </span><span class="sc">${</span>token<span class="sc">}</span><span class="vs">`</span><span class="op">;</span></span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> config<span class="op">;</span></span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>  (error) <span class="kw">=&gt;</span> <span class="bu">Promise</span><span class="op">.</span><span class="fu">reject</span>(error)</span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>)<span class="op">;</span></span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a><span class="co">// Response interceptor to handle 401 errors</span></span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>api<span class="op">.</span><span class="at">interceptors</span><span class="op">.</span><span class="at">response</span><span class="op">.</span><span class="fu">use</span>(</span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>  (response) <span class="kw">=&gt;</span> response<span class="op">,</span></span>
+<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>  (error) <span class="kw">=&gt;</span> {</span>
+<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (error<span class="op">.</span><span class="at">response</span> <span class="op">&amp;&amp;</span> error<span class="op">.</span><span class="at">response</span><span class="op">.</span><span class="at">status</span> <span class="op">===</span> <span class="dv">401</span>) {</span>
+<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a>      <span class="fu">clearToken</span>()<span class="op">;</span></span>
+<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">Promise</span><span class="op">.</span><span class="fu">reject</span>(error)<span class="op">;</span></span>
+<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a>)<span class="op">;</span></span>
+<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="im">default</span> api<span class="op">;</span></span></code></pre></div>
+<h4 id="authentication-utilities-auth.ts">Authentication Utilities
+(<code>auth.ts</code>)</h4>
+<div class="sourceCode" id="cb15"><pre
+class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> TOKEN_KEY <span class="op">=</span> <span class="st">&#39;jwt_token&#39;</span><span class="op">;</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="kw">const</span> getToken <span class="op">=</span> ()<span class="op">:</span> <span class="dt">string</span> <span class="op">|</span> <span class="dt">null</span> <span class="kw">=&gt;</span> {</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> localStorage<span class="op">.</span><span class="fu">getItem</span>(TOKEN_KEY)<span class="op">;</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="kw">const</span> setToken <span class="op">=</span> (token<span class="op">:</span> <span class="dt">string</span>)<span class="op">:</span> <span class="dt">void</span> <span class="kw">=&gt;</span> {</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  localStorage<span class="op">.</span><span class="fu">setItem</span>(TOKEN_KEY<span class="op">,</span> token)<span class="op">;</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="kw">const</span> clearToken <span class="op">=</span> ()<span class="op">:</span> <span class="dt">void</span> <span class="kw">=&gt;</span> {</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>  localStorage<span class="op">.</span><span class="fu">removeItem</span>(TOKEN_KEY)<span class="op">;</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span></code></pre></div>
+<h3 id="page-components">Page Components</h3>
+<h4 id="login-page-loginpage.tsx">Login Page
+(<code>LoginPage.tsx</code>)</h4>
+<div class="sourceCode" id="cb16"><pre
+class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="im">default</span> <span class="kw">function</span> <span class="fu">LoginPage</span>() {</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> navigate <span class="op">=</span> <span class="fu">useNavigate</span>()</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> [username<span class="op">,</span> setUsername] <span class="op">=</span> <span class="fu">useState</span>(<span class="st">&#39;&#39;</span>)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> [password<span class="op">,</span> setPassword] <span class="op">=</span> <span class="fu">useState</span>(<span class="st">&#39;&#39;</span>)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> [error<span class="op">,</span> setError] <span class="op">=</span> <span class="fu">useState</span><span class="op">&lt;</span><span class="dt">string</span> <span class="op">|</span> <span class="dt">null</span><span class="op">&gt;</span>(<span class="kw">null</span>)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">async</span> <span class="kw">function</span> <span class="fu">handleSubmit</span>(e<span class="op">:</span> React<span class="op">.</span><span class="at">FormEvent</span>) {</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    e<span class="op">.</span><span class="fu">preventDefault</span>()</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span> {</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> res <span class="op">=</span> <span class="cf">await</span> api<span class="op">.</span><span class="fu">post</span>(<span class="st">&#39;/login&#39;</span><span class="op">,</span> { username<span class="op">,</span> password })</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>      <span class="fu">setToken</span>(res<span class="op">.</span><span class="at">data</span><span class="op">.</span><span class="at">token</span>)</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>      <span class="fu">navigate</span>(<span class="st">&#39;/profile&#39;</span>)</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">catch</span> (err<span class="op">:</span> <span class="dt">any</span>) {</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>      <span class="fu">setError</span>(err<span class="op">?.</span><span class="at">response</span><span class="op">?.</span><span class="at">data</span><span class="op">?.</span><span class="at">error</span> <span class="op">||</span> <span class="st">&#39;Invalid credentials&#39;</span>)</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> (</span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>    <span class="op">&lt;</span>AuthLayout<span class="op">&gt;</span></span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>      <span class="op">&lt;</span>Card<span class="op">&gt;</span></span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>        <span class="op">&lt;</span>CardHeader title<span class="op">=</span><span class="st">&quot;Sign in&quot;</span> <span class="op">/&gt;</span></span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>        <span class="op">&lt;</span>CardBody<span class="op">&gt;</span></span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>          <span class="op">&lt;</span>form onSubmit<span class="op">=</span>{handleSubmit}<span class="op">&gt;</span></span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>            {<span class="co">/* Form fields */</span>}</span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>          <span class="op">&lt;/</span>form<span class="op">&gt;</span></span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>        <span class="op">&lt;/</span>CardBody<span class="op">&gt;</span></span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a>      <span class="op">&lt;/</span>Card<span class="op">&gt;</span></span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a>    <span class="op">&lt;/</span>AuthLayout<span class="op">&gt;</span></span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<h4 id="users-dashboard-usersdashboard.tsx">Users Dashboard
+(<code>UsersDashboard.tsx</code>)</h4>
+<div class="sourceCode" id="cb17"><pre
+class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="im">default</span> <span class="kw">function</span> <span class="fu">UsersDashboard</span>() {</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> [users<span class="op">,</span> setUsers] <span class="op">=</span> <span class="fu">useState</span><span class="op">&lt;</span>User[]<span class="op">&gt;</span>([])</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> [searchTerm<span class="op">,</span> setSearchTerm] <span class="op">=</span> <span class="fu">useState</span>(<span class="st">&#39;&#39;</span>)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> [filterRole<span class="op">,</span> setFilterRole] <span class="op">=</span> <span class="fu">useState</span>(<span class="st">&#39;All Roles&#39;</span>)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">useEffect</span>(() <span class="kw">=&gt;</span> {</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> fetchUsers <span class="op">=</span> <span class="kw">async</span> () <span class="kw">=&gt;</span> {</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>      <span class="cf">try</span> {</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>        <span class="kw">const</span> response <span class="op">=</span> <span class="cf">await</span> api<span class="op">.</span><span class="fu">get</span>(<span class="st">&#39;/users&#39;</span>)</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>        <span class="fu">setUsers</span>(response<span class="op">.</span><span class="at">data</span><span class="op">.</span><span class="at">users</span>)</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>      } <span class="cf">catch</span> (err) {</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Handle error</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fetchUsers</span>()</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span> [])</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> filteredUsers <span class="op">=</span> users<span class="op">.</span><span class="fu">filter</span>(user <span class="kw">=&gt;</span> {</span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> matchesSearch <span class="op">=</span> user<span class="op">.</span><span class="at">username</span><span class="op">.</span><span class="fu">toLowerCase</span>()<span class="op">.</span><span class="fu">includes</span>(searchTerm<span class="op">.</span><span class="fu">toLowerCase</span>())</span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> matchesRole <span class="op">=</span> filterRole <span class="op">===</span> <span class="st">&#39;All Roles&#39;</span> <span class="op">||</span> user<span class="op">.</span><span class="at">role</span> <span class="op">===</span> filterRole<span class="op">.</span><span class="fu">toLowerCase</span>()</span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> matchesSearch <span class="op">&amp;&amp;</span> matchesRole</span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> (</span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>    <span class="op">&lt;</span>AuthLayout<span class="op">&gt;</span></span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a>      <span class="op">&lt;</span>Card<span class="op">&gt;</span></span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a>        <span class="op">&lt;</span>CardHeader title<span class="op">=</span><span class="st">&quot;Users Dashboard&quot;</span> <span class="op">/&gt;</span></span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a>        <span class="op">&lt;</span>CardBody<span class="op">&gt;</span></span>
+<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a>          {<span class="co">/* Search and filter controls */</span>}</span>
+<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a>          {<span class="co">/* Users table */</span>}</span>
+<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a>        <span class="op">&lt;/</span>CardBody<span class="op">&gt;</span></span>
+<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a>      <span class="op">&lt;/</span>Card<span class="op">&gt;</span></span>
+<span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a>    <span class="op">&lt;/</span>AuthLayout<span class="op">&gt;</span></span>
+<span id="cb17-34"><a href="#cb17-34" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb17-35"><a href="#cb17-35" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<h3 id="ui-components">UI Components</h3>
+<h4 id="reusable-components">Reusable Components</h4>
+<p><strong>Card Component (<code>Card.tsx</code>)</strong></p>
+<div class="sourceCode" id="cb18"><pre
+class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="kw">function</span> <span class="fu">Card</span>({ children<span class="op">,</span> className <span class="op">=</span> <span class="st">&#39;&#39;</span> }<span class="op">:</span> { children<span class="op">:</span> ReactNode<span class="op">;</span> className<span class="op">?:</span> <span class="dt">string</span> }) {</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> (</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="op">&lt;</span>div className<span class="op">=</span>{<span class="vs">`bg-white border border-gray-200 rounded-xl </span><span class="sc">${</span>className<span class="sc">}</span><span class="vs">`</span>}<span class="op">&gt;</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>      {children}</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">&lt;/</span>div<span class="op">&gt;</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p><strong>Button Component (<code>Button.tsx</code>)</strong></p>
+<div class="sourceCode" id="cb19"><pre
+class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="im">default</span> <span class="kw">function</span> <span class="fu">Button</span>({ loading<span class="op">,</span> children<span class="op">,</span> className <span class="op">=</span> <span class="st">&#39;&#39;</span><span class="op">,</span> <span class="op">...</span>props }<span class="op">:</span> Props) {</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> (</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    <span class="op">&lt;</span>button</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>      className<span class="op">=</span>{<span class="vs">`w-full inline-flex items-center justify-center gap-2 bg-gray-900 text-white py-2.5 rounded-lg hover:bg-black transition-colors focus:outline-none focus:ring-2 focus:ring-gray-900 disabled:opacity-60 </span><span class="sc">${</span>className<span class="sc">}</span><span class="vs">`</span>}</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>      disabled<span class="op">=</span>{loading <span class="op">||</span> props<span class="op">.</span><span class="at">disabled</span>}</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>      {<span class="op">...</span>props}</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">&gt;</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>      {loading <span class="op">&amp;&amp;</span> <span class="op">&lt;</span>span className<span class="op">=</span><span class="st">&quot;h-4 w-4 animate-spin rounded-full border-2 border-white/60 border-t-transparent&quot;</span><span class="op">&gt;&lt;/</span>span<span class="op">&gt;</span>}</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>      {loading <span class="op">?</span> <span class="st">&#39;Working...&#39;</span> <span class="op">:</span> children}</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">&lt;/</span>button<span class="op">&gt;</span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<h3 id="styling-with-tailwindcss">Styling with TailwindCSS</h3>
+<h4 id="global-styles-index.css">Global Styles
+(<code>index.css</code>)</h4>
+<div class="sourceCode" id="cb20"><pre
+class="sourceCode css"><code class="sourceCode css"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="im">@tailwind</span> base<span class="op">;</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="im">@tailwind</span> components<span class="op">;</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="im">@tailwind</span> utilities<span class="op">;</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="in">:root</span> { <span class="kw">color-scheme</span><span class="ch">:</span> <span class="dv">light</span><span class="op">;</span> }</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>html<span class="op">,</span> body<span class="op">,</span> <span class="pp">#root</span> { <span class="kw">height</span><span class="ch">:</span> <span class="dv">100</span><span class="dt">%</span><span class="op">;</span> }</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>body { <span class="im">@apply</span> text-gray-900 bg-white antialiased<span class="op">;</span> }</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="co">/* Minimal focus ring */</span></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a><span class="op">*</span><span class="in">:focus-visible</span> { <span class="kw">outline</span><span class="ch">:</span> <span class="dv">0</span><span class="op">;</span> <span class="kw">box-shadow</span><span class="ch">:</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">2</span><span class="dt">px</span> <span class="fu">rgba(</span><span class="dv">0</span><span class="op">,</span><span class="dv">0</span><span class="op">,</span><span class="dv">0</span><span class="op">,</span><span class="dv">0.9</span><span class="fu">)</span><span class="op">;</span> <span class="kw">border-radius</span><span class="ch">:</span> <span class="dv">4</span><span class="dt">px</span><span class="op">;</span> }</span></code></pre></div>
+<h4 id="tailwindcss-configuration-tailwind.config.js">TailwindCSS
+Configuration (<code>tailwind.config.js</code>)</h4>
+<div class="sourceCode" id="cb21"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="im">default</span> {</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">content</span><span class="op">:</span> [</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;./index.html&#39;</span><span class="op">,</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;./src/**/*.{js,ts,jsx,tsx}&#39;</span><span class="op">,</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">theme</span><span class="op">:</span> {</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">extend</span><span class="op">:</span> {}<span class="op">,</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">plugins</span><span class="op">:</span> []<span class="op">,</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<hr />
+<h2 id="database-integration-1">Database Integration</h2>
+<h3 id="mongodb-setup">MongoDB Setup</h3>
+<h4 id="docker-configuration">Docker Configuration</h4>
+<div class="sourceCode" id="cb22"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Start MongoDB with Docker</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-d</span> <span class="at">--name</span> mongodb <span class="at">-p</span> 27017:27017 mongo:latest</span></code></pre></div>
+<h4 id="database-schema">Database Schema</h4>
+<p><strong>Users Collection</strong></p>
+<div class="sourceCode" id="cb23"><pre
+class="sourceCode json"><code class="sourceCode json"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;_id&quot;</span><span class="fu">:</span> <span class="st">&quot;ObjectId&quot;</span><span class="fu">,</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;username&quot;</span><span class="fu">:</span> <span class="st">&quot;string&quot;</span><span class="fu">,</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;passwordHash&quot;</span><span class="fu">:</span> <span class="st">&quot;string (bcrypt)&quot;</span><span class="fu">,</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;role&quot;</span><span class="fu">:</span> <span class="st">&quot;string (instructor|student)&quot;</span><span class="fu">,</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;email&quot;</span><span class="fu">:</span> <span class="st">&quot;string&quot;</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<h4 id="sample-data">Sample Data</h4>
+<p><strong>Admin User</strong></p>
+<div class="sourceCode" id="cb24"><pre
+class="sourceCode json"><code class="sourceCode json"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;username&quot;</span><span class="fu">:</span> <span class="st">&quot;admin&quot;</span><span class="fu">,</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;passwordHash&quot;</span><span class="fu">:</span> <span class="st">&quot;$2a$10$...&quot;</span><span class="fu">,</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;role&quot;</span><span class="fu">:</span> <span class="st">&quot;instructor&quot;</span><span class="fu">,</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;email&quot;</span><span class="fu">:</span> <span class="st">&quot;admin@example.com&quot;</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<p><strong>Student Users</strong></p>
+<div class="sourceCode" id="cb25"><pre
+class="sourceCode json"><code class="sourceCode json"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;username&quot;</span><span class="fu">:</span> <span class="st">&quot;student1&quot;</span><span class="fu">,</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;passwordHash&quot;</span><span class="fu">:</span> <span class="st">&quot;$2a$10$...&quot;</span><span class="fu">,</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;role&quot;</span><span class="fu">:</span> <span class="st">&quot;student&quot;</span><span class="fu">,</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;email&quot;</span><span class="fu">:</span> <span class="st">&quot;student1@student.example.com&quot;</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<h3 id="database-operations">Database Operations</h3>
+<h4 id="repository-methods">Repository Methods</h4>
+<div class="sourceCode" id="cb26"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="kw">interface</span> UserRepository <span class="kw">extends</span> MongoRepository<span class="op">&lt;</span>UserDocument<span class="op">,</span> <span class="bu">String</span><span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    Optional<span class="op">&lt;</span>UserDocument<span class="op">&gt;</span> <span class="fu">findByUsername</span><span class="op">(</span><span class="bu">String</span> username<span class="op">);</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">List</span><span class="op">&lt;</span>UserDocument<span class="op">&gt;</span> <span class="fu">findByRole</span><span class="op">(</span><span class="bu">String</span> role<span class="op">);</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">List</span><span class="op">&lt;</span>UserDocument<span class="op">&gt;</span> <span class="fu">findByEmailContaining</span><span class="op">(</span><span class="bu">String</span> email<span class="op">);</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h4 id="service-layer-database-operations">Service Layer Database
+Operations</h4>
+<div class="sourceCode" id="cb27"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="at">@Service</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="kw">class</span> AuthService <span class="op">{</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">boolean</span> <span class="fu">validateCredentials</span><span class="op">(</span><span class="bu">String</span> username<span class="op">,</span> <span class="bu">String</span> rawPassword<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>        Optional<span class="op">&lt;</span>UserDocument<span class="op">&gt;</span> userOpt <span class="op">=</span> userRepository<span class="op">.</span><span class="fu">findByUsername</span><span class="op">(</span>username<span class="op">);</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>userOpt<span class="op">.</span><span class="fu">isEmpty</span><span class="op">())</span> <span class="cf">return</span> <span class="kw">false</span><span class="op">;</span></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>        UserDocument user <span class="op">=</span> userOpt<span class="op">.</span><span class="fu">get</span><span class="op">();</span></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> BCrypt<span class="op">.</span><span class="fu">checkpw</span><span class="op">(</span>rawPassword<span class="op">,</span> user<span class="op">.</span><span class="fu">getPasswordHash</span><span class="op">());</span></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="bu">List</span><span class="op">&lt;</span>UserDocument<span class="op">&gt;</span> <span class="fu">getAllUsers</span><span class="op">()</span> <span class="op">{</span></span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> userRepository<span class="op">.</span><span class="fu">findAll</span><span class="op">();</span></span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<hr />
+<h2 id="authentication-security">Authentication &amp; Security</h2>
+<h3 id="jwt-implementation">JWT Implementation</h3>
+<h4 id="token-structure">Token Structure</h4>
+<div class="sourceCode" id="cb28"><pre
+class="sourceCode json"><code class="sourceCode json"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;header&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;alg&quot;</span><span class="fu">:</span> <span class="st">&quot;HS256&quot;</span><span class="fu">,</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;typ&quot;</span><span class="fu">:</span> <span class="st">&quot;JWT&quot;</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">},</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;payload&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;sub&quot;</span><span class="fu">:</span> <span class="st">&quot;username&quot;</span><span class="fu">,</span></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;role&quot;</span><span class="fu">:</span> <span class="st">&quot;instructor|student&quot;</span><span class="fu">,</span></span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;iat&quot;</span><span class="fu">:</span> <span class="dv">1640995200</span><span class="fu">,</span></span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;exp&quot;</span><span class="fu">:</span> <span class="dv">1640998800</span></span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">},</span></span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;signature&quot;</span><span class="fu">:</span> <span class="st">&quot;HMACSHA256(base64UrlEncode(header) + &#39;.&#39; + base64UrlEncode(payload), secret)&quot;</span></span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<h4 id="jwt-service-implementation">JWT Service Implementation</h4>
+<div class="sourceCode" id="cb29"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="at">@Service</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="kw">class</span> JwtService <span class="op">{</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="bu">String</span> <span class="fu">generateToken</span><span class="op">(</span><span class="bu">String</span> username<span class="op">,</span> <span class="bu">String</span> role<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>        <span class="bu">Map</span><span class="op">&lt;</span><span class="bu">String</span><span class="op">,</span> <span class="bu">Object</span><span class="op">&gt;</span> claims <span class="op">=</span> <span class="kw">new</span> <span class="bu">HashMap</span><span class="op">&lt;&gt;();</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>        claims<span class="op">.</span><span class="fu">put</span><span class="op">(</span><span class="st">&quot;role&quot;</span><span class="op">,</span> role<span class="op">);</span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> Jwts<span class="op">.</span><span class="fu">builder</span><span class="op">()</span></span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>                <span class="op">.</span><span class="fu">setClaims</span><span class="op">(</span>claims<span class="op">)</span></span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>                <span class="op">.</span><span class="fu">setSubject</span><span class="op">(</span>username<span class="op">)</span></span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>                <span class="op">.</span><span class="fu">setIssuedAt</span><span class="op">(</span><span class="kw">new</span> <span class="bu">Date</span><span class="op">(</span><span class="bu">System</span><span class="op">.</span><span class="fu">currentTimeMillis</span><span class="op">()))</span></span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>                <span class="op">.</span><span class="fu">setExpiration</span><span class="op">(</span><span class="kw">new</span> <span class="bu">Date</span><span class="op">(</span><span class="bu">System</span><span class="op">.</span><span class="fu">currentTimeMillis</span><span class="op">()</span> <span class="op">+</span> expirationTime<span class="op">))</span></span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>                <span class="op">.</span><span class="fu">signWith</span><span class="op">(</span>secretKey<span class="op">,</span> SignatureAlgorithm<span class="op">.</span><span class="fu">HS256</span><span class="op">)</span></span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>                <span class="op">.</span><span class="fu">compact</span><span class="op">();</span></span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="bu">String</span> <span class="fu">validateAndGetSubject</span><span class="op">(</span><span class="bu">String</span> token<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">try</span> <span class="op">{</span></span>
+<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> Jwts<span class="op">.</span><span class="fu">parserBuilder</span><span class="op">()</span></span>
+<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a>                    <span class="op">.</span><span class="fu">setSigningKey</span><span class="op">(</span>secretKey<span class="op">)</span></span>
+<span id="cb29-21"><a href="#cb29-21" aria-hidden="true" tabindex="-1"></a>                    <span class="op">.</span><span class="fu">build</span><span class="op">()</span></span>
+<span id="cb29-22"><a href="#cb29-22" aria-hidden="true" tabindex="-1"></a>                    <span class="op">.</span><span class="fu">parseClaimsJws</span><span class="op">(</span>token<span class="op">)</span></span>
+<span id="cb29-23"><a href="#cb29-23" aria-hidden="true" tabindex="-1"></a>                    <span class="op">.</span><span class="fu">getBody</span><span class="op">()</span></span>
+<span id="cb29-24"><a href="#cb29-24" aria-hidden="true" tabindex="-1"></a>                    <span class="op">.</span><span class="fu">getSubject</span><span class="op">();</span></span>
+<span id="cb29-25"><a href="#cb29-25" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span> <span class="cf">catch</span> <span class="op">(</span><span class="bu">SecurityException</span> <span class="op">|</span> <span class="bu">IllegalArgumentException</span> e<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb29-26"><a href="#cb29-26" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="kw">null</span><span class="op">;</span></span>
+<span id="cb29-27"><a href="#cb29-27" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb29-28"><a href="#cb29-28" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb29-29"><a href="#cb29-29" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h3 id="password-security">Password Security</h3>
+<h4 id="bcrypt-hashing">BCrypt Hashing</h4>
+<div class="sourceCode" id="cb30"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Password hashing</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="bu">String</span> hashedPassword <span class="op">=</span> BCrypt<span class="op">.</span><span class="fu">hashpw</span><span class="op">(</span>rawPassword<span class="op">,</span> BCrypt<span class="op">.</span><span class="fu">gensalt</span><span class="op">());</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="co">// Password verification</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="dt">boolean</span> isValid <span class="op">=</span> BCrypt<span class="op">.</span><span class="fu">checkpw</span><span class="op">(</span>rawPassword<span class="op">,</span> hashedPassword<span class="op">);</span></span></code></pre></div>
+<h4 id="security-best-practices">Security Best Practices</h4>
+<ol type="1">
+<li><strong>Password Hashing</strong>: Use BCrypt with salt</li>
+<li><strong>JWT Expiration</strong>: Set reasonable expiration
+times</li>
+<li><strong>HTTPS</strong>: Use secure connections in production</li>
+<li><strong>CORS</strong>: Configure appropriate CORS policies</li>
+<li><strong>Input Validation</strong>: Validate all user inputs</li>
+<li><strong>Error Handling</strong>: Don’t expose sensitive
+information</li>
+</ol>
+<h3 id="authentication-flow">Authentication Flow</h3>
+<pre><code>1. User submits login credentials
+2. Backend validates credentials against database
+3. If valid, generate JWT token with user claims
+4. Return token to frontend
+5. Frontend stores token in localStorage
+6. Subsequent requests include token in Authorization header
+7. Backend validates token on each request
+8. If token is valid, process request; if not, return 401</code></pre>
+<hr />
+<h2 id="api-documentation">API Documentation</h2>
+<h3 id="endpoint-overview">Endpoint Overview</h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Endpoint</th>
+<th>Description</th>
+<th>Authentication</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>POST</td>
+<td><code>/api/login</code></td>
+<td>User login</td>
+<td>None</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/api/profile</code></td>
+<td>Get user profile</td>
+<td>JWT Required</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/api/users</code></td>
+<td>List all users</td>
+<td>JWT Required</td>
+</tr>
+</tbody>
+</table>
+<h3 id="detailed-api-documentation">Detailed API Documentation</h3>
+<h4 id="post-apilogin">POST /api/login</h4>
+<p><strong>Description</strong>: Authenticate user and return JWT
+token</p>
+<p><strong>Request Body</strong>:</p>
+<div class="sourceCode" id="cb32"><pre
+class="sourceCode json"><code class="sourceCode json"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;username&quot;</span><span class="fu">:</span> <span class="st">&quot;admin&quot;</span><span class="fu">,</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;password&quot;</span><span class="fu">:</span> <span class="st">&quot;password&quot;</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<p><strong>Success Response</strong> (200):</p>
+<div class="sourceCode" id="cb33"><pre
+class="sourceCode json"><code class="sourceCode json"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;token&quot;</span><span class="fu">:</span> <span class="st">&quot;eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY0MDk5NTIwMCwiZXhwIjoxNjQwOTk4ODAwfQ.signature&quot;</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<p><strong>Error Response</strong> (401):</p>
+<div class="sourceCode" id="cb34"><pre
+class="sourceCode json"><code class="sourceCode json"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;error&quot;</span><span class="fu">:</span> <span class="st">&quot;Invalid credentials&quot;</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<h4 id="get-apiprofile">GET /api/profile</h4>
+<p><strong>Description</strong>: Get current user’s profile
+information</p>
+<p><strong>Headers</strong>:</p>
+<pre><code>Authorization: Bearer &lt;jwt_token&gt;</code></pre>
+<p><strong>Success Response</strong> (200):</p>
+<div class="sourceCode" id="cb36"><pre
+class="sourceCode json"><code class="sourceCode json"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;username&quot;</span><span class="fu">:</span> <span class="st">&quot;admin&quot;</span><span class="fu">,</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;role&quot;</span><span class="fu">:</span> <span class="st">&quot;instructor&quot;</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<p><strong>Error Response</strong> (401):</p>
+<div class="sourceCode" id="cb37"><pre
+class="sourceCode json"><code class="sourceCode json"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;error&quot;</span><span class="fu">:</span> <span class="st">&quot;Unauthorized&quot;</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<h4 id="get-apiusers">GET /api/users</h4>
+<p><strong>Description</strong>: Get list of all users in the system</p>
+<p><strong>Headers</strong>:</p>
+<pre><code>Authorization: Bearer &lt;jwt_token&gt;</code></pre>
+<p><strong>Success Response</strong> (200):</p>
+<div class="sourceCode" id="cb39"><pre
+class="sourceCode json"><code class="sourceCode json"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;count&quot;</span><span class="fu">:</span> <span class="dv">11</span><span class="fu">,</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;users&quot;</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;id&quot;</span><span class="fu">:</span> <span class="st">&quot;68efc1d8bb9e021c29f5408e&quot;</span><span class="fu">,</span></span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;username&quot;</span><span class="fu">:</span> <span class="st">&quot;admin&quot;</span><span class="fu">,</span></span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;email&quot;</span><span class="fu">:</span> <span class="st">&quot;admin@example.com&quot;</span><span class="fu">,</span></span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;role&quot;</span><span class="fu">:</span> <span class="st">&quot;instructor&quot;</span></span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span></span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;id&quot;</span><span class="fu">:</span> <span class="st">&quot;68f00e34cb34860e47e3e284&quot;</span><span class="fu">,</span></span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;username&quot;</span><span class="fu">:</span> <span class="st">&quot;student1&quot;</span><span class="fu">,</span></span>
+<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;email&quot;</span><span class="fu">:</span> <span class="st">&quot;student1@student.example.com&quot;</span><span class="fu">,</span></span>
+<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;role&quot;</span><span class="fu">:</span> <span class="st">&quot;student&quot;</span></span>
+<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
+<span id="cb39-16"><a href="#cb39-16" aria-hidden="true" tabindex="-1"></a>  <span class="ot">]</span></span>
+<span id="cb39-17"><a href="#cb39-17" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<h3 id="error-handling">Error Handling</h3>
+<h4 id="common-http-status-codes">Common HTTP Status Codes</h4>
+<ul>
+<li><strong>200 OK</strong>: Request successful</li>
+<li><strong>401 Unauthorized</strong>: Invalid or missing
+authentication</li>
+<li><strong>404 Not Found</strong>: Resource not found</li>
+<li><strong>500 Internal Server Error</strong>: Server error</li>
+</ul>
+<h4 id="error-response-format">Error Response Format</h4>
+<div class="sourceCode" id="cb40"><pre
+class="sourceCode json"><code class="sourceCode json"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;error&quot;</span><span class="fu">:</span> <span class="st">&quot;Error message description&quot;</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<hr />
+<h2 id="user-dashboard">User Dashboard</h2>
+<h3 id="dashboard-features">Dashboard Features</h3>
+<h4 id="user-interface-components">User Interface Components</h4>
+<ol type="1">
+<li><strong>Header Section</strong>
+<ul>
+<li>Page title</li>
+<li>User count display</li>
+<li>Navigation controls</li>
+</ul></li>
+<li><strong>Search and Filter Section</strong>
+<ul>
+<li>Text search by username or email</li>
+<li>Role filter dropdown</li>
+<li>Real-time filtering</li>
+</ul></li>
+<li><strong>Users Table</strong>
+<ul>
+<li>User ID display</li>
+<li>Username with formatting</li>
+<li>Email address</li>
+<li>Role badges with color coding</li>
+<li>Action buttons</li>
+</ul></li>
+<li><strong>Responsive Design</strong>
+<ul>
+<li>Mobile-friendly layout</li>
+<li>Collapsible columns on small screens</li>
+<li>Touch-friendly controls</li>
+</ul></li>
+</ol>
+<h4 id="implementation-details">Implementation Details</h4>
+<p><strong>State Management</strong>:</p>
+<div class="sourceCode" id="cb41"><pre
+class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> [users<span class="op">,</span> setUsers] <span class="op">=</span> <span class="fu">useState</span><span class="op">&lt;</span>User[]<span class="op">&gt;</span>([])</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> [searchTerm<span class="op">,</span> setSearchTerm] <span class="op">=</span> <span class="fu">useState</span>(<span class="st">&#39;&#39;</span>)</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> [filterRole<span class="op">,</span> setFilterRole] <span class="op">=</span> <span class="fu">useState</span>(<span class="st">&#39;All Roles&#39;</span>)</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> [loading<span class="op">,</span> setLoading] <span class="op">=</span> <span class="fu">useState</span>(<span class="kw">true</span>)</span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> [error<span class="op">,</span> setError] <span class="op">=</span> <span class="fu">useState</span><span class="op">&lt;</span><span class="dt">string</span> <span class="op">|</span> <span class="dt">null</span><span class="op">&gt;</span>(<span class="kw">null</span>)</span></code></pre></div>
+<p><strong>Data Fetching</strong>:</p>
+<div class="sourceCode" id="cb42"><pre
+class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">useEffect</span>(() <span class="kw">=&gt;</span> {</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> fetchUsers <span class="op">=</span> <span class="kw">async</span> () <span class="kw">=&gt;</span> {</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span> {</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> response <span class="op">=</span> <span class="cf">await</span> api<span class="op">.</span><span class="fu">get</span>(<span class="st">&#39;/users&#39;</span>)</span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">setUsers</span>(response<span class="op">.</span><span class="at">data</span><span class="op">.</span><span class="at">users</span>)</span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">catch</span> (err<span class="op">:</span> <span class="dt">any</span>) {</span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">setError</span>(err<span class="op">.</span><span class="at">response</span><span class="op">?.</span><span class="at">data</span><span class="op">?.</span><span class="at">error</span> <span class="op">||</span> <span class="st">&#39;Failed to fetch users&#39;</span>)</span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">finally</span> {</span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>      <span class="fu">setLoading</span>(<span class="kw">false</span>)</span>
+<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fetchUsers</span>()</span>
+<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a>}<span class="op">,</span> [])</span></code></pre></div>
+<p><strong>Filtering Logic</strong>:</p>
+<div class="sourceCode" id="cb43"><pre
+class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> filteredUsers <span class="op">=</span> users<span class="op">.</span><span class="fu">filter</span>(user <span class="kw">=&gt;</span> {</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> matchesSearch <span class="op">=</span> user<span class="op">.</span><span class="at">username</span><span class="op">.</span><span class="fu">toLowerCase</span>()<span class="op">.</span><span class="fu">includes</span>(searchTerm<span class="op">.</span><span class="fu">toLowerCase</span>()) <span class="op">||</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>                        user<span class="op">.</span><span class="at">email</span><span class="op">.</span><span class="fu">toLowerCase</span>()<span class="op">.</span><span class="fu">includes</span>(searchTerm<span class="op">.</span><span class="fu">toLowerCase</span>())</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> matchesRole <span class="op">=</span> filterRole <span class="op">===</span> <span class="st">&#39;All Roles&#39;</span> <span class="op">||</span> user<span class="op">.</span><span class="at">role</span> <span class="op">===</span> filterRole<span class="op">.</span><span class="fu">toLowerCase</span>()</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> matchesSearch <span class="op">&amp;&amp;</span> matchesRole</span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<h3 id="user-roles-and-permissions">User Roles and Permissions</h3>
+<h4 id="role-types">Role Types</h4>
+<ol type="1">
+<li><strong>Instructor Role</strong>
+<ul>
+<li>Full access to all features</li>
+<li>Can view all users</li>
+<li>Administrative privileges</li>
+</ul></li>
+<li><strong>Student Role</strong>
+<ul>
+<li>Limited access</li>
+<li>Can view user dashboard</li>
+<li>Cannot modify user data</li>
+</ul></li>
+</ol>
+<h4 id="role-based-ui">Role-Based UI</h4>
+<div class="sourceCode" id="cb44"><pre
+class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Role-based styling</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>span className<span class="op">=</span>{<span class="vs">`px-2 inline-flex text-xs leading-5 font-semibold rounded-full </span><span class="sc">${</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>  user<span class="op">.</span><span class="at">role</span> <span class="op">===</span> <span class="st">&#39;instructor&#39;</span> <span class="op">?</span> <span class="st">&#39;bg-blue-100 text-blue-800&#39;</span> <span class="op">:</span> <span class="st">&#39;bg-green-100 text-green-800&#39;</span></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="sc">}</span><span class="vs">`</span>}<span class="op">&gt;</span></span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>  {user<span class="op">.</span><span class="at">role</span>}</span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;/</span>span<span class="op">&gt;</span></span></code></pre></div>
+<hr />
+<h2 id="testing-quality-assurance">Testing &amp; Quality Assurance</h2>
+<h3 id="postman-collection">Postman Collection</h3>
+<h4 id="collection-structure">Collection Structure</h4>
+<ol type="1">
+<li><strong>Authentication Tests</strong>
+<ul>
+<li>Login with admin credentials</li>
+<li>Login with student credentials</li>
+<li>Invalid login test</li>
+</ul></li>
+<li><strong>API Endpoint Tests</strong>
+<ul>
+<li>Profile endpoint with valid token</li>
+<li>Profile endpoint without token</li>
+<li>Users list endpoint</li>
+</ul></li>
+<li><strong>Error Handling Tests</strong>
+<ul>
+<li>Unauthorized access tests</li>
+<li>Invalid token tests</li>
+<li>Missing authentication tests</li>
+</ul></li>
+</ol>
+<h4 id="test-scripts">Test Scripts</h4>
+<p><strong>Login Test Script</strong>:</p>
+<div class="sourceCode" id="cb45"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (pm<span class="op">.</span><span class="at">response</span><span class="op">.</span><span class="at">code</span> <span class="op">===</span> <span class="dv">200</span>) {</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">try</span> {</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> data <span class="op">=</span> pm<span class="op">.</span><span class="at">response</span><span class="op">.</span><span class="fu">json</span>()<span class="op">;</span></span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (data<span class="op">.</span><span class="at">token</span>) {</span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>      pm<span class="op">.</span><span class="at">environment</span><span class="op">.</span><span class="fu">set</span>(<span class="st">&#39;token&#39;</span><span class="op">,</span> data<span class="op">.</span><span class="at">token</span>)<span class="op">;</span></span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>      pm<span class="op">.</span><span class="fu">test</span>(<span class="st">&#39;Token captured&#39;</span><span class="op">,</span> <span class="kw">function</span> () { </span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>        pm<span class="op">.</span><span class="fu">expect</span>(data<span class="op">.</span><span class="at">token</span>)<span class="op">.</span><span class="at">to</span><span class="op">.</span><span class="at">be</span><span class="op">.</span><span class="fu">a</span>(<span class="st">&#39;string&#39;</span>)<span class="op">;</span> </span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>      })<span class="op">;</span></span>
+<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">catch</span> (e) { <span class="co">/* ignore */</span> }</span>
+<span id="cb45-11"><a href="#cb45-11" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p><strong>Users List Test Script</strong>:</p>
+<div class="sourceCode" id="cb46"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (pm<span class="op">.</span><span class="at">response</span><span class="op">.</span><span class="at">code</span> <span class="op">===</span> <span class="dv">200</span>) {</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> data <span class="op">=</span> pm<span class="op">.</span><span class="at">response</span><span class="op">.</span><span class="fu">json</span>()<span class="op">;</span></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>  pm<span class="op">.</span><span class="fu">test</span>(<span class="st">&#39;Response has count field&#39;</span><span class="op">,</span> <span class="kw">function</span> () {</span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>    pm<span class="op">.</span><span class="fu">expect</span>(data)<span class="op">.</span><span class="at">to</span><span class="op">.</span><span class="at">have</span><span class="op">.</span><span class="fu">property</span>(<span class="st">&#39;count&#39;</span>)<span class="op">;</span></span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>    pm<span class="op">.</span><span class="fu">expect</span>(data<span class="op">.</span><span class="at">count</span>)<span class="op">.</span><span class="at">to</span><span class="op">.</span><span class="at">be</span><span class="op">.</span><span class="fu">a</span>(<span class="st">&#39;number&#39;</span>)<span class="op">;</span></span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>  })<span class="op">;</span></span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a>  pm<span class="op">.</span><span class="fu">test</span>(<span class="st">&#39;Response has users array&#39;</span><span class="op">,</span> <span class="kw">function</span> () {</span>
+<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a>    pm<span class="op">.</span><span class="fu">expect</span>(data)<span class="op">.</span><span class="at">to</span><span class="op">.</span><span class="at">have</span><span class="op">.</span><span class="fu">property</span>(<span class="st">&#39;users&#39;</span>)<span class="op">;</span></span>
+<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a>    pm<span class="op">.</span><span class="fu">expect</span>(data<span class="op">.</span><span class="at">users</span>)<span class="op">.</span><span class="at">to</span><span class="op">.</span><span class="at">be</span><span class="op">.</span><span class="fu">an</span>(<span class="st">&#39;array&#39;</span>)<span class="op">;</span></span>
+<span id="cb46-12"><a href="#cb46-12" aria-hidden="true" tabindex="-1"></a>  })<span class="op">;</span></span>
+<span id="cb46-13"><a href="#cb46-13" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<h3 id="manual-testing-checklist">Manual Testing Checklist</h3>
+<h4 id="frontend-testing">Frontend Testing</h4>
+<ul class="task-list">
+<li><label><input type="checkbox" />Login page loads
+correctly</label></li>
+<li><label><input type="checkbox" />Login with valid credentials
+works</label></li>
+<li><label><input type="checkbox" />Login with invalid credentials shows
+error</label></li>
+<li><label><input type="checkbox" />Profile page displays user
+information</label></li>
+<li><label><input type="checkbox" />Dashboard loads and displays
+users</label></li>
+<li><label><input type="checkbox" />Search functionality
+works</label></li>
+<li><label><input type="checkbox" />Filter by role works</label></li>
+<li><label><input type="checkbox" />Responsive design works on
+mobile</label></li>
+<li><label><input type="checkbox" />Logout clears token and
+redirects</label></li>
+</ul>
+<h4 id="backend-testing">Backend Testing</h4>
+<ul class="task-list">
+<li><label><input type="checkbox" />All API endpoints respond
+correctly</label></li>
+<li><label><input type="checkbox" />JWT token validation
+works</label></li>
+<li><label><input type="checkbox" />Password hashing and verification
+works</label></li>
+<li><label><input type="checkbox" />Database operations work
+correctly</label></li>
+<li><label><input type="checkbox" />Error handling returns appropriate
+status codes</label></li>
+<li><label><input type="checkbox" />CORS headers are set
+correctly</label></li>
+</ul>
+<h3 id="performance-considerations">Performance Considerations</h3>
+<h4 id="frontend-optimization">Frontend Optimization</h4>
+<ol type="1">
+<li><strong>Code Splitting</strong>: Lazy load components</li>
+<li><strong>Memoization</strong>: Use React.memo for expensive
+components</li>
+<li><strong>Debouncing</strong>: Debounce search input</li>
+<li><strong>Caching</strong>: Cache API responses when appropriate</li>
+</ol>
+<h4 id="backend-optimization">Backend Optimization</h4>
+<ol type="1">
+<li><strong>Database Indexing</strong>: Index frequently queried
+fields</li>
+<li><strong>Connection Pooling</strong>: Optimize database
+connections</li>
+<li><strong>Caching</strong>: Cache frequently accessed data</li>
+<li><strong>Pagination</strong>: Implement pagination for large
+datasets</li>
+</ol>
+<hr />
+<h2 id="deployment-setup">Deployment &amp; Setup</h2>
+<h3 id="prerequisites">Prerequisites</h3>
+<h4 id="system-requirements">System Requirements</h4>
+<ul>
+<li><strong>Java</strong>: JDK 17 or higher</li>
+<li><strong>Node.js</strong>: Version 18 or higher</li>
+<li><strong>MongoDB</strong>: Version 5.0 or higher</li>
+<li><strong>Git</strong>: Latest version</li>
+<li><strong>Docker</strong>: Optional, for MongoDB containerization</li>
+</ul>
+<h4 id="development-tools-1">Development Tools</h4>
+<ul>
+<li><strong>IDE</strong>: IntelliJ IDEA, Eclipse, or VS Code</li>
+<li><strong>Postman</strong>: For API testing</li>
+<li><strong>Git</strong>: For version control</li>
+</ul>
+<h3 id="local-development-setup">Local Development Setup</h3>
+<h4 id="clone-the-repository">1. Clone the Repository</h4>
+<div class="sourceCode" id="cb47"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/belmont-bhagat/substitute-teacher.git</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> substitute-teacher</span></code></pre></div>
+<h4 id="start-mongodb">2. Start MongoDB</h4>
+<p><strong>Option A: Docker (Recommended)</strong></p>
+<div class="sourceCode" id="cb48"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-d</span> <span class="at">--name</span> mongodb <span class="at">-p</span> 27017:27017 mongo:latest</span></code></pre></div>
+<p><strong>Option B: Local Installation</strong></p>
+<div class="sourceCode" id="cb49"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># macOS with Homebrew</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install mongodb-community</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> services start mongodb-community</span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Ubuntu/Debian</span></span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt-get install mongodb</span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> systemctl start mongodb</span></code></pre></div>
+<h4 id="backend-setup">3. Backend Setup</h4>
+<div class="sourceCode" id="cb50"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> simple-login-backend</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Set Java environment</span></span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">JAVA_HOME</span><span class="op">=</span>/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home</span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">PATH</span><span class="op">=</span><span class="st">&quot;</span><span class="va">$JAVA_HOME</span><span class="st">/bin:</span><span class="va">$PATH</span><span class="st">&quot;</span></span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Set JWT secret</span></span>
+<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">AUTH_JWT_SECRET</span><span class="op">=</span><span class="st">&#39;your-secure-secret-key-here&#39;</span></span>
+<span id="cb50-9"><a href="#cb50-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-10"><a href="#cb50-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Run the application</span></span>
+<span id="cb50-11"><a href="#cb50-11" aria-hidden="true" tabindex="-1"></a><span class="ex">./mvnw</span> spring-boot:run</span></code></pre></div>
+<h4 id="frontend-setup">4. Frontend Setup</h4>
+<div class="sourceCode" id="cb51"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> simple-login-frontend</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Install dependencies</span></span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> install</span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Start development server</span></span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> run dev</span></code></pre></div>
+<h3 id="environment-configuration">Environment Configuration</h3>
+<h4 id="backend-environment-variables">Backend Environment
+Variables</h4>
+<div class="sourceCode" id="cb52"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># MongoDB connection</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">MONGO_URI</span><span class="op">=</span><span class="st">&quot;mongodb://localhost:27017/simple_login&quot;</span></span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a><span class="co"># JWT configuration</span></span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">AUTH_JWT_SECRET</span><span class="op">=</span><span class="st">&quot;your-secure-secret-key-at-least-64-characters-long&quot;</span></span></code></pre></div>
+<h4 id="frontend-environment-variables">Frontend Environment
+Variables</h4>
+<div class="sourceCode" id="cb53"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># API base URL</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">VITE_API_BASE_URL</span><span class="op">=</span><span class="st">&quot;http://localhost:8080/api&quot;</span></span></code></pre></div>
+<h3 id="production-deployment">Production Deployment</h3>
+<h4 id="backend-deployment">Backend Deployment</h4>
+<ol type="1">
+<li><strong>Build the JAR file</strong>:</li>
+</ol>
+<div class="sourceCode" id="cb54"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./mvnw</span> clean package</span></code></pre></div>
+<ol start="2" type="1">
+<li><strong>Run the application</strong>:</li>
+</ol>
+<div class="sourceCode" id="cb55"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="ex">java</span> <span class="at">-jar</span> target/simple-login-backend-0.0.1-SNAPSHOT.jar</span></code></pre></div>
+<h4 id="frontend-deployment">Frontend Deployment</h4>
+<ol type="1">
+<li><strong>Build for production</strong>:</li>
+</ol>
+<div class="sourceCode" id="cb56"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> run build</span></code></pre></div>
+<ol start="2" type="1">
+<li><strong>Serve static files</strong>:</li>
+</ol>
+<div class="sourceCode" id="cb57"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Using serve</span></span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> install <span class="at">-g</span> serve</span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a><span class="ex">serve</span> <span class="at">-s</span> dist</span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Using nginx</span></span>
+<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Configure nginx to serve the dist folder</span></span></code></pre></div>
+<h3 id="docker-deployment">Docker Deployment</h3>
+<h4 id="docker-compose-configuration">Docker Compose Configuration</h4>
+<div class="sourceCode" id="cb58"><pre
+class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">version</span><span class="kw">:</span><span class="at"> </span><span class="st">&#39;3.8&#39;</span></span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a><span class="fu">services</span><span class="kw">:</span></span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">mongodb</span><span class="kw">:</span></span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">image</span><span class="kw">:</span><span class="at"> mongo:latest</span></span>
+<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">ports</span><span class="kw">:</span></span>
+<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="st">&quot;27017:27017&quot;</span></span>
+<span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">environment</span><span class="kw">:</span></span>
+<span id="cb58-8"><a href="#cb58-8" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">MONGO_INITDB_DATABASE</span><span class="kw">:</span><span class="at"> simple_login</span></span>
+<span id="cb58-9"><a href="#cb58-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-10"><a href="#cb58-10" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">backend</span><span class="kw">:</span></span>
+<span id="cb58-11"><a href="#cb58-11" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">build</span><span class="kw">:</span><span class="at"> ./simple-login-backend</span></span>
+<span id="cb58-12"><a href="#cb58-12" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">ports</span><span class="kw">:</span></span>
+<span id="cb58-13"><a href="#cb58-13" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="st">&quot;8080:8080&quot;</span></span>
+<span id="cb58-14"><a href="#cb58-14" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">environment</span><span class="kw">:</span></span>
+<span id="cb58-15"><a href="#cb58-15" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">MONGO_URI</span><span class="kw">:</span><span class="at"> mongodb://mongodb:27017/simple_login</span></span>
+<span id="cb58-16"><a href="#cb58-16" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">AUTH_JWT_SECRET</span><span class="kw">:</span><span class="at"> your-secure-secret-key</span></span>
+<span id="cb58-17"><a href="#cb58-17" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">depends_on</span><span class="kw">:</span></span>
+<span id="cb58-18"><a href="#cb58-18" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> mongodb</span></span>
+<span id="cb58-19"><a href="#cb58-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-20"><a href="#cb58-20" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">frontend</span><span class="kw">:</span></span>
+<span id="cb58-21"><a href="#cb58-21" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">build</span><span class="kw">:</span><span class="at"> ./simple-login-frontend</span></span>
+<span id="cb58-22"><a href="#cb58-22" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">ports</span><span class="kw">:</span></span>
+<span id="cb58-23"><a href="#cb58-23" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="st">&quot;3000:3000&quot;</span></span>
+<span id="cb58-24"><a href="#cb58-24" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">depends_on</span><span class="kw">:</span></span>
+<span id="cb58-25"><a href="#cb58-25" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> backend</span></span></code></pre></div>
+<hr />
+<h2 id="troubleshooting">Troubleshooting</h2>
+<h3 id="common-issues-and-solutions">Common Issues and Solutions</h3>
+<h4 id="backend-issues">Backend Issues</h4>
+<p><strong>Issue</strong>: Port 8080 already in use</p>
+<div class="sourceCode" id="cb59"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Solution: Kill process using port 8080</span></span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="ex">lsof</span> <span class="at">-t</span> <span class="at">-i:8080</span> <span class="kw">|</span> <span class="fu">xargs</span> <span class="at">-r</span> kill <span class="at">-9</span></span></code></pre></div>
+<p><strong>Issue</strong>: MongoDB connection failed</p>
+<div class="sourceCode" id="cb60"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Solution: Check MongoDB status</span></span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> ps <span class="kw">|</span> <span class="fu">grep</span> mongo</span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Or for local installation</span></span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> systemctl status mongodb</span></code></pre></div>
+<p><strong>Issue</strong>: JWT token validation failed</p>
+<div class="sourceCode" id="cb61"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Solution: Check JWT secret configuration</span></span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="va">$AUTH_JWT_SECRET</span></span>
+<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Ensure secret is at least 64 characters long</span></span></code></pre></div>
+<p><strong>Issue</strong>: Java version mismatch</p>
+<div class="sourceCode" id="cb62"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Solution: Set correct Java version</span></span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">JAVA_HOME</span><span class="op">=</span>/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home</span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">PATH</span><span class="op">=</span><span class="st">&quot;</span><span class="va">$JAVA_HOME</span><span class="st">/bin:</span><span class="va">$PATH</span><span class="st">&quot;</span></span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a><span class="ex">java</span> <span class="at">-version</span></span></code></pre></div>
+<h4 id="frontend-issues">Frontend Issues</h4>
+<p><strong>Issue</strong>: React app not loading</p>
+<div class="sourceCode" id="cb63"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Solution: Check for TypeScript errors</span></span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> run build</span>
+<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Fix any compilation errors</span></span></code></pre></div>
+<p><strong>Issue</strong>: API calls failing</p>
+<div class="sourceCode" id="cb64"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Solution: Check proxy configuration in vite.config.ts</span></span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Ensure backend is running on port 8080</span></span></code></pre></div>
+<p><strong>Issue</strong>: TailwindCSS not working</p>
+<div class="sourceCode" id="cb65"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Solution: Rebuild CSS</span></span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> run build</span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Check tailwind.config.js configuration</span></span></code></pre></div>
+<h4 id="database-issues">Database Issues</h4>
+<p><strong>Issue</strong>: Users not seeding</p>
+<div class="sourceCode" id="cb66"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Solution: Check MongoDB connection</span></span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Verify DataSeeder configuration</span></span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Check application logs for errors</span></span></code></pre></div>
+<p><strong>Issue</strong>: Password validation failing</p>
+<div class="sourceCode" id="cb67"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Solution: Check BCrypt implementation</span></span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Verify password hashing in DataSeeder</span></span>
+<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Test with known good password</span></span></code></pre></div>
+<h3 id="debugging-tips">Debugging Tips</h3>
+<h4 id="backend-debugging">Backend Debugging</h4>
+<ol type="1">
+<li><strong>Enable Debug Logging</strong>:</li>
+</ol>
+<pre class="properties"><code>logging.level.com.example.simpleloginbackend=DEBUG
+logging.level.org.springframework.web=DEBUG</code></pre>
+<ol start="2" type="1">
+<li><strong>Check Application Logs</strong>:</li>
+</ol>
+<div class="sourceCode" id="cb69"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span> <span class="at">-f</span> logs/application.log</span></code></pre></div>
+<ol start="3" type="1">
+<li><strong>Test API Endpoints</strong>:</li>
+</ol>
+<div class="sourceCode" id="cb70"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-X</span> POST http://localhost:8080/api/login <span class="dt">\</span></span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">-H</span> <span class="st">&quot;Content-Type: application/json&quot;</span> <span class="dt">\</span></span>
+<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">-d</span> <span class="st">&#39;{&quot;username&quot;:&quot;admin&quot;,&quot;password&quot;:&quot;password&quot;}&#39;</span></span></code></pre></div>
+<h4 id="frontend-debugging">Frontend Debugging</h4>
+<ol type="1">
+<li><strong>Browser Developer Tools</strong>:
+<ul>
+<li>Check Console for JavaScript errors</li>
+<li>Monitor Network tab for API calls</li>
+<li>Inspect Elements for CSS issues</li>
+</ul></li>
+<li><strong>React Developer Tools</strong>:
+<ul>
+<li>Install React DevTools browser extension</li>
+<li>Inspect component state and props</li>
+</ul></li>
+<li><strong>Vite Dev Server</strong>:
+<ul>
+<li>Check terminal for compilation errors</li>
+<li>Use hot reload for real-time debugging</li>
+</ul></li>
+</ol>
+<h3 id="performance-issues">Performance Issues</h3>
+<h4 id="slow-api-responses">Slow API Responses</h4>
+<ol type="1">
+<li><strong>Database Optimization</strong>:
+<ul>
+<li>Add indexes to frequently queried fields</li>
+<li>Optimize MongoDB queries</li>
+<li>Use connection pooling</li>
+</ul></li>
+<li><strong>Caching</strong>:
+<ul>
+<li>Implement Redis for session caching</li>
+<li>Cache frequently accessed data</li>
+<li>Use HTTP caching headers</li>
+</ul></li>
+</ol>
+<h4 id="frontend-performance">Frontend Performance</h4>
+<ol type="1">
+<li><strong>Bundle Size</strong>:
+<ul>
+<li>Analyze bundle with <code>npm run build</code></li>
+<li>Use code splitting for large components</li>
+<li>Remove unused dependencies</li>
+</ul></li>
+<li><strong>Rendering Performance</strong>:
+<ul>
+<li>Use React.memo for expensive components</li>
+<li>Implement virtual scrolling for large lists</li>
+<li>Optimize re-renders with useCallback/useMemo</li>
+</ul></li>
+</ol>
+<hr />
+<h2 id="best-practices">Best Practices</h2>
+<h3 id="code-organization">Code Organization</h3>
+<h4 id="backend-best-practices">Backend Best Practices</h4>
+<ol type="1">
+<li><strong>Package Structure</strong>:</li>
+</ol>
+<pre><code>com.example.simpleloginbackend/
+├── controller/     # REST endpoints
+├── service/        # Business logic
+├── repository/     # Data access
+├── model/          # Data models
+├── config/         # Configuration
+└── exception/      # Error handling</code></pre>
+<ol start="2" type="1">
+<li><strong>Naming Conventions</strong>:
+<ul>
+<li>Controllers: <code>*Controller</code></li>
+<li>Services: <code>*Service</code></li>
+<li>Repositories: <code>*Repository</code></li>
+<li>Models: <code>*Document</code> or <code>*Entity</code></li>
+</ul></li>
+<li><strong>Error Handling</strong>:</li>
+</ol>
+<div class="sourceCode" id="cb72"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="at">@ControllerAdvice</span></span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="kw">class</span> GlobalExceptionHandler <span class="op">{</span></span>
+<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb72-4"><a href="#cb72-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">@ExceptionHandler</span><span class="op">(</span>UnauthorizedException<span class="op">.</span><span class="fu">class</span><span class="op">)</span></span>
+<span id="cb72-5"><a href="#cb72-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> ResponseEntity<span class="op">&lt;</span>ErrorResponse<span class="op">&gt;</span> <span class="fu">handleUnauthorized</span><span class="op">(</span>UnauthorizedException e<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb72-6"><a href="#cb72-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> ResponseEntity<span class="op">.</span><span class="fu">status</span><span class="op">(</span>HttpStatus<span class="op">.</span><span class="fu">UNAUTHORIZED</span><span class="op">)</span></span>
+<span id="cb72-7"><a href="#cb72-7" aria-hidden="true" tabindex="-1"></a>                <span class="op">.</span><span class="fu">body</span><span class="op">(</span><span class="kw">new</span> <span class="fu">ErrorResponse</span><span class="op">(</span>e<span class="op">.</span><span class="fu">getMessage</span><span class="op">()));</span></span>
+<span id="cb72-8"><a href="#cb72-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb72-9"><a href="#cb72-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h4 id="frontend-best-practices">Frontend Best Practices</h4>
+<ol type="1">
+<li><strong>Component Structure</strong>:</li>
+</ol>
+<pre><code>src/
+├── components/     # Reusable UI components
+├── pages/         # Page-level components
+├── hooks/         # Custom React hooks
+├── lib/           # Utility functions
+├── types/         # TypeScript type definitions
+└── styles/        # CSS and styling</code></pre>
+<ol start="2" type="1">
+<li><strong>Component Organization</strong>:</li>
+</ol>
+<div class="sourceCode" id="cb74"><pre
+class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Component file structure</span></span>
+<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a><span class="kw">interface</span> Props {</span>
+<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Props interface</span></span>
+<span id="cb74-4"><a href="#cb74-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb74-5"><a href="#cb74-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-6"><a href="#cb74-6" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> ComponentName<span class="op">:</span> React<span class="op">.</span><span class="at">FC</span><span class="op">&lt;</span>Props<span class="op">&gt;</span> <span class="op">=</span> ({ prop1<span class="op">,</span> prop2 }) <span class="kw">=&gt;</span> {</span>
+<span id="cb74-7"><a href="#cb74-7" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Hooks</span></span>
+<span id="cb74-8"><a href="#cb74-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> [state<span class="op">,</span> setState] <span class="op">=</span> <span class="fu">useState</span>()</span>
+<span id="cb74-9"><a href="#cb74-9" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb74-10"><a href="#cb74-10" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Event handlers</span></span>
+<span id="cb74-11"><a href="#cb74-11" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> handleEvent <span class="op">=</span> <span class="fu">useCallback</span>(() <span class="kw">=&gt;</span> {</span>
+<span id="cb74-12"><a href="#cb74-12" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Handler logic</span></span>
+<span id="cb74-13"><a href="#cb74-13" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span> [dependencies])</span>
+<span id="cb74-14"><a href="#cb74-14" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb74-15"><a href="#cb74-15" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Render</span></span>
+<span id="cb74-16"><a href="#cb74-16" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> (</span>
+<span id="cb74-17"><a href="#cb74-17" aria-hidden="true" tabindex="-1"></a>    <span class="op">&lt;</span>div<span class="op">&gt;</span></span>
+<span id="cb74-18"><a href="#cb74-18" aria-hidden="true" tabindex="-1"></a>      {<span class="co">/* JSX */</span>}</span>
+<span id="cb74-19"><a href="#cb74-19" aria-hidden="true" tabindex="-1"></a>    <span class="op">&lt;/</span>div<span class="op">&gt;</span></span>
+<span id="cb74-20"><a href="#cb74-20" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb74-21"><a href="#cb74-21" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb74-22"><a href="#cb74-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-23"><a href="#cb74-23" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="im">default</span> ComponentName</span></code></pre></div>
+<h3 id="security-best-practices-1">Security Best Practices</h3>
+<h4 id="authentication-security-1">Authentication Security</h4>
+<ol type="1">
+<li><strong>Password Security</strong>:
+<ul>
+<li>Use BCrypt with appropriate salt rounds</li>
+<li>Implement password strength requirements</li>
+<li>Never store plain text passwords</li>
+</ul></li>
+<li><strong>JWT Security</strong>:
+<ul>
+<li>Use strong secret keys (64+ characters)</li>
+<li>Set appropriate expiration times</li>
+<li>Implement token refresh mechanism</li>
+<li>Consider token blacklisting for logout</li>
+</ul></li>
+<li><strong>API Security</strong>:
+<ul>
+<li>Validate all inputs</li>
+<li>Use HTTPS in production</li>
+<li>Implement rate limiting</li>
+<li>Log security events</li>
+</ul></li>
+</ol>
+<h4 id="frontend-security">Frontend Security</h4>
+<ol type="1">
+<li><strong>Token Storage</strong>:
+<ul>
+<li>Store tokens securely (localStorage vs sessionStorage)</li>
+<li>Implement automatic token refresh</li>
+<li>Clear tokens on logout</li>
+</ul></li>
+<li><strong>Input Validation</strong>:
+<ul>
+<li>Validate inputs on both client and server</li>
+<li>Sanitize user inputs</li>
+<li>Prevent XSS attacks</li>
+</ul></li>
+</ol>
+<h3 id="testing-best-practices">Testing Best Practices</h3>
+<h4 id="unit-testing">Unit Testing</h4>
+<ol type="1">
+<li><strong>Backend Testing</strong>:</li>
+</ol>
+<div class="sourceCode" id="cb75"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="at">@SpringBootTest</span></span>
+<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> AuthServiceTest <span class="op">{</span></span>
+<span id="cb75-3"><a href="#cb75-3" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb75-4"><a href="#cb75-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">@Test</span></span>
+<span id="cb75-5"><a href="#cb75-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">void</span> <span class="fu">shouldValidateCorrectCredentials</span><span class="op">()</span> <span class="op">{</span></span>
+<span id="cb75-6"><a href="#cb75-6" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Test implementation</span></span>
+<span id="cb75-7"><a href="#cb75-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb75-8"><a href="#cb75-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb75-9"><a href="#cb75-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">@Test</span></span>
+<span id="cb75-10"><a href="#cb75-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">void</span> <span class="fu">shouldRejectIncorrectCredentials</span><span class="op">()</span> <span class="op">{</span></span>
+<span id="cb75-11"><a href="#cb75-11" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Test implementation</span></span>
+<span id="cb75-12"><a href="#cb75-12" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb75-13"><a href="#cb75-13" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<ol start="2" type="1">
+<li><strong>Frontend Testing</strong>:</li>
+</ol>
+<div class="sourceCode" id="cb76"><pre
+class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { render<span class="op">,</span> <span class="bu">screen</span> } <span class="im">from</span> <span class="st">&#39;@testing-library/react&#39;</span></span>
+<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> LoginPage <span class="im">from</span> <span class="st">&#39;./LoginPage&#39;</span></span>
+<span id="cb76-3"><a href="#cb76-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb76-4"><a href="#cb76-4" aria-hidden="true" tabindex="-1"></a><span class="fu">test</span>(<span class="st">&#39;renders login form&#39;</span><span class="op">,</span> () <span class="kw">=&gt;</span> {</span>
+<span id="cb76-5"><a href="#cb76-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">render</span>(<span class="op">&lt;</span>LoginPage <span class="op">/&gt;</span>)</span>
+<span id="cb76-6"><a href="#cb76-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect</span>(<span class="bu">screen</span><span class="op">.</span><span class="fu">getByText</span>(<span class="st">&#39;Sign in&#39;</span>))<span class="op">.</span><span class="fu">toBeInTheDocument</span>()</span>
+<span id="cb76-7"><a href="#cb76-7" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<h4 id="integration-testing">Integration Testing</h4>
+<ol type="1">
+<li><strong>API Testing</strong>:
+<ul>
+<li>Test complete request/response cycles</li>
+<li>Verify authentication flows</li>
+<li>Test error scenarios</li>
+</ul></li>
+<li><strong>End-to-End Testing</strong>:
+<ul>
+<li>Test complete user workflows</li>
+<li>Verify cross-browser compatibility</li>
+<li>Test responsive design</li>
+</ul></li>
+</ol>
+<h3 id="documentation-best-practices">Documentation Best Practices</h3>
+<h4 id="code-documentation">Code Documentation</h4>
+<ol type="1">
+<li><strong>Java Documentation</strong>:</li>
+</ol>
+<div class="sourceCode" id="cb77"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="co">/**</span></span>
+<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> Service for handling user authentication operations<span class="co">.</span></span>
+<span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> </span>
+<span id="cb77-4"><a href="#cb77-4" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> <span class="an">@author</span> Your Name</span>
+<span id="cb77-5"><a href="#cb77-5" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> <span class="an">@version</span> <span class="co">1.0</span></span>
+<span id="cb77-6"><a href="#cb77-6" aria-hidden="true" tabindex="-1"></a> <span class="co">*/</span></span>
+<span id="cb77-7"><a href="#cb77-7" aria-hidden="true" tabindex="-1"></a><span class="at">@Service</span></span>
+<span id="cb77-8"><a href="#cb77-8" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="kw">class</span> AuthService <span class="op">{</span></span>
+<span id="cb77-9"><a href="#cb77-9" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb77-10"><a href="#cb77-10" aria-hidden="true" tabindex="-1"></a>    <span class="co">/**</span></span>
+<span id="cb77-11"><a href="#cb77-11" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> Validates user credentials against the database<span class="co">.</span></span>
+<span id="cb77-12"><a href="#cb77-12" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> </span>
+<span id="cb77-13"><a href="#cb77-13" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> <span class="an">@param</span><span class="co"> </span><span class="an">username</span><span class="co"> </span>the username to validate</span>
+<span id="cb77-14"><a href="#cb77-14" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> <span class="an">@param</span><span class="co"> </span><span class="an">rawPassword</span><span class="co"> </span>the plain text password</span>
+<span id="cb77-15"><a href="#cb77-15" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> <span class="an">@return</span> true if credentials are valid<span class="co">,</span> false otherwise</span>
+<span id="cb77-16"><a href="#cb77-16" aria-hidden="true" tabindex="-1"></a>     <span class="co">*/</span></span>
+<span id="cb77-17"><a href="#cb77-17" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">boolean</span> <span class="fu">validateCredentials</span><span class="op">(</span><span class="bu">String</span> username<span class="op">,</span> <span class="bu">String</span> rawPassword<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb77-18"><a href="#cb77-18" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Implementation</span></span>
+<span id="cb77-19"><a href="#cb77-19" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb77-20"><a href="#cb77-20" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<ol start="2" type="1">
+<li><strong>TypeScript Documentation</strong>:</li>
+</ol>
+<div class="sourceCode" id="cb78"><pre
+class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="co">/**</span></span>
+<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a><span class="co"> * Interface representing a user in the system.</span></span>
+<span id="cb78-3"><a href="#cb78-3" aria-hidden="true" tabindex="-1"></a><span class="co"> */</span></span>
+<span id="cb78-4"><a href="#cb78-4" aria-hidden="true" tabindex="-1"></a><span class="kw">interface</span> User {</span>
+<span id="cb78-5"><a href="#cb78-5" aria-hidden="true" tabindex="-1"></a>  <span class="co">/** Unique identifier for the user */</span></span>
+<span id="cb78-6"><a href="#cb78-6" aria-hidden="true" tabindex="-1"></a>  id<span class="op">:</span> <span class="dt">string</span></span>
+<span id="cb78-7"><a href="#cb78-7" aria-hidden="true" tabindex="-1"></a>  <span class="co">/** Username for login */</span></span>
+<span id="cb78-8"><a href="#cb78-8" aria-hidden="true" tabindex="-1"></a>  username<span class="op">:</span> <span class="dt">string</span></span>
+<span id="cb78-9"><a href="#cb78-9" aria-hidden="true" tabindex="-1"></a>  <span class="co">/** User&#39;s email address */</span></span>
+<span id="cb78-10"><a href="#cb78-10" aria-hidden="true" tabindex="-1"></a>  email<span class="op">:</span> <span class="dt">string</span></span>
+<span id="cb78-11"><a href="#cb78-11" aria-hidden="true" tabindex="-1"></a>  <span class="co">/** User&#39;s role (instructor or student) */</span></span>
+<span id="cb78-12"><a href="#cb78-12" aria-hidden="true" tabindex="-1"></a>  role<span class="op">:</span> <span class="st">&#39;instructor&#39;</span> <span class="op">|</span> <span class="st">&#39;student&#39;</span></span>
+<span id="cb78-13"><a href="#cb78-13" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb78-14"><a href="#cb78-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-15"><a href="#cb78-15" aria-hidden="true" tabindex="-1"></a><span class="co">/**</span></span>
+<span id="cb78-16"><a href="#cb78-16" aria-hidden="true" tabindex="-1"></a><span class="co"> * Hook for managing user authentication state.</span></span>
+<span id="cb78-17"><a href="#cb78-17" aria-hidden="true" tabindex="-1"></a><span class="co"> * </span></span>
+<span id="cb78-18"><a href="#cb78-18" aria-hidden="true" tabindex="-1"></a><span class="co"> * </span><span class="an">@returns</span><span class="co"> Object containing authentication state and methods</span></span>
+<span id="cb78-19"><a href="#cb78-19" aria-hidden="true" tabindex="-1"></a><span class="co"> */</span></span>
+<span id="cb78-20"><a href="#cb78-20" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="kw">const</span> useAuth <span class="op">=</span> () <span class="kw">=&gt;</span> {</span>
+<span id="cb78-21"><a href="#cb78-21" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Implementation</span></span>
+<span id="cb78-22"><a href="#cb78-22" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<h4 id="api-documentation-1">API Documentation</h4>
+<ol type="1">
+<li><strong>OpenAPI/Swagger</strong>:</li>
+</ol>
+<div class="sourceCode" id="cb79"><pre
+class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="fu">openapi</span><span class="kw">:</span><span class="at"> </span><span class="fl">3.0.0</span></span>
+<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a><span class="fu">info</span><span class="kw">:</span></span>
+<span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">title</span><span class="kw">:</span><span class="at"> Simple Login API</span></span>
+<span id="cb79-4"><a href="#cb79-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">version</span><span class="kw">:</span><span class="at"> </span><span class="fl">1.0.0</span></span>
+<span id="cb79-5"><a href="#cb79-5" aria-hidden="true" tabindex="-1"></a><span class="fu">paths</span><span class="kw">:</span></span>
+<span id="cb79-6"><a href="#cb79-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">/api/login</span><span class="kw">:</span></span>
+<span id="cb79-7"><a href="#cb79-7" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">post</span><span class="kw">:</span></span>
+<span id="cb79-8"><a href="#cb79-8" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">summary</span><span class="kw">:</span><span class="at"> User login</span></span>
+<span id="cb79-9"><a href="#cb79-9" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">requestBody</span><span class="kw">:</span></span>
+<span id="cb79-10"><a href="#cb79-10" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">required</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb79-11"><a href="#cb79-11" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">content</span><span class="kw">:</span></span>
+<span id="cb79-12"><a href="#cb79-12" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">application/json</span><span class="kw">:</span></span>
+<span id="cb79-13"><a href="#cb79-13" aria-hidden="true" tabindex="-1"></a><span class="at">            </span><span class="fu">schema</span><span class="kw">:</span></span>
+<span id="cb79-14"><a href="#cb79-14" aria-hidden="true" tabindex="-1"></a><span class="at">              </span><span class="fu">type</span><span class="kw">:</span><span class="at"> object</span></span>
+<span id="cb79-15"><a href="#cb79-15" aria-hidden="true" tabindex="-1"></a><span class="at">              </span><span class="fu">properties</span><span class="kw">:</span></span>
+<span id="cb79-16"><a href="#cb79-16" aria-hidden="true" tabindex="-1"></a><span class="at">                </span><span class="fu">username</span><span class="kw">:</span></span>
+<span id="cb79-17"><a href="#cb79-17" aria-hidden="true" tabindex="-1"></a><span class="at">                  </span><span class="fu">type</span><span class="kw">:</span><span class="at"> string</span></span>
+<span id="cb79-18"><a href="#cb79-18" aria-hidden="true" tabindex="-1"></a><span class="at">                </span><span class="fu">password</span><span class="kw">:</span></span>
+<span id="cb79-19"><a href="#cb79-19" aria-hidden="true" tabindex="-1"></a><span class="at">                  </span><span class="fu">type</span><span class="kw">:</span><span class="at"> string</span></span></code></pre></div>
+<hr />
+<h2 id="reference-section">Reference Section</h2>
+<h3 id="jwt-json-web-tokens">JWT (JSON Web Tokens)</h3>
+<h4 id="what-is-jwt">What is JWT?</h4>
+<p>JWT is a compact, URL-safe means of representing claims to be
+transferred between two parties. It’s commonly used for authentication
+and information exchange.</p>
+<h4 id="jwt-structure">JWT Structure</h4>
+<p>A JWT consists of three parts separated by dots (<code>.</code>):</p>
+<pre><code>header.payload.signature</code></pre>
+<p><strong>Header</strong>:</p>
+<div class="sourceCode" id="cb81"><pre
+class="sourceCode json"><code class="sourceCode json"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;alg&quot;</span><span class="fu">:</span> <span class="st">&quot;HS256&quot;</span><span class="fu">,</span></span>
+<span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;typ&quot;</span><span class="fu">:</span> <span class="st">&quot;JWT&quot;</span></span>
+<span id="cb81-4"><a href="#cb81-4" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<p><strong>Payload</strong>:</p>
+<div class="sourceCode" id="cb82"><pre
+class="sourceCode json"><code class="sourceCode json"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb82-2"><a href="#cb82-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;sub&quot;</span><span class="fu">:</span> <span class="st">&quot;1234567890&quot;</span><span class="fu">,</span></span>
+<span id="cb82-3"><a href="#cb82-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;name&quot;</span><span class="fu">:</span> <span class="st">&quot;John Doe&quot;</span><span class="fu">,</span></span>
+<span id="cb82-4"><a href="#cb82-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;iat&quot;</span><span class="fu">:</span> <span class="dv">1516239022</span><span class="fu">,</span></span>
+<span id="cb82-5"><a href="#cb82-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;exp&quot;</span><span class="fu">:</span> <span class="dv">1516242622</span></span>
+<span id="cb82-6"><a href="#cb82-6" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<p><strong>Signature</strong>:</p>
+<pre><code>HMACSHA256(
+  base64UrlEncode(header) + &quot;.&quot; +
+  base64UrlEncode(payload),
+  secret
+)</code></pre>
+<h4 id="jwt-advantages">JWT Advantages</h4>
+<ol type="1">
+<li><strong>Stateless</strong>: No server-side session storage
+needed</li>
+<li><strong>Scalable</strong>: Works across multiple servers</li>
+<li><strong>Self-contained</strong>: Contains all necessary
+information</li>
+<li><strong>Secure</strong>: Cryptographically signed</li>
+</ol>
+<h4 id="jwt-disadvantages">JWT Disadvantages</h4>
+<ol type="1">
+<li><strong>Size</strong>: Larger than session IDs</li>
+<li><strong>Revocation</strong>: Difficult to invalidate before
+expiration</li>
+<li><strong>Security</strong>: Secret key compromise affects all
+tokens</li>
+</ol>
+<h3 id="mongodb">MongoDB</h3>
+<h4 id="what-is-mongodb">What is MongoDB?</h4>
+<p>MongoDB is a NoSQL document database that stores data in flexible,
+JSON-like documents. It’s designed for scalability and flexibility.</p>
+<h4 id="mongodb-concepts">MongoDB Concepts</h4>
+<p><strong>Database</strong>: A container for collections
+<strong>Collection</strong>: A group of documents (similar to a table)
+<strong>Document</strong>: A record in a collection (similar to a row)
+<strong>Field</strong>: A key-value pair in a document (similar to a
+column)</p>
+<h4 id="mongodb-operations">MongoDB Operations</h4>
+<p><strong>Create Document</strong>:</p>
+<div class="sourceCode" id="cb84"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a>db<span class="op">.</span><span class="at">users</span><span class="op">.</span><span class="fu">insertOne</span>({</span>
+<span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">username</span><span class="op">:</span> <span class="st">&quot;admin&quot;</span><span class="op">,</span></span>
+<span id="cb84-3"><a href="#cb84-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">email</span><span class="op">:</span> <span class="st">&quot;admin@example.com&quot;</span><span class="op">,</span></span>
+<span id="cb84-4"><a href="#cb84-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">role</span><span class="op">:</span> <span class="st">&quot;instructor&quot;</span></span>
+<span id="cb84-5"><a href="#cb84-5" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<p><strong>Find Documents</strong>:</p>
+<div class="sourceCode" id="cb85"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>db<span class="op">.</span><span class="at">users</span><span class="op">.</span><span class="fu">find</span>({ <span class="dt">role</span><span class="op">:</span> <span class="st">&quot;student&quot;</span> })</span>
+<span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a>db<span class="op">.</span><span class="at">users</span><span class="op">.</span><span class="fu">findOne</span>({ <span class="dt">username</span><span class="op">:</span> <span class="st">&quot;admin&quot;</span> })</span></code></pre></div>
+<p><strong>Update Document</strong>:</p>
+<div class="sourceCode" id="cb86"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a>db<span class="op">.</span><span class="at">users</span><span class="op">.</span><span class="fu">updateOne</span>(</span>
+<span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a>  { <span class="dt">username</span><span class="op">:</span> <span class="st">&quot;admin&quot;</span> }<span class="op">,</span></span>
+<span id="cb86-3"><a href="#cb86-3" aria-hidden="true" tabindex="-1"></a>  { <span class="dt">$set</span><span class="op">:</span> { <span class="dt">email</span><span class="op">:</span> <span class="st">&quot;newemail@example.com&quot;</span> } }</span>
+<span id="cb86-4"><a href="#cb86-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p><strong>Delete Document</strong>:</p>
+<div class="sourceCode" id="cb87"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a>db<span class="op">.</span><span class="at">users</span><span class="op">.</span><span class="fu">deleteOne</span>({ <span class="dt">username</span><span class="op">:</span> <span class="st">&quot;admin&quot;</span> })</span></code></pre></div>
+<h3 id="spring-boot">Spring Boot</h3>
+<h4 id="what-is-spring-boot">What is Spring Boot?</h4>
+<p>Spring Boot is a framework that simplifies the development of Spring
+applications by providing auto-configuration, starter dependencies, and
+embedded servers.</p>
+<h4 id="key-features">Key Features</h4>
+<ol type="1">
+<li><strong>Auto-configuration</strong>: Automatically configures Spring
+and third-party libraries</li>
+<li><strong>Starter Dependencies</strong>: Pre-configured dependency
+sets</li>
+<li><strong>Embedded Servers</strong>: Built-in Tomcat, Jetty, or
+Undertow</li>
+<li><strong>Production-ready</strong>: Health checks, metrics, and
+externalized configuration</li>
+</ol>
+<h4 id="spring-boot-annotations">Spring Boot Annotations</h4>
+<ul>
+<li><code>@SpringBootApplication</code>: Main application class</li>
+<li><code>@RestController</code>: REST API controller</li>
+<li><code>@Service</code>: Service layer component</li>
+<li><code>@Repository</code>: Data access layer component</li>
+<li><code>@Component</code>: Generic Spring component</li>
+<li><code>@Autowired</code>: Dependency injection</li>
+<li><code>@RequestMapping</code>: URL mapping</li>
+<li><code>@PostMapping</code>: POST request mapping</li>
+<li><code>@GetMapping</code>: GET request mapping</li>
+</ul>
+<h3 id="react">React</h3>
+<h4 id="what-is-react">What is React?</h4>
+<p>React is a JavaScript library for building user interfaces,
+particularly web applications. It’s maintained by Facebook and uses a
+component-based architecture.</p>
+<h4 id="key-concepts">Key Concepts</h4>
+<ol type="1">
+<li><strong>Components</strong>: Reusable UI pieces</li>
+<li><strong>Props</strong>: Data passed to components</li>
+<li><strong>State</strong>: Internal component data</li>
+<li><strong>Hooks</strong>: Functions that let you use state and
+lifecycle features</li>
+<li><strong>JSX</strong>: JavaScript XML syntax extension</li>
+</ol>
+<h4 id="react-hooks">React Hooks</h4>
+<p><strong>useState</strong>:</p>
+<div class="sourceCode" id="cb88"><pre
+class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> [count<span class="op">,</span> setCount] <span class="op">=</span> <span class="fu">useState</span>(<span class="dv">0</span>)</span></code></pre></div>
+<p><strong>useEffect</strong>:</p>
+<div class="sourceCode" id="cb89"><pre
+class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="fu">useEffect</span>(() <span class="kw">=&gt;</span> {</span>
+<span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Side effects</span></span>
+<span id="cb89-3"><a href="#cb89-3" aria-hidden="true" tabindex="-1"></a>}<span class="op">,</span> [dependencies])</span></code></pre></div>
+<p><strong>useCallback</strong>:</p>
+<div class="sourceCode" id="cb90"><pre
+class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> memoizedCallback <span class="op">=</span> <span class="fu">useCallback</span>(() <span class="kw">=&gt;</span> {</span>
+<span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Function logic</span></span>
+<span id="cb90-3"><a href="#cb90-3" aria-hidden="true" tabindex="-1"></a>}<span class="op">,</span> [dependencies])</span></code></pre></div>
+<p><strong>useMemo</strong>:</p>
+<div class="sourceCode" id="cb91"><pre
+class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> memoizedValue <span class="op">=</span> <span class="fu">useMemo</span>(() <span class="kw">=&gt;</span> {</span>
+<span id="cb91-2"><a href="#cb91-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Expensive calculation</span></span>
+<span id="cb91-3"><a href="#cb91-3" aria-hidden="true" tabindex="-1"></a>}<span class="op">,</span> [dependencies])</span></code></pre></div>
+<h3 id="typescript">TypeScript</h3>
+<h4 id="what-is-typescript">What is TypeScript?</h4>
+<p>TypeScript is a typed superset of JavaScript that compiles to plain
+JavaScript. It adds static type checking and other features to
+JavaScript.</p>
+<h4 id="typescript-features">TypeScript Features</h4>
+<ol type="1">
+<li><strong>Static Typing</strong>: Catch errors at compile time</li>
+<li><strong>Interfaces</strong>: Define object shapes</li>
+<li><strong>Generics</strong>: Reusable components</li>
+<li><strong>Enums</strong>: Named constants</li>
+<li><strong>Decorators</strong>: Metadata for classes</li>
+</ol>
+<h4 id="typescript-types">TypeScript Types</h4>
+<p><strong>Basic Types</strong>:</p>
+<div class="sourceCode" id="cb92"><pre
+class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> name<span class="op">:</span> <span class="dt">string</span> <span class="op">=</span> <span class="st">&quot;John&quot;</span></span>
+<span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> age<span class="op">:</span> <span class="dt">number</span> <span class="op">=</span> <span class="dv">30</span></span>
+<span id="cb92-3"><a href="#cb92-3" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> isActive<span class="op">:</span> <span class="dt">boolean</span> <span class="op">=</span> <span class="kw">true</span></span>
+<span id="cb92-4"><a href="#cb92-4" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> items<span class="op">:</span> <span class="dt">string</span>[] <span class="op">=</span> [<span class="st">&quot;item1&quot;</span><span class="op">,</span> <span class="st">&quot;item2&quot;</span>]</span></code></pre></div>
+<p><strong>Interfaces</strong>:</p>
+<div class="sourceCode" id="cb93"><pre
+class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="kw">interface</span> User {</span>
+<span id="cb93-2"><a href="#cb93-2" aria-hidden="true" tabindex="-1"></a>  id<span class="op">:</span> <span class="dt">number</span></span>
+<span id="cb93-3"><a href="#cb93-3" aria-hidden="true" tabindex="-1"></a>  name<span class="op">:</span> <span class="dt">string</span></span>
+<span id="cb93-4"><a href="#cb93-4" aria-hidden="true" tabindex="-1"></a>  email<span class="op">?:</span> <span class="dt">string</span>  <span class="co">// Optional property</span></span>
+<span id="cb93-5"><a href="#cb93-5" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p><strong>Generics</strong>:</p>
+<div class="sourceCode" id="cb94"><pre
+class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">identity</span><span class="op">&lt;</span>T<span class="op">&gt;</span>(arg<span class="op">:</span> T)<span class="op">:</span> T {</span>
+<span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> arg</span>
+<span id="cb94-3"><a href="#cb94-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<h3 id="rest-api-design">REST API Design</h3>
+<h4 id="rest-principles">REST Principles</h4>
+<ol type="1">
+<li><strong>Stateless</strong>: Each request contains all necessary
+information</li>
+<li><strong>Client-Server</strong>: Separation of concerns</li>
+<li><strong>Cacheable</strong>: Responses can be cached</li>
+<li><strong>Uniform Interface</strong>: Consistent API design</li>
+<li><strong>Layered System</strong>: Hierarchical layers</li>
+</ol>
+<h4 id="http-methods">HTTP Methods</h4>
+<ul>
+<li><strong>GET</strong>: Retrieve data</li>
+<li><strong>POST</strong>: Create new resources</li>
+<li><strong>PUT</strong>: Update entire resource</li>
+<li><strong>PATCH</strong>: Partial update</li>
+<li><strong>DELETE</strong>: Remove resource</li>
+</ul>
+<h4 id="http-status-codes">HTTP Status Codes</h4>
+<p><strong>2xx Success</strong>: - 200 OK: Request successful - 201
+Created: Resource created - 204 No Content: Success with no response
+body</p>
+<p><strong>4xx Client Error</strong>: - 400 Bad Request: Invalid request
+- 401 Unauthorized: Authentication required - 403 Forbidden: Access
+denied - 404 Not Found: Resource not found</p>
+<p><strong>5xx Server Error</strong>: - 500 Internal Server Error:
+Server error - 502 Bad Gateway: Invalid response from upstream - 503
+Service Unavailable: Server temporarily unavailable</p>
+<h3 id="security-best-practices-2">Security Best Practices</h3>
+<h4 id="authentication-vs-authorization">Authentication vs
+Authorization</h4>
+<p><strong>Authentication</strong>: Verifying who you are
+<strong>Authorization</strong>: Verifying what you can do</p>
+<h4 id="password-security-1">Password Security</h4>
+<ol type="1">
+<li><strong>Hashing</strong>: Use bcrypt, scrypt, or Argon2</li>
+<li><strong>Salt</strong>: Add random data to passwords before
+hashing</li>
+<li><strong>Strength</strong>: Enforce strong password policies</li>
+<li><strong>Storage</strong>: Never store plain text passwords</li>
+</ol>
+<h4 id="https">HTTPS</h4>
+<p>Always use HTTPS in production to: - Encrypt data in transit -
+Prevent man-in-the-middle attacks - Ensure data integrity - Build user
+trust</p>
+<h4 id="cors-cross-origin-resource-sharing">CORS (Cross-Origin Resource
+Sharing)</h4>
+<p>Configure CORS properly:</p>
+<div class="sourceCode" id="cb95"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="at">@CrossOrigin</span><span class="op">(</span>origins <span class="op">=</span> <span class="st">&quot;https://yourdomain.com&quot;</span><span class="op">)</span></span></code></pre></div>
+<h4 id="input-validation">Input Validation</h4>
+<ol type="1">
+<li><strong>Client-side</strong>: Immediate feedback</li>
+<li><strong>Server-side</strong>: Security enforcement</li>
+<li><strong>Sanitization</strong>: Remove dangerous characters</li>
+<li><strong>Whitelist</strong>: Allow only known good inputs</li>
+</ol>
+<h3 id="testing-strategies">Testing Strategies</h3>
+<h4 id="testing-pyramid">Testing Pyramid</h4>
+<ol type="1">
+<li><strong>Unit Tests</strong>: Test individual components</li>
+<li><strong>Integration Tests</strong>: Test component interactions</li>
+<li><strong>End-to-End Tests</strong>: Test complete workflows</li>
+</ol>
+<h4 id="test-types">Test Types</h4>
+<p><strong>Unit Tests</strong>: - Fast execution - Isolated testing -
+High coverage - Mock dependencies</p>
+<p><strong>Integration Tests</strong>: - Test real interactions - Use
+test databases - Verify API contracts - Test error scenarios</p>
+<p><strong>E2E Tests</strong>: - Test user workflows - Cross-browser
+testing - Performance testing - Accessibility testing</p>
+<h3 id="performance-optimization">Performance Optimization</h3>
+<h4 id="frontend-optimization-1">Frontend Optimization</h4>
+<ol type="1">
+<li><strong>Code Splitting</strong>: Load code on demand</li>
+<li><strong>Lazy Loading</strong>: Load components when needed</li>
+<li><strong>Memoization</strong>: Cache expensive calculations</li>
+<li><strong>Virtual Scrolling</strong>: Handle large lists
+efficiently</li>
+<li><strong>Image Optimization</strong>: Compress and resize images</li>
+</ol>
+<h4 id="backend-optimization-1">Backend Optimization</h4>
+<ol type="1">
+<li><strong>Database Indexing</strong>: Speed up queries</li>
+<li><strong>Connection Pooling</strong>: Reuse database connections</li>
+<li><strong>Caching</strong>: Store frequently accessed data</li>
+<li><strong>Pagination</strong>: Limit data transfer</li>
+<li><strong>Compression</strong>: Reduce response sizes</li>
+</ol>
+<h4 id="monitoring">Monitoring</h4>
+<ol type="1">
+<li><strong>Application Metrics</strong>: Response times, error
+rates</li>
+<li><strong>Resource Usage</strong>: CPU, memory, disk usage</li>
+<li><strong>User Analytics</strong>: Usage patterns, performance</li>
+<li><strong>Error Tracking</strong>: Log and monitor errors</li>
+</ol>
+<hr />
+<h2 id="conclusion">Conclusion</h2>
+<p>This Simple Login Application demonstrates modern full-stack
+development practices and provides a solid foundation for learning web
+development. The project covers authentication, database integration,
+API design, and user interface development.</p>
+<h3 id="key-takeaways">Key Takeaways</h3>
+<ol type="1">
+<li><strong>Full-Stack Integration</strong>: Understanding how frontend
+and backend communicate</li>
+<li><strong>Security Implementation</strong>: Proper authentication and
+authorization</li>
+<li><strong>Modern Development</strong>: Using current tools and
+frameworks</li>
+<li><strong>Testing Practices</strong>: Comprehensive testing
+strategies</li>
+<li><strong>Best Practices</strong>: Following industry standards and
+conventions</li>
+</ol>
+<h3 id="next-steps">Next Steps</h3>
+<ol type="1">
+<li><strong>Extend Functionality</strong>: Add more features like user
+management, file uploads</li>
+<li><strong>Improve Security</strong>: Implement refresh tokens, rate
+limiting</li>
+<li><strong>Add Testing</strong>: Write comprehensive unit and
+integration tests</li>
+<li><strong>Deploy</strong>: Set up production deployment with
+CI/CD</li>
+<li><strong>Monitor</strong>: Add logging, metrics, and error
+tracking</li>
+</ol>
+<h3 id="resources-for-further-learning">Resources for Further
+Learning</h3>
+<ul>
+<li><a href="https://spring.io/projects/spring-boot">Spring Boot
+Documentation</a></li>
+<li><a href="https://reactjs.org/docs">React Documentation</a></li>
+<li><a href="https://docs.mongodb.com">MongoDB Documentation</a></li>
+<li><a href="https://jwt.io">JWT.io</a></li>
+<li><a href="https://www.typescriptlang.org/docs">TypeScript
+Handbook</a></li>
+</ul>
+<hr />
+<p><em>This guide was created to help students understand the Simple
+Login Application project. For questions or contributions, please refer
+to the project repository.</em></p>
+</body>
+</html>
