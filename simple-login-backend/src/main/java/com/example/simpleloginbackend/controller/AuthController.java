@@ -7,8 +7,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.List;
 import com.example.simpleloginbackend.service.AuthService;
 import com.example.simpleloginbackend.service.JwtService;
+import com.example.simpleloginbackend.model.UserDocument;
 
 /**
  * REST Controller for handling authentication operations.
@@ -82,6 +84,51 @@ public class AuthController {
         }
         response.put("error", "Unauthorized");
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
+    }
+
+    /**
+     * Users list endpoint that returns all users for authenticated users.
+     * 
+     * @param authHeader The Authorization header containing the Bearer token
+     * @return ResponseEntity with list of users if token is valid, or an error message if invalid
+     * 
+     * Expected behavior:
+     * - If Authorization header contains valid Bearer token, returns 200 OK with list of all users
+     * - Otherwise, returns 401 Unauthorized with an error message
+     */
+    @GetMapping("/users")
+    public ResponseEntity<Map<String, Object>> getAllUsers(
+            @RequestHeader(value = "Authorization", required = false) String authHeader) {
+
+        Map<String, Object> response = new HashMap<>();
+
+        // Validate authentication
+        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+            response.put("error", "Unauthorized");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
+        }
+
+        String token = authHeader.substring("Bearer ".length());
+        String subject = jwtService.validateAndGetSubject(token);
+        if (subject == null) {
+            response.put("error", "Invalid token");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
+        }
+
+        // Get all users from database
+        List<UserDocument> users = authService.getAllUsers();
+        List<Map<String, String>> userList = users.stream()
+                .map(user -> {
+                    Map<String, String> userInfo = new HashMap<>();
+                    userInfo.put("username", user.getUsername());
+                    userInfo.put("role", user.getRole() != null ? user.getRole() : "instructor");
+                    return userInfo;
+                })
+                .collect(java.util.stream.Collectors.toList());
+
+        response.put("users", userList);
+        response.put("count", userList.size());
+        return ResponseEntity.ok(response);
     }
 
 }

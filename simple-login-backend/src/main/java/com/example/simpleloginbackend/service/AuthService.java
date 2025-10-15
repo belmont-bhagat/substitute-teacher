@@ -6,6 +6,7 @@ import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.List;
 
 @Service
 public class AuthService {
@@ -28,5 +29,9 @@ public class AuthService {
 
     public Optional<UserDocument> getUser(String username) {
         return userRepository.findByUsername(username);
+    }
+
+    public List<UserDocument> getAllUsers() {
+        return userRepository.findAll();
     }
 }
