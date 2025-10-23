@@ -1,46 +1,35 @@
-# macOS
-.DS_Store
-.AppleDouble
-.LSOverride
-
-# Node
+# Build artifacts
+target/
+dist/
 node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-.pnpm-debug.log*
 
-# Vite/Build
-/dist
-/.vite
-
-# Java/Maven
-/target
-*.class
+# Logs
+logs/
 *.log
-*.jar
-*.war
-*.nar
-*.ear
-*.zip
-*.tar.gz
-*.rar
-.mvn/timing.properties
 
-# IDEs
-.idea/
-.vscode/
-*.iml
-.classpath
-.project
-.settings/
-bin/
-
-# Env files
+# Environment files
 .env
-.env.*
-!.env.example
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
-# Others
-spring-shell.log
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+
+# Docker volumes
+mongodb_data/
+
+# PID files
 *.pid

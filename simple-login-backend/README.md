@@ -1,64 +1,242 @@
-# simple-login-backend (Spring Boot)
+# Simple Login Backend
 
-A minimal Spring Boot API providing:
-- `POST /api/login` – verifies credentials against MongoDB; returns JWT
-- `GET /api/profile` – requires `Authorization: Bearer <jwt>`; returns profile
+Spring Boot backend application providing JWT-based authentication and user management APIs.
 
-## Requirements
-- Java 17+
-- MongoDB (Docker or local)
+## 🏗️ Technology Stack
 
-## Quick Start
+- **Framework**: Spring Boot 3.1.5
+- **Java Version**: 17
+- **Database**: MongoDB
+- **Authentication**: JWT (JSON Web Tokens)
+- **Security**: Spring Security Crypto (BCrypt)
+- **Build Tool**: Maven
+
+## 🚀 Quick Start
+
+### Prerequisites
+
+- Java 17 or higher
+- Maven (included via Maven Wrapper)
+- MongoDB (via Docker)
+
+### Running the Application
+
+1. **Set Java 17 environment**
+   ```bash
+   export JAVA_HOME=/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home
+   ```
+
+2. **Start MongoDB**
+   ```bash
+   docker-compose up -d mongodb
+   ```
+
+3. **Run the application**
+   ```bash
+   ./mvnw spring-boot:run
+   ```
+
+The application will start on `http://localhost:8080`
+
+## 📁 Project Structure
+
+```
+src/main/java/com/example/simpleloginbackend/
+├── config/
+│   ├── DataSeeder.java          # Database seeding
+│   └── JwtConfig.java           # JWT configuration
+├── controller/
+│   └── AuthController.java      # REST API endpoints
+├── model/
+│   ├── LoginRequest.java        # Login request DTO
+│   └── UserDocument.java        # MongoDB user document
+├── repository/
+│   └── UserRepository.java      # MongoDB repository
+├── service/
+│   ├── AuthService.java         # Authentication logic
+│   └── JwtService.java          # JWT token handling
+└── SimpleLoginBackendApplication.java  # Main application class
+```
+
+## 🔧 Configuration
+
+### Application Properties
+
+Key configuration in `src/main/resources/application.properties`:
+
+```properties
+# Server Configuration
+server.port=8080
+
+# MongoDB Configuration
+spring.data.mongodb.uri=mongodb://localhost:27017/simple_login
+
+# JWT Configuration
+auth.jwt.secret=change-me-change-me-change-me-change-me
+auth.jwt.ttlSeconds=3600
+```
+
+### Environment Variables
+
+- `MONGO_URI`: MongoDB connection string
+- `AUTH_JWT_SECRET`: JWT signing secret
+- `AUTH_JWT_TTL_SECONDS`: JWT token time-to-live
+
+## 🧪 API Endpoints
+
+### Authentication
+
+#### Login
+- **POST** `/api/login`
+- **Body**: `{"username": "admin", "password": "password"}`
+- **Response**: `{"token": "jwt-token"}`
+
+#### Profile
+- **GET** `/api/profile`
+- **Headers**: `Authorization: Bearer <token>`
+- **Response**: `{"username": "admin", "role": "instructor"}`
+
+#### List Users
+- **GET** `/api/users`
+- **Headers**: `Authorization: Bearer <token>`
+- **Response**: `{"users": [...], "count": 11}`
+
+## 🔒 Security Features
+
+### JWT Authentication
+- Tokens are signed with HMAC SHA-256
+- Default expiration: 1 hour
+- Bearer token authentication
+
+### Password Security
+- Passwords are hashed using BCrypt
+- Salt rounds: 10 (configurable)
+
+### CORS Configuration
+- Allows all origins (`*`) for development
+- Configured in `AuthController`
+
+## 🗄️ Database Schema
+
+### User Document
+```java
+{
+  "username": "admin",
+  "passwordHash": "$2a$10$...",  // BCrypt hash
+  "role": "instructor"
+}
+```
+
+### Seeded Data
+The application automatically seeds the database with:
+- 1 admin user (`admin` / `password`)
+- 10 student users (`student1` to `student10`)
+
+## 🛠️ Development
+
+### Building
 ```bash
-# 1) Ensure Mongo is running
-# Docker:
-docker run -d --name mongo -p 27017:27017 mongo:7
+./mvnw clean compile
+```
 
-# 2) Start the backend (Java 17)
-cd simple-login-backend
-export JAVA_HOME=/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home
-export PATH="$JAVA_HOME/bin:$PATH"
-export AUTH_JWT_SECRET='change-me-to-a-long-random-string'
+### Testing
+```bash
+./mvnw test
+```
+
+### Running Tests
+```bash
 ./mvnw spring-boot:run
 ```
-- Seeds Mongo with user `admin/password` on first run.
-- App runs at http://localhost:8080
 
-## Packaging
+### Docker Support
 ```bash
-./mvnw clean package
-java -jar target/simple-login-backend-0.0.1-SNAPSHOT.jar
+# Build Docker image
+docker build -t simple-login-backend .
+
+# Run with Docker Compose
+docker-compose up backend
 ```
 
-## Configuration (application.properties)
-- `server.port=8080`
-- `spring.data.mongodb.uri=${MONGO_URI:mongodb://localhost:27017/simple_login}`
-- `auth.jwt.secret=${AUTH_JWT_SECRET:change-me-change-me-change-me-change-me}`
-- `auth.jwt.ttlSeconds=${AUTH_JWT_TTL_SECONDS:3600}`
+## 📊 Logging
 
-Override via env vars:
-```bash
-export MONGO_URI='mongodb://localhost:27017/simple_login'
-export AUTH_JWT_SECRET='your-64+chars-secret'
-export AUTH_JWT_TTL_SECONDS=7200
+Logging is configured to show:
+- Application startup information
+- MongoDB connection status
+- Request/response details (in debug mode)
+
+To enable debug logging:
+```properties
+logging.level.com.example.simpleloginbackend=DEBUG
 ```
 
-## Endpoints
-- Login
+## 🔧 Troubleshooting
+
+### Common Issues
+
+1. **Java Version Error**
+   - Ensure Java 17 is installed and JAVA_HOME is set
+   - Check: `java -version`
+
+2. **MongoDB Connection Failed**
+   - Ensure MongoDB is running: `docker ps | grep mongodb`
+   - Check connection string in application.properties
+
+3. **JWT Token Issues**
+   - Verify JWT secret is set
+   - Check token expiration time
+
+4. **CORS Errors**
+   - Ensure CORS is configured for your frontend URL
+   - Check browser developer tools for CORS errors
+
+### Debug Mode
+
+Enable debug logging to troubleshoot issues:
 ```bash
-curl -X POST http://localhost:8080/api/login \
-  -H 'Content-Type: application/json' \
-  -d '{"username":"admin","password":"password"}'
-# { "token": "<jwt>" }
-```
-- Profile
-```bash
-curl http://localhost:8080/api/profile \
-  -H 'Authorization: Bearer <jwt>'
-# { "username": "admin", "role": "instructor" }
+./mvnw spring-boot:run -Dlogging.level.com.example.simpleloginbackend=DEBUG
 ```
 
-## Notes
-- CORS enabled for all origins (for local dev convenience).
-- For production, configure proper secrets, TLS, and CORS restrictions.
+## 📚 Dependencies
 
+Key dependencies in `pom.xml`:
+
+- `spring-boot-starter-web`: Web framework
+- `spring-boot-starter-data-mongodb`: MongoDB integration
+- `spring-security-crypto`: Password hashing
+- `jjwt`: JWT token handling
+- `lombok`: Reduces boilerplate code
+- `spring-boot-starter-test`: Testing framework
+
+## 🎯 Learning Objectives
+
+This backend demonstrates:
+
+1. **Spring Boot Basics**
+   - Auto-configuration
+   - Dependency injection
+   - Configuration management
+
+2. **REST API Development**
+   - Controller design
+   - Request/response handling
+   - Error handling
+
+3. **Database Integration**
+   - MongoDB with Spring Data
+   - Repository pattern
+   - Data seeding
+
+4. **Security Implementation**
+   - JWT authentication
+   - Password hashing
+   - CORS configuration
+
+5. **Testing**
+   - Unit tests
+   - Integration tests
+   - Test data setup
+
+---
+
+**Perfect for teaching Spring Boot, REST APIs, and authentication concepts!**

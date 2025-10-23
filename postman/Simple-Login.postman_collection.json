@@ -1,9 +1,17 @@
 {
   "info": {
     "_postman_id": "d3a0a5fd-1b0e-4f2d-9e0b-0f2c9a7b90f1",
-    "name": "Simple Login API",
+    "name": "Simple Login API - Spring Boot Backend",
+    "description": "API collection for the Simple Login application using Spring Boot backend",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8080",
+      "type": "string"
+    }
+  ],
   "item": [
     {
       "name": "Login (POST /api/login)",
@@ -33,15 +41,28 @@
           "listen": "test",
           "script": {
             "exec": [
+              "// Test login response",
+              "pm.test('Login successful', function () {",
+              "  pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test('Response has token', function () {",
+              "  const data = pm.response.json();",
+              "  pm.expect(data).to.have.property('token');",
+              "  pm.expect(data.token).to.be.a('string');",
+              "});",
+              "",
               "// Save token from login to environment variable",
               "if (pm.response.code === 200) {",
               "  try {",
               "    const data = pm.response.json();",
               "    if (data.token) {",
               "      pm.environment.set('token', data.token);",
-              "      pm.test('Token captured', function () { pm.expect(data.token).to.be.a('string'); });",
+              "      console.log('Token saved:', data.token);",
               "    }",
-              "  } catch (e) { /* ignore */ }",
+              "  } catch (e) {",
+              "    console.log('Error saving token:', e);",
+              "  }",
               "}"
             ],
             "type": "text/javascript"
@@ -67,7 +88,34 @@
           ]
         }
       },
-      "response": []
+      "response": [],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "// Test profile response",
+              "pm.test('Profile request successful', function () {",
+              "  pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test('Profile has username and role', function () {",
+              "  const data = pm.response.json();",
+              "  pm.expect(data).to.have.property('username');",
+              "  pm.expect(data).to.have.property('role');",
+              "  pm.expect(data.username).to.be.a('string');",
+              "  pm.expect(data.role).to.be.a('string');",
+              "});",
+              "",
+              "pm.test('Username is admin', function () {",
+              "  const data = pm.response.json();",
+              "  pm.expect(data.username).to.eql('admin');",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
     },
     {
       "name": "List Users (GET /api/users)",
@@ -87,7 +135,86 @@
           ]
         }
       },
-      "response": []
+      "response": [],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "// Test users list response",
+              "pm.test('Users list request successful', function () {",
+              "  pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test('Response has users array and count', function () {",
+              "  const data = pm.response.json();",
+              "  pm.expect(data).to.have.property('users');",
+              "  pm.expect(data).to.have.property('count');",
+              "  pm.expect(data.users).to.be.an('array');",
+              "  pm.expect(data.count).to.be.a('number');",
+              "});",
+              "",
+              "pm.test('Users array is not empty', function () {",
+              "  const data = pm.response.json();",
+              "  pm.expect(data.users.length).to.be.greaterThan(0);",
+              "});",
+              "",
+              "pm.test('Each user has username and role', function () {",
+              "  const data = pm.response.json();",
+              "  data.users.forEach(user => {",
+              "    pm.expect(user).to.have.property('username');",
+              "    pm.expect(user).to.have.property('role');",
+              "  });",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Login with Invalid Credentials (POST /api/login)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"invalid\",\n  \"password\": \"wrong\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/login",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "login"
+          ]
+        }
+      },
+      "response": [],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "// Test invalid login response",
+              "pm.test('Invalid login returns 401', function () {",
+              "  pm.response.to.have.status(401);",
+              "});",
+              "",
+              "pm.test('Response has error message', function () {",
+              "  const data = pm.response.json();",
+              "  pm.expect(data).to.have.property('error');",
+              "  pm.expect(data.error).to.eql('Invalid credentials');",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
     }
   ]
 }

@@ -33,6 +33,12 @@ app.post('/api/login', async (req, res) => {
   return res.json({ token: 'fake-jwt-token' })
 })
 
+app.get('/api/profile', (req, res) => {
+  // For demo purposes, return mock profile data
+  // In a real app, you'd verify the JWT token here
+  res.json({ username: 'admin', role: 'admin' })
+})
+
 app.get('/api/health', (_req, res) => res.json({ ok: true }))
 
 async function start() {

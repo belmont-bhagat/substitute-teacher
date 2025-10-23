@@ -46,12 +46,12 @@ start_mongodb() {
     
     if command -v docker &> /dev/null; then
         # Check if MongoDB container is already running
-        if docker ps | grep -q mongodb-simple-login; then
+        if docker ps | grep -q simple-login-mongodb; then
             print_status "MongoDB container is already running"
         else
-            # Start MongoDB container
-            docker run -d --name mongodb-simple-login -p 27017:27017 mongo:latest
-            print_success "MongoDB started with Docker"
+            # Start MongoDB container using docker-compose
+            docker-compose up -d mongodb
+            print_success "MongoDB started with Docker Compose"
         fi
     else
         print_warning "Docker not available. Please start MongoDB manually."
@@ -70,8 +70,12 @@ start_backend() {
     
     cd simple-login-backend
     
-    # Set Java environment
-    if [ ! -z "$JAVA_HOME" ]; then
+    # Set Java environment to use Java 17
+    if [ -d "/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home" ]; then
+        export JAVA_HOME="/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home"
+        export PATH="$JAVA_HOME/bin:$PATH"
+        print_status "Using Java 17 from Homebrew"
+    elif [ ! -z "$JAVA_HOME" ]; then
         export JAVA_HOME
         export PATH="$JAVA_HOME/bin:$PATH"
     fi
@@ -133,7 +137,7 @@ check_services() {
     
     # Check MongoDB
     if command -v docker &> /dev/null; then
-        if docker ps | grep -q mongodb-simple-login; then
+        if docker ps | grep -q simple-login-mongodb; then
             print_success "MongoDB: Running"
         else
             print_error "MongoDB: Not running"

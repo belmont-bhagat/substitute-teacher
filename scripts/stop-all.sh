@@ -85,10 +85,9 @@ stop_mongodb() {
     print_status "Stopping MongoDB..."
     
     if command -v docker &> /dev/null; then
-        if docker ps | grep -q mongodb-simple-login; then
-            docker stop mongodb-simple-login
-            docker rm mongodb-simple-login
-            print_success "MongoDB container stopped and removed"
+        if docker ps | grep -q simple-login-mongodb; then
+            docker-compose down
+            print_success "MongoDB container stopped via Docker Compose"
         else
             print_warning "MongoDB container not running"
         fi
