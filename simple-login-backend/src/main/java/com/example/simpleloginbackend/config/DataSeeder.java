@@ -7,31 +7,48 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 
+import java.time.LocalDateTime;
+
 @Configuration
 public class DataSeeder {
 
     @Bean
-    CommandLineRunner seedAdmin(UserRepository userRepository) {
+    CommandLineRunner seedUsers(UserRepository userRepository) {
         return args -> {
+            // Seed admin user
             userRepository.findByUsername("admin").orElseGet(() -> {
-                UserDocument admin = new UserDocument();
-                admin.setUsername("admin");
-                admin.setPasswordHash(BCrypt.hashpw("password", BCrypt.gensalt()));
-                admin.setRole("instructor");
+                UserDocument admin = new UserDocument("admin", BCrypt.hashpw("password", BCrypt.gensalt()), "ADMIN");
+                admin.setActive(true);
+                admin.setLastLoginAt(LocalDateTime.now().minusDays(1));
                 return userRepository.save(admin);
             });
 
-            // Seed students student1..student10 with role=student, password=password
-            for (int i = 1; i <= 10; i++) {
-                final String uname = "student" + i;
-                userRepository.findByUsername(uname).orElseGet(() -> {
-                    UserDocument student = new UserDocument();
-                    student.setUsername(uname);
-                    student.setPasswordHash(BCrypt.hashpw("password", BCrypt.gensalt()));
-                    student.setRole("student");
-                    return userRepository.save(student);
+            // Seed regular user
+            userRepository.findByUsername("user").orElseGet(() -> {
+                UserDocument user = new UserDocument("user", BCrypt.hashpw("password", BCrypt.gensalt()), "USER");
+                user.setActive(true);
+                user.setLastLoginAt(LocalDateTime.now().minusHours(2));
+                return userRepository.save(user);
+            });
+
+            // Seed additional test users
+            for (int i = 1; i <= 5; i++) {
+                final String username = "testuser" + i;
+                userRepository.findByUsername(username).orElseGet(() -> {
+                    UserDocument testUser = new UserDocument(username, BCrypt.hashpw("password", BCrypt.gensalt()), "USER");
+                    testUser.setActive(i <= 3); // First 3 users active, others inactive
+                    testUser.setLastLoginAt(LocalDateTime.now().minusDays(i));
+                    return userRepository.save(testUser);
                 });
             }
+
+            // Seed one more admin for testing
+            userRepository.findByUsername("admin2").orElseGet(() -> {
+                UserDocument admin2 = new UserDocument("admin2", BCrypt.hashpw("password", BCrypt.gensalt()), "ADMIN");
+                admin2.setActive(true);
+                admin2.setLastLoginAt(LocalDateTime.now().minusHours(5));
+                return userRepository.save(admin2);
+            });
         };
     }
 }

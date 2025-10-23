@@ -49,6 +49,10 @@ public class AuthController {
             response.put("error", "Invalid credentials");
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
         }
+        
+        // Update last login timestamp
+        authService.updateLastLogin(loginRequest.getUsername());
+        
         String token = jwtService.issueToken(loginRequest.getUsername());
         response.put("token", token);
         return ResponseEntity.ok(response);

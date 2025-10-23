@@ -215,6 +215,156 @@
           }
         }
       ]
+    },
+    {
+      "name": "Get Dashboard Stats (GET /api/admin/stats)",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/admin/stats",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "admin",
+            "stats"
+          ]
+        }
+      },
+      "response": [],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Stats endpoint successful', function () {",
+              "  pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test('Response has stats data', function () {",
+              "  const data = pm.response.json();",
+              "  pm.expect(data).to.have.property('totalUsers');",
+              "  pm.expect(data).to.have.property('activeUsers');",
+              "  pm.expect(data).to.have.property('adminUsers');",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Get All Users (GET /api/admin/users)",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/admin/users?page=0&size=10",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "admin",
+            "users"
+          ],
+          "query": [
+            {
+              "key": "page",
+              "value": "0"
+            },
+            {
+              "key": "size",
+              "value": "10"
+            }
+          ]
+        }
+      },
+      "response": [],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Users endpoint successful', function () {",
+              "  pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test('Response has pagination data', function () {",
+              "  const data = pm.response.json();",
+              "  pm.expect(data).to.have.property('users');",
+              "  pm.expect(data).to.have.property('currentPage');",
+              "  pm.expect(data).to.have.property('totalItems');",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Update User (PATCH /api/admin/users/{id})",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"role\": \"USER\",\n  \"isActive\": true\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/admin/users/{{user_id}}",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "admin",
+            "users",
+            "{{user_id}}"
+          ]
+        }
+      },
+      "response": [],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Update user successful', function () {",
+              "  pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test('Response has updated user', function () {",
+              "  const data = pm.response.json();",
+              "  pm.expect(data).to.have.property('id');",
+              "  pm.expect(data).to.have.property('username');",
+              "});"
+            ]
+          }
+        }
+      ]
     }
   ]
 }

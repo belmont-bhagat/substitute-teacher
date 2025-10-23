@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import api from '../lib/api'
+import { authApi } from '../lib/api'
 import { setToken } from '../lib/auth'
 import { Card, CardBody, CardHeader } from '../components/Card'
 import AuthLayout from '../components/AuthLayout'
@@ -17,9 +17,19 @@ export default function LoginPage() {
     setError(null)
     setLoading(true)
     try {
-      const res = await api.post('/login', { username, password })
+      const res = await authApi.login({ username, password })
       setToken(res.data.token)
-      navigate('/profile')
+      
+      // Get user profile to determine redirect based on role
+      const profileRes = await authApi.getProfile()
+      const userRole = profileRes.data.role
+      
+      // Redirect based on role
+      if (userRole === 'ADMIN') {
+        navigate('/dashboard')
+      } else {
+        navigate('/profile')
+      }
     } catch (err: any) {
       setError(err?.response?.data?.error || 'Invalid credentials')
     } finally {
