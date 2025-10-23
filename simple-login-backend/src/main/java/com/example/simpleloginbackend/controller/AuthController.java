@@ -15,11 +15,11 @@ import com.example.simpleloginbackend.model.UserDocument;
 /**
  * REST Controller for handling authentication operations.
  * Provides endpoints for login and user profile retrieval.
- * CORS is enabled to allow requests from any origin (suitable for demo purposes).
+ * CORS is enabled to allow requests from frontend development servers.
  */
 @RestController
 @RequestMapping("/api")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = {"http://localhost:5173", "http://localhost:3000", "http://127.0.0.1:5173"})
 public class AuthController {
 
     private final AuthService authService;
