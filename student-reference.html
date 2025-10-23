@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Login Project - Student Reference Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .header {
+            text-align: center;
+            padding: 30px 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            margin: -20px -20px 30px -20px;
+            border-radius: 10px 10px 0 0;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .nav {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .nav h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        .nav ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+        }
+        
+        .nav a {
+            color: #495057;
+            text-decoration: none;
+            padding: 8px 12px;
+            background: white;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            display: block;
+        }
+        
+        .nav a:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .section {
+            margin-bottom: 40px;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #28a745;
+        }
+        
+        .section h2 {
+            color: #28a745;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+        
+        .section h3 {
+            color: #495057;
+            margin: 20px 0 10px 0;
+            font-size: 1.3em;
+        }
+        
+        .tech-stack {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .tech-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-left: 4px solid #667eea;
+        }
+        
+        .tech-card h4 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        .file-tree {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            margin: 15px 0;
+            overflow-x: auto;
+        }
+        
+        .file-tree .folder {
+            color: #fbb6ce;
+        }
+        
+        .file-tree .file {
+            color: #90cdf4;
+        }
+        
+        .endpoint {
+            background: white;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 10px 0;
+            border-left: 4px solid #17a2b8;
+        }
+        
+        .endpoint .method {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 3px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .method.post { background: #28a745; color: white; }
+        .method.get { background: #007bff; color: white; }
+        .method.patch { background: #ffc107; color: black; }
+        
+        .endpoint .path {
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+        }
+        
+        .endpoint .description {
+            margin-top: 5px;
+            color: #6c757d;
+        }
+        
+        .component {
+            background: white;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 10px 0;
+            border-left: 4px solid #fd7e14;
+        }
+        
+        .component .name {
+            font-weight: bold;
+            color: #fd7e14;
+            margin-bottom: 5px;
+        }
+        
+        .component .description {
+            color: #6c757d;
+        }
+        
+        .quick-start {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .quick-start h3 {
+            color: #155724;
+            margin-bottom: 15px;
+        }
+        
+        .quick-start ol {
+            margin-left: 20px;
+        }
+        
+        .quick-start li {
+            margin-bottom: 8px;
+        }
+        
+        .code-block {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 5px;
+            padding: 15px;
+            font-family: 'Courier New', monospace;
+            margin: 10px 0;
+            overflow-x: auto;
+        }
+        
+        .highlight {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .highlight h4 {
+            color: #856404;
+            margin-bottom: 10px;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 30px;
+            background: #343a40;
+            color: white;
+            margin: 30px -20px -20px -20px;
+            border-radius: 0 0 10px 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                padding: 15px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .nav ul {
+                grid-template-columns: 1fr;
+            }
+            
+            .tech-stack {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔐 Simple Login Application</h1>
+            <p>Complete Student Reference Guide</p>
+        </div>
+
+        <div class="nav">
+            <h3>📋 Quick Navigation</h3>
+            <ul>
+                <li><a href="#overview">Project Overview</a></li>
+                <li><a href="#tech-stack">Technology Stack</a></li>
+                <li><a href="#architecture">Architecture</a></li>
+                <li><a href="#backend">Backend (Spring Boot)</a></li>
+                <li><a href="#frontend">Frontend (React)</a></li>
+                <li><a href="#api">API Endpoints</a></li>
+                <li><a href="#quick-start">Quick Start Guide</a></li>
+                <li><a href="#testing">Testing with Postman</a></li>
+                <li><a href="#resources">Additional Resources</a></li>
+            </ul>
+        </div>
+
+        <div class="section" id="overview">
+            <h2>📖 Project Overview</h2>
+            <p>The Simple Login Application is a full-stack web application demonstrating modern authentication patterns, role-based access control, and responsive UI design. This project serves as a comprehensive example for learning software engineering principles.</p>
+            
+            <div class="highlight">
+                <h4>🎯 Learning Objectives</h4>
+                <ul>
+                    <li>Understand JWT-based authentication</li>
+                    <li>Implement role-based access control (RBAC)</li>
+                    <li>Build responsive React components</li>
+                    <li>Design RESTful API endpoints</li>
+                    <li>Integrate frontend and backend systems</li>
+                    <li>Use modern development tools and practices</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section" id="tech-stack">
+            <h2>🛠️ Technology Stack</h2>
+            <div class="tech-stack">
+                <div class="tech-card">
+                    <h4>🔧 Backend</h4>
+                    <ul>
+                        <li><strong>Spring Boot</strong> - Java framework</li>
+                        <li><strong>MongoDB</strong> - NoSQL database</li>
+                        <li><strong>JWT</strong> - Authentication tokens</li>
+                        <li><strong>Maven</strong> - Dependency management</li>
+                        <li><strong>Java 17</strong> - Programming language</li>
+                    </ul>
+                </div>
+                <div class="tech-card">
+                    <h4>🎨 Frontend</h4>
+                    <ul>
+                        <li><strong>React 18</strong> - UI library</li>
+                        <li><strong>TypeScript</strong> - Type safety</li>
+                        <li><strong>Vite</strong> - Build tool</li>
+                        <li><strong>Tailwind CSS</strong> - Styling</li>
+                        <li><strong>React Router</strong> - Navigation</li>
+                    </ul>
+                </div>
+                <div class="tech-card">
+                    <h4>🔨 Development Tools</h4>
+                    <ul>
+                        <li><strong>Postman</strong> - API testing</li>
+                        <li><strong>Docker</strong> - Containerization</li>
+                        <li><strong>Git</strong> - Version control</li>
+                        <li><strong>Cursor</strong> - AI-powered IDE</li>
+                        <li><strong>Homebrew</strong> - Package manager</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section" id="architecture">
+            <h2>🏗️ Project Architecture</h2>
+            <div class="file-tree">
+substitute-teacher/
+├── <span class="folder">simple-login-backend/</span>          # Spring Boot API
+│   ├── <span class="file">src/main/java/</span>
+│   │   └── <span class="folder">com/example/simpleloginbackend/</span>
+│   │       ├── <span class="file">controller/AuthController.java</span>
+│   │       ├── <span class="file">service/AuthService.java</span>
+│   │       ├── <span class="file">service/JwtService.java</span>
+│   │       ├── <span class="file">model/UserDocument.java</span>
+│   │       ├── <span class="file">repository/UserRepository.java</span>
+│   │       └── <span class="file">config/JwtConfig.java</span>
+│   └── <span class="file">pom.xml</span>
+├── <span class="folder">simple-login-frontend/</span>         # React Application
+│   ├── <span class="file">src/</span>
+│   │   ├── <span class="folder">pages/</span>
+│   │   │   ├── <span class="file">LoginPage.tsx</span>
+│   │   │   └── <span class="file">ProfilePage.tsx</span>
+│   │   ├── <span class="folder">components/</span>
+│   │   │   ├── <span class="file">AuthLayout.tsx</span>
+│   │   │   ├── <span class="file">Button.tsx</span>
+│   │   │   ├── <span class="file">Input.tsx</span>
+│   │   │   └── <span class="file">Card.tsx</span>
+│   │   └── <span class="folder">lib/</span>
+│   │       ├── <span class="file">api.ts</span>
+│   │       └── <span class="file">auth.ts</span>
+│   └── <span class="file">package.json</span>
+├── <span class="folder">postman/</span>                       # API Testing
+│   └── <span class="file">Simple-Login.postman_collection.json</span>
+├── <span class="folder">scripts/</span>                       # Automation
+│   ├── <span class="file">start-all.sh</span>
+│   └── <span class="file">stop-all.sh</span>
+├── <span class="file">docker-compose.yml</span>               # MongoDB Container
+├── <span class="file">README.md</span>                        # Project Documentation
+├── <span class="file">Project Outline.md</span>              # Technical Specification
+└── <span class="file">subsitute-teacher-ouline.md</span>      # Teaching Plan
+            </div>
+        </div>
+
+        <div class="section" id="backend">
+            <h2>⚙️ Backend (Spring Boot)</h2>
+            <h3>Key Components</h3>
+            
+            <div class="component">
+                <div class="name">AuthController.java</div>
+                <div class="description">Handles authentication endpoints: login and profile retrieval</div>
+            </div>
+            
+            <div class="component">
+                <div class="name">AuthService.java</div>
+                <div class="description">Business logic for user authentication and JWT token management</div>
+            </div>
+            
+            <div class="component">
+                <div class="name">JwtService.java</div>
+                <div class="description">JWT token creation, validation, and extraction utilities</div>
+            </div>
+            
+            <div class="component">
+                <div class="name">UserDocument.java</div>
+                <div class="description">MongoDB document model for user data with roles (USER, ADMIN)</div>
+            </div>
+            
+            <div class="component">
+                <div class="name">UserRepository.java</div>
+                <div class="description">MongoDB repository for user data operations</div>
+            </div>
+
+            <h3>Configuration</h3>
+            <div class="code-block">
+# application.properties
+server.port=8080
+spring.data.mongodb.uri=mongodb://localhost:27017/simple_login
+jwt.secret=your-secret-key-here
+jwt.expiration=86400000
+            </div>
+        </div>
+
+        <div class="section" id="frontend">
+            <h2>🎨 Frontend (React + TypeScript)</h2>
+            <h3>Key Components</h3>
+            
+            <div class="component">
+                <div class="name">LoginPage.tsx</div>
+                <div class="description">User authentication form with email/password validation</div>
+            </div>
+            
+            <div class="component">
+                <div class="name">ProfilePage.tsx</div>
+                <div class="description">Protected page displaying user profile information</div>
+            </div>
+            
+            <div class="component">
+                <div class="name">AuthLayout.tsx</div>
+                <div class="description">Layout wrapper with route protection and authentication checks</div>
+            </div>
+            
+            <div class="component">
+                <div class="name">api.ts</div>
+                <div class="description">Axios instance with JWT token injection and error handling</div>
+            </div>
+            
+            <div class="component">
+                <div class="name">auth.ts</div>
+                <div class="description">Authentication utilities for token storage and user state management</div>
+            </div>
+
+            <h3>Routing Structure</h3>
+            <div class="code-block">
+/ → LoginPage (public)
+/login → LoginPage (public)
+/profile → ProfilePage (protected)
+            </div>
+        </div>
+
+        <div class="section" id="api">
+            <h2>🌐 API Endpoints</h2>
+            
+            <div class="endpoint">
+                <span class="method post">POST</span>
+                <span class="path">/api/auth/login</span>
+                <div class="description">Authenticate user with email and password, returns JWT token</div>
+            </div>
+            
+            <div class="endpoint">
+                <span class="method get">GET</span>
+                <span class="path">/api/auth/profile</span>
+                <div class="description">Get current user profile (requires Bearer token)</div>
+            </div>
+
+            <h3>Request/Response Examples</h3>
+            <div class="code-block">
+# Login Request
+POST /api/auth/login
+Content-Type: application/json
+
+{
+  "email": "admin@example.com",
+  "password": "password"
+}
+
+# Login Response
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+  "user": {
+    "id": "507f1f77bcf86cd799439011",
+    "email": "admin@example.com",
+    "displayName": "Admin User",
+    "roles": ["ADMIN"]
+  }
+}
+            </div>
+        </div>
+
+        <div class="section" id="quick-start">
+            <h2>🚀 Quick Start Guide</h2>
+            <div class="quick-start">
+                <h3>Prerequisites</h3>
+                <ul>
+                    <li>Java 17 or higher</li>
+                    <li>Node.js 18 or higher</li>
+                    <li>Docker (for MongoDB)</li>
+                    <li>Git</li>
+                </ul>
+            </div>
+
+            <div class="quick-start">
+                <h3>Setup Steps</h3>
+                <ol>
+                    <li><strong>Clone the repository:</strong>
+                        <div class="code-block">git clone https://github.com/belmont-bhagat/substitute-teacher.git</div>
+                    </li>
+                    <li><strong>Start MongoDB:</strong>
+                        <div class="code-block">docker-compose up -d mongodb</div>
+                    </li>
+                    <li><strong>Start the backend:</strong>
+                        <div class="code-block">cd simple-login-backend && ./mvnw spring-boot:run</div>
+                    </li>
+                    <li><strong>Start the frontend:</strong>
+                        <div class="code-block">cd simple-login-frontend && npm run dev</div>
+                    </li>
+                    <li><strong>Access the application:</strong>
+                        <div class="code-block">http://localhost:5173</div>
+                    </li>
+                </ol>
+            </div>
+
+            <div class="highlight">
+                <h4>🔑 Default Credentials</h4>
+                <p><strong>Admin User:</strong> admin@example.com / password</p>
+                <p><strong>Regular User:</strong> user@example.com / password</p>
+            </div>
+        </div>
+
+        <div class="section" id="testing">
+            <h2>🧪 Testing with Postman</h2>
+            <p>Import the Postman collection to test all API endpoints:</p>
+            
+            <div class="quick-start">
+                <h3>Postman Collection Features</h3>
+                <ul>
+                    <li>Pre-configured requests for all endpoints</li>
+                    <li>Automatic token extraction and storage</li>
+                    <li>Test scripts for response validation</li>
+                    <li>Environment variables for easy configuration</li>
+                </ul>
+            </div>
+
+            <div class="code-block">
+# Import Collection
+File: postman/Simple-Login.postman_collection.json
+
+# Collection includes:
+- Login Request
+- Profile Request  
+- List Users Request
+- Invalid Credentials Test
+            </div>
+        </div>
+
+        <div class="section" id="resources">
+            <h2>📚 Additional Resources</h2>
+            
+            <div class="tech-stack">
+                <div class="tech-card">
+                    <h4>📖 Documentation</h4>
+                    <ul>
+                        <li><strong>README.md</strong> - Project overview</li>
+                        <li><strong>Project Outline.md</strong> - Technical specification</li>
+                        <li><strong>Teaching Plan</strong> - 75-minute class outline</li>
+                        <li><strong>Backend README</strong> - Spring Boot details</li>
+                        <li><strong>Frontend README</strong> - React details</li>
+                    </ul>
+                </div>
+                
+                <div class="tech-card">
+                    <h4>🔧 Development Tools</h4>
+                    <ul>
+                        <li><strong>start-all.sh</strong> - Start all services</li>
+                        <li><strong>stop-all.sh</strong> - Stop all services</li>
+                        <li><strong>docker-compose.yml</strong> - MongoDB setup</li>
+                        <li><strong>env.template</strong> - Environment config</li>
+                    </ul>
+                </div>
+                
+                <div class="tech-card">
+                    <h4>🎓 Learning Resources</h4>
+                    <ul>
+                        <li><strong>Spring Boot Docs</strong> - spring.io</li>
+                        <li><strong>React Docs</strong> - react.dev</li>
+                        <li><strong>MongoDB Docs</strong> - mongodb.com</li>
+                        <li><strong>JWT.io</strong> - jwt.io</li>
+                        <li><strong>Tailwind CSS</strong> - tailwindcss.com</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p><strong>Simple Login Application</strong> - Student Reference Guide</p>
+            <p>Built with ❤️ for Software Engineering Education</p>
+            <p>Repository: <a href="https://github.com/belmont-bhagat/substitute-teacher" style="color: #90cdf4;">github.com/belmont-bhagat/substitute-teacher</a></p>
+        </div>
+    </div>
+</body>
+</html>
