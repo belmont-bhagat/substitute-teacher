@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Login - Integration Test</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .header h1 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .test-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            background: #f9f9f9;
+        }
+        
+        .test-section h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+        
+        .test-button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px;
+            transition: background 0.3s;
+        }
+        
+        .test-button:hover {
+            background: #5a6fd8;
+        }
+        
+        .test-button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        
+        .test-results {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 6px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        
+        .test-results.success {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+        }
+        
+        .test-results.error {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+        }
+        
+        .test-results.info {
+            background: #d1ecf1;
+            border: 1px solid #bee5eb;
+            color: #0c5460;
+        }
+        
+        .credentials {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+        }
+        
+        .credentials h4 {
+            margin-top: 0;
+            color: #856404;
+        }
+        
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        
+        .status-indicator.online {
+            background: #28a745;
+        }
+        
+        .status-indicator.offline {
+            background: #dc3545;
+        }
+        
+        .quick-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .quick-link {
+            display: block;
+            padding: 15px;
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 6px;
+            text-decoration: none;
+            color: #495057;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        
+        .quick-link:hover {
+            background: #e9ecef;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔐 Simple Login - Integration Test</h1>
+            <p>Test the connection between frontend and backend</p>
+        </div>
+
+        <div class="test-section">
+            <h3>🚀 Quick Test</h3>
+            <p>Run a comprehensive test of all API endpoints and frontend-backend integration.</p>
+            <button class="test-button" onclick="runQuickTest()">Run Quick Test</button>
+            <button class="test-button" onclick="runDetailedTest()">Run Detailed Test</button>
+            <button class="test-button" onclick="clearResults()">Clear Results</button>
+        </div>
+
+        <div class="test-section">
+            <h3>🔧 Service Status</h3>
+            <p>
+                <span class="status-indicator offline" id="backend-status"></span>
+                Backend: <span id="backend-text">Checking...</span>
+            </p>
+            <p>
+                <span class="status-indicator offline" id="frontend-status"></span>
+                Frontend: <span id="frontend-text">Checking...</span>
+            </p>
+            <button class="test-button" onclick="checkServices()">Check Services</button>
+        </div>
+
+        <div class="test-section">
+            <h3>🔑 Test Credentials</h3>
+            <div class="credentials">
+                <h4>Admin User (Full Access)</h4>
+                <p><strong>Username:</strong> admin</p>
+                <p><strong>Password:</strong> password</p>
+                <p><strong>Access:</strong> Dashboard, User Management, Statistics</p>
+            </div>
+            <div class="credentials">
+                <h4>Regular User (Limited Access)</h4>
+                <p><strong>Username:</strong> user</p>
+                <p><strong>Password:</strong> password</p>
+                <p><strong>Access:</strong> Profile, Settings</p>
+            </div>
+            <div class="credentials">
+                <h4>Test Users</h4>
+                <p><strong>Usernames:</strong> testuser1, testuser2, testuser3, testuser4, testuser5</p>
+                <p><strong>Password:</strong> password</p>
+                <p><strong>Access:</strong> Regular user access</p>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h3>🔗 Quick Links</h3>
+            <div class="quick-links">
+                <a href="http://localhost:5173" target="_blank" class="quick-link">
+                    <strong>Frontend App</strong><br>
+                    Open React Application
+                </a>
+                <a href="http://localhost:8080/api/auth/profile" target="_blank" class="quick-link">
+                    <strong>Backend API</strong><br>
+                    Test API Endpoint
+                </a>
+                <a href="http://localhost:8080" target="_blank" class="quick-link">
+                    <strong>Backend Health</strong><br>
+                    Check Backend Status
+                </a>
+                <a href="student-reference.html" target="_blank" class="quick-link">
+                    <strong>Student Guide</strong><br>
+                    View Reference Documentation
+                </a>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h3>📊 Test Results</h3>
+            <div id="test-results" class="test-results info">
+                Click "Run Quick Test" to start testing...
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:8080/api';
+        const FRONTEND_URL = 'http://localhost:5173';
+        const BACKEND_URL = 'http://localhost:8080';
+
+        let adminToken = '';
+        let userToken = '';
+
+        // Check services on page load
+        window.onload = function() {
+            checkServices();
+        };
+
+        function updateStatus(elementId, isOnline, text) {
+            const statusElement = document.getElementById(elementId);
+            const textElement = document.getElementById(elementId.replace('-status', '-text'));
+            
+            statusElement.className = `status-indicator ${isOnline ? 'online' : 'offline'}`;
+            textElement.textContent = text;
+        }
+
+        async function checkServices() {
+            // Check backend
+            try {
+                const backendResponse = await fetch(BACKEND_URL, { method: 'HEAD' });
+                updateStatus('backend-status', backendResponse.ok, backendResponse.ok ? 'Online' : 'Offline');
+            } catch (error) {
+                updateStatus('backend-status', false, 'Offline');
+            }
+
+            // Check frontend
+            try {
+                const frontendResponse = await fetch(FRONTEND_URL, { method: 'HEAD' });
+                updateStatus('frontend-status', frontendResponse.ok, frontendResponse.ok ? 'Online' : 'Offline');
+            } catch (error) {
+                updateStatus('frontend-status', false, 'Offline');
+            }
+        }
+
+        function logResult(message, type = 'info') {
+            const resultsDiv = document.getElementById('test-results');
+            const timestamp = new Date().toLocaleTimeString();
+            const logMessage = `[${timestamp}] ${message}\n`;
+            
+            resultsDiv.textContent += logMessage;
+            resultsDiv.className = `test-results ${type}`;
+            resultsDiv.scrollTop = resultsDiv.scrollHeight;
+        }
+
+        function clearResults() {
+            document.getElementById('test-results').textContent = '';
+            document.getElementById('test-results').className = 'test-results info';
+        }
+
+        async function makeApiRequest(method, endpoint, data = null, token = null) {
+            try {
+                const config = {
+                    method,
+                    headers: {}
+                };
+
+                if (data) {
+                    config.headers['Content-Type'] = 'application/json';
+                    config.body = JSON.stringify(data);
+                }
+
+                if (token) {
+                    config.headers['Authorization'] = `Bearer ${token}`;
+                }
+
+                const response = await fetch(`${API_BASE}${endpoint}`, config);
+                const responseData = await response.json();
+
+                return {
+                    success: response.ok,
+                    status: response.status,
+                    data: responseData
+                };
+            } catch (error) {
+                return {
+                    success: false,
+                    status: 0,
+                    error: error.message
+                };
+            }
+        }
+
+        async function runQuickTest() {
+            clearResults();
+            logResult('🚀 Starting Quick Integration Test...', 'info');
+            
+            // Test 1: Admin Login
+            logResult('Testing admin login...', 'info');
+            const adminLogin = await makeApiRequest('POST', '/auth/login', { username: 'admin', password: 'password' });
+            if (adminLogin.success && adminLogin.data.token) {
+                adminToken = adminLogin.data.token;
+                logResult('✅ Admin login successful', 'success');
+            } else {
+                logResult('❌ Admin login failed', 'error');
+                return;
+            }
+
+            // Test 2: User Login
+            logResult('Testing user login...', 'info');
+            const userLogin = await makeApiRequest('POST', '/auth/login', { username: 'user', password: 'password' });
+            if (userLogin.success && userLogin.data.token) {
+                userToken = userLogin.data.token;
+                logResult('✅ User login successful', 'success');
+            } else {
+                logResult('❌ User login failed', 'error');
+                return;
+            }
+
+            // Test 3: Admin Profile
+            logResult('Testing admin profile access...', 'info');
+            const adminProfile = await makeApiRequest('GET', '/auth/profile', null, adminToken);
+            if (adminProfile.success && adminProfile.data.role === 'ADMIN') {
+                logResult('✅ Admin profile access successful', 'success');
+            } else {
+                logResult('❌ Admin profile access failed', 'error');
+            }
+
+            // Test 4: Dashboard Stats
+            logResult('Testing dashboard stats...', 'info');
+            const stats = await makeApiRequest('GET', '/admin/stats', null, adminToken);
+            if (stats.success && stats.data.totalUsers > 0) {
+                logResult(`✅ Dashboard stats successful (${stats.data.totalUsers} users)`, 'success');
+            } else {
+                logResult('❌ Dashboard stats failed', 'error');
+            }
+
+            // Test 5: Users List
+            logResult('Testing users list...', 'info');
+            const users = await makeApiRequest('GET', '/admin/users?page=0&size=10', null, adminToken);
+            if (users.success && users.data.totalItems > 0) {
+                logResult(`✅ Users list successful (${users.data.totalItems} users)`, 'success');
+            } else {
+                logResult('❌ Users list failed', 'error');
+            }
+
+            // Test 6: User Admin Access (Should Fail)
+            logResult('Testing user access to admin endpoints...', 'info');
+            const userAdminAccess = await makeApiRequest('GET', '/admin/stats', null, userToken);
+            if (!userAdminAccess.success && userAdminAccess.status === 403) {
+                logResult('✅ User correctly denied admin access', 'success');
+            } else {
+                logResult('❌ User should not have admin access', 'error');
+            }
+
+            logResult('🎉 Quick test completed!', 'success');
+        }
+
+        async function runDetailedTest() {
+            clearResults();
+            logResult('🔍 Starting Detailed Integration Test...', 'info');
+            
+            const tests = [
+                { name: 'Backend Health Check', fn: checkBackendHealth },
+                { name: 'Frontend Health Check', fn: checkFrontendHealth },
+                { name: 'Admin Login', fn: testAdminLogin },
+                { name: 'User Login', fn: testUserLogin },
+                { name: 'Admin Profile', fn: testAdminProfile },
+                { name: 'User Profile', fn: testUserProfile },
+                { name: 'Dashboard Stats', fn: testDashboardStats },
+                { name: 'Users List', fn: testUsersList },
+                { name: 'User Admin Access', fn: testUserAdminAccess },
+                { name: 'Invalid Login', fn: testInvalidLogin },
+                { name: 'CORS Test', fn: testCORS }
+            ];
+
+            for (const test of tests) {
+                logResult(`Running ${test.name}...`, 'info');
+                try {
+                    await test.fn();
+                } catch (error) {
+                    logResult(`❌ ${test.name} failed: ${error.message}`, 'error');
+                }
+            }
+
+            logResult('🎉 Detailed test completed!', 'success');
+        }
+
+        async function checkBackendHealth() {
+            const response = await fetch(BACKEND_URL, { method: 'HEAD' });
+            if (response.ok) {
+                logResult('✅ Backend is healthy', 'success');
+            } else {
+                throw new Error('Backend not responding');
+            }
+        }
+
+        async function checkFrontendHealth() {
+            const response = await fetch(FRONTEND_URL, { method: 'HEAD' });
+            if (response.ok) {
+                logResult('✅ Frontend is healthy', 'success');
+            } else {
+                throw new Error('Frontend not responding');
+            }
+        }
+
+        async function testAdminLogin() {
+            const result = await makeApiRequest('POST', '/auth/login', { username: 'admin', password: 'password' });
+            if (result.success && result.data.token) {
+                adminToken = result.data.token;
+                logResult('✅ Admin login successful', 'success');
+            } else {
+                throw new Error('Admin login failed');
+            }
+        }
+
+        async function testUserLogin() {
+            const result = await makeApiRequest('POST', '/auth/login', { username: 'user', password: 'password' });
+            if (result.success && result.data.token) {
+                userToken = result.data.token;
+                logResult('✅ User login successful', 'success');
+            } else {
+                throw new Error('User login failed');
+            }
+        }
+
+        async function testAdminProfile() {
+            const result = await makeApiRequest('GET', '/auth/profile', null, adminToken);
+            if (result.success && result.data.role === 'ADMIN') {
+                logResult('✅ Admin profile access successful', 'success');
+            } else {
+                throw new Error('Admin profile access failed');
+            }
+        }
+
+        async function testUserProfile() {
+            const result = await makeApiRequest('GET', '/auth/profile', null, userToken);
+            if (result.success && result.data.role === 'USER') {
+                logResult('✅ User profile access successful', 'success');
+            } else {
+                throw new Error('User profile access failed');
+            }
+        }
+
+        async function testDashboardStats() {
+            const result = await makeApiRequest('GET', '/admin/stats', null, adminToken);
+            if (result.success && result.data.totalUsers > 0) {
+                logResult(`✅ Dashboard stats successful (${result.data.totalUsers} users)`, 'success');
+            } else {
+                throw new Error('Dashboard stats failed');
+            }
+        }
+
+        async function testUsersList() {
+            const result = await makeApiRequest('GET', '/admin/users?page=0&size=10', null, adminToken);
+            if (result.success && result.data.totalItems > 0) {
+                logResult(`✅ Users list successful (${result.data.totalItems} users)`, 'success');
+            } else {
+                throw new Error('Users list failed');
+            }
+        }
+
+        async function testUserAdminAccess() {
+            const result = await makeApiRequest('GET', '/admin/stats', null, userToken);
+            if (!result.success && result.status === 403) {
+                logResult('✅ User correctly denied admin access', 'success');
+            } else {
+                throw new Error('User should not have admin access');
+            }
+        }
+
+        async function testInvalidLogin() {
+            const result = await makeApiRequest('POST', '/auth/login', { username: 'invalid', password: 'wrong' });
+            if (!result.success && result.status === 401) {
+                logResult('✅ Invalid login correctly rejected', 'success');
+            } else {
+                throw new Error('Invalid login should be rejected');
+            }
+        }
+
+        async function testCORS() {
+            try {
+                const response = await fetch(`${API_BASE}/auth/login`, {
+                    method: 'OPTIONS',
+                    headers: {
+                        'Origin': FRONTEND_URL,
+                        'Access-Control-Request-Method': 'POST',
+                        'Access-Control-Request-Headers': 'Content-Type'
+                    }
+                });
+                
+                if (response.headers.get('Access-Control-Allow-Origin')) {
+                    logResult('✅ CORS configuration working', 'success');
+                } else {
+                    throw new Error('CORS headers missing');
+                }
+            } catch (error) {
+                throw new Error('CORS test failed');
+            }
+        }
+    </script>
+</body>
+</html>
