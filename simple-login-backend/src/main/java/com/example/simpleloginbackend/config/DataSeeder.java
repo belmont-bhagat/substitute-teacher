@@ -34,10 +34,11 @@ public class DataSeeder {
             // Seed additional test users
             for (int i = 1; i <= 5; i++) {
                 final String username = "testuser" + i;
+                final int userIndex = i; // Make i effectively final
                 userRepository.findByUsername(username).orElseGet(() -> {
                     UserDocument testUser = new UserDocument(username, BCrypt.hashpw("password", BCrypt.gensalt()), "USER");
-                    testUser.setActive(i <= 3); // First 3 users active, others inactive
-                    testUser.setLastLoginAt(LocalDateTime.now().minusDays(i));
+                    testUser.setActive(userIndex <= 3); // First 3 users active, others inactive
+                    testUser.setLastLoginAt(LocalDateTime.now().minusDays(userIndex));
                     return userRepository.save(testUser);
                 });
             }
