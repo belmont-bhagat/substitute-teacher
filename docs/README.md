@@ -5,8 +5,9 @@
 - Architecture: ./architecture.md
 - API Reference: ./api.md
 
-Related existing materials:
-- Project Outline: ../Project%20Outline.md
-- Teaching Guide: ../PROJECT-GUIDE.md
-- Test Guide: ../TEST-README.md
+Related materials:
+- Project Outline: ./Project-Outline.md
+- Teaching Guide: ./PROJECT-GUIDE.md
+- Test Guide: ./TEST-README.md
+- Substitute Teacher Outline: ./substitute-teacher-outline.md
 

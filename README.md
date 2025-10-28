@@ -83,7 +83,11 @@ substitute-teacher/
 │   ├── overview.md              # What this branch includes
 │   ├── running.md               # How to run locally
 │   ├── api.md                   # Minimal API reference
-│   └── architecture.md          # High-level architecture
+│   ├── architecture.md          # High-level architecture
+│   ├── Project-Outline.md       # Project outline
+│   ├── PROJECT-GUIDE.md         # Teaching guide
+│   ├── TEST-README.md           # Testing guide
+│   └── substitute-teacher-outline.md # Session outline
 ├── scripts/                     # Utility scripts
 │   ├── start-all.sh            # Legacy helper (prefer commands above for this branch)
 │   └── stop-all.sh             # Stop all services
