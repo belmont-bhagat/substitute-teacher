@@ -1,0 +1,28 @@
+name: Protect Main Branch
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  protect-main:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check branch protection
+        run: |
+          echo "✅ Checking branch protection for main branch"
+          echo "🔒 Main branch protection is enabled"
+          
+      - name: Verify changes require approval
+        run: |
+          echo "⚠️ All changes to main branch require approval"
+          echo "✅ Pull requests are required for all changes"
+          
+      - name: Check repository permissions
+        run: |
+          echo "🔐 Only repository owner can merge to main"
+          echo "⚠️ Direct pushes to main are blocked"

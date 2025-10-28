@@ -212,11 +212,33 @@ docker-compose up -d mongodb
 
 ## 🤝 Contributing
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test thoroughly
-5. Submit a pull request
+This repository is protected to ensure code quality and project integrity.
+
+### How to Contribute
+
+1. **Fork the repository** to your GitHub account
+2. **Create a feature branch** in your fork
+3. **Make your changes** and test thoroughly
+4. **Submit a Pull Request** with a clear description
+5. **Wait for approval** - All PRs require owner approval
+
+### Protection Rules
+
+- ✅ **Direct pushes to main are blocked**
+- ✅ **All changes require pull request reviews**
+- ✅ **At least 1 approval required before merging**
+- ✅ **Status checks must pass**
+- ✅ **Only owner can merge PRs**
+
+For detailed guidelines, see [CONTRIBUTING.md](CONTRIBUTING.md)
+
+**Note**: As the repository owner, you have exclusive authority to:
+- Approve and merge pull requests
+- Modify branch protection rules
+- Delete protected branches
+- Force push (not recommended when protection is enabled)
+
+See [PROTECTION-SETUP.md](PROTECTION-SETUP.md) for complete protection configuration.
 
 ## 📄 License
 

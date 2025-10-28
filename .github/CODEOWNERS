@@ -1,0 +1,31 @@
+# CODEOWNERS - Repository Owners
+# All changes to this repository require approval from the listed owners
+
+# Default ownership - all files require approval from belmont-bhagat
+* @belmont-bhagat
+
+# Sensitive files - require extra attention
+/.github/ @belmont-bhagat
+/scripts/ @belmont-bhagat
+package.json @belmont-bhagat
+env.template @belmont-bhagat
+docker-compose.yml @belmont-bhagat
+
+# Documentation files
+/*.md @belmont-bhagat
+/docs/ @belmont-bhagat
+
+# Configuration files
+/.gitignore @belmont-bhagat
+/.editorconfig @belmont-bhagat
+
+# Backend critical files
+/simple-login-backend/pom.xml @belmont-bhagat
+/simple-login-backend/src/main/resources/application.properties @belmont-bhagat
+
+# Frontend critical files
+/simple-login-frontend/package.json @belmont-bhagat
+/simple-login-frontend/vite.config.ts @belmont-bhagat
+
+# Postman collection
+/postman/ @belmont-bhagat
