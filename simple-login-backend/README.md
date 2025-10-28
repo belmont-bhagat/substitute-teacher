@@ -1,6 +1,6 @@
-# Simple Login Backend
+# Simple Login Backend (No Dashboard Branch)
 
-Spring Boot backend application providing JWT-based authentication and user management APIs.
+Spring Boot backend application providing JWT-based authentication and user management APIs. In this branch, the frontend consumes only `/api/login` and `/api/profile`.
 
 ## 🏗️ Technology Stack
 
@@ -33,7 +33,8 @@ Spring Boot backend application providing JWT-based authentication and user mana
 
 3. **Run the application**
    ```bash
-   ./mvnw spring-boot:run
+   ./mvnw spring-boot:run \
+     -Dspring-boot.run.jvmArguments="-Dspring.data.mongodb.uri=mongodb://localhost:27017/simple_login -Dauth.jwt.secret=0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
    ```
 
 The application will start on `http://localhost:8080`
@@ -71,8 +72,8 @@ server.port=8080
 # MongoDB Configuration
 spring.data.mongodb.uri=mongodb://localhost:27017/simple_login
 
-# JWT Configuration
-auth.jwt.secret=change-me-change-me-change-me-change-me
+# JWT Configuration (>= 64 characters recommended)
+auth.jwt.secret=0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
 auth.jwt.ttlSeconds=3600
 ```
 
@@ -84,7 +85,7 @@ auth.jwt.ttlSeconds=3600
 
 ## 🧪 API Endpoints
 
-### Authentication
+### Authentication (used by frontend in this branch)
 
 #### Login
 - **POST** `/api/login`

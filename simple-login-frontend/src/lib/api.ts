@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { getToken } from './auth'
+import { getToken, clearToken } from './auth'
 
 const api = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080/api',
@@ -21,7 +21,7 @@ api.interceptors.response.use(
   (error) => {
     if (error.response?.status === 401) {
       // Token expired or invalid
-      localStorage.removeItem('token')
+      clearToken()
       window.location.href = '/login'
     }
     return Promise.reject(error)
@@ -31,10 +31,10 @@ api.interceptors.response.use(
 // Auth endpoints
 export const authApi = {
   login: (credentials: { username: string; password: string }) =>
-    api.post('/auth/login', credentials),
+    api.post('/login', credentials),
   
   getProfile: () =>
-    api.get('/auth/profile'),
+    api.get('/profile'),
   
   getAllUsers: () =>
     api.get('/users')

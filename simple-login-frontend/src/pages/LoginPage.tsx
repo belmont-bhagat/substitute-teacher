@@ -20,16 +20,9 @@ export default function LoginPage() {
       const res = await authApi.login({ username, password })
       setToken(res.data.token)
       
-      // Get user profile to determine redirect based on role
-      const profileRes = await authApi.getProfile()
-      const userRole = profileRes.data.role
-      
-      // Redirect based on role
-      if (userRole === 'ADMIN') {
-        navigate('/dashboard')
-      } else {
-        navigate('/profile')
-      }
+      // Get user profile and go to profile page
+      await authApi.getProfile()
+      navigate('/profile')
     } catch (err: any) {
       setError(err?.response?.data?.error || 'Invalid credentials')
     } finally {

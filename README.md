@@ -1,6 +1,8 @@
-# Simple Login Application
+# Simple Login Application (No Dashboard Branch)
 
 A full-stack authentication application built with Spring Boot backend and React frontend, designed for educational purposes and teaching software engineering concepts.
+
+This branch focuses on a minimal flow (Login → Profile). The dashboard implementation and routes have been removed for simplicity.
 
 ## 🏗️ Architecture
 
@@ -27,13 +29,30 @@ A full-stack authentication application built with Spring Boot backend and React
    cd substitute-teacher
    ```
 
-2. **Start all services**
+2. **Start MongoDB (Docker)**
    ```bash
-   chmod +x scripts/start-all.sh
-   ./scripts/start-all.sh
+   docker compose up -d mongodb
    ```
 
-3. **Access the application**
+3. **Start the backend (Java 17)**
+   ```bash
+   cd simple-login-backend
+   # Optional (macOS/Homebrew)
+   export JAVA_HOME=/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home
+   
+   # Use a strong JWT secret (>= 64 chars)
+   ./mvnw spring-boot:run \
+     -Dspring-boot.run.jvmArguments="-Dspring.data.mongodb.uri=mongodb://localhost:27017/simple_login -Dauth.jwt.secret=0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+   ```
+
+4. **Start the frontend (Vite dev server)**
+   ```bash
+   cd simple-login-frontend
+   npm install
+   npm run dev
+   ```
+
+5. **Access the application**
    - Frontend: http://localhost:5173
    - Backend API: http://localhost:8080
    - MongoDB: mongodb://localhost:27017
@@ -52,15 +71,21 @@ substitute-teacher/
 │   ├── src/main/resources/       # Configuration files
 │   ├── pom.xml                   # Maven dependencies
 │   └── Dockerfile               # Docker configuration
-├── simple-login-frontend/        # React frontend
+├── simple-login-frontend/        # React frontend (Login + Profile only in this branch)
 │   ├── src/                     # React source code
 │   ├── public/                  # Static assets
 │   ├── package.json            # Node.js dependencies
 │   └── vite.config.ts          # Vite configuration
 ├── postman/                     # API testing collection
 │   └── Simple-Login.postman_collection.json
+├── docs/                        # Centralized documentation for this branch
+│   ├── README.md                # Docs index
+│   ├── overview.md              # What this branch includes
+│   ├── running.md               # How to run locally
+│   ├── api.md                   # Minimal API reference
+│   └── architecture.md          # High-level architecture
 ├── scripts/                     # Utility scripts
-│   ├── start-all.sh            # Start all services
+│   ├── start-all.sh            # Legacy helper (prefer commands above for this branch)
 │   └── stop-all.sh             # Stop all services
 ├── docker-compose.yml          # Docker services configuration
 ├── Project Outline.md          # Project documentation
@@ -140,11 +165,11 @@ The teaching plan covers:
 1. Backend architecture (Spring Boot + MongoDB + JWT)
 2. Postman API demonstration
 3. Frontend walkthrough (React + TypeScript)
-4. Live dashboard development with Cursor AI
+4. Live dashboard development with Cursor AI (not applicable in this branch)
 
 ## 🛠️ Scripts
 
-- `./scripts/start-all.sh` - Start all services (MongoDB, Backend, Frontend)
+- `./scripts/start-all.sh` - Legacy: may not reflect branch changes; use commands above
 - `./scripts/stop-all.sh` - Stop all services and clean up
 
 ## 🔒 Security Features
@@ -160,8 +185,8 @@ The teaching plan covers:
 Create a `.env` file in the root directory:
 
 ```env
-# JWT Configuration
-AUTH_JWT_SECRET=your-super-secure-jwt-secret-key-at-least-64-characters-long
+# JWT Configuration (>= 64 characters)
+AUTH_JWT_SECRET=0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
 
 # MongoDB Configuration
 MONGO_URI=mongodb://localhost:27017/simple_login
@@ -178,8 +203,7 @@ The application includes Docker configuration for easy deployment:
 # Start only MongoDB
 docker-compose up -d mongodb
 
-# Start all services
-docker-compose up -d
+# Full docker-compose (frontend image build) may fail in this branch due to TypeScript build constraints. Prefer local dev: Docker for MongoDB + local Spring Boot + Vite dev server.
 ```
 
 ## 🤝 Contributing
