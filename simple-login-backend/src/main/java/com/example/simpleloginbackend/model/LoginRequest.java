@@ -1,4 +1,4 @@
-package com.example.simpleloginbackend.model;
+package edu.belmont.pranish.model;
 
 import lombok.Data;
 
