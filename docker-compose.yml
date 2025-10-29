@@ -1,5 +1,3 @@
-version: '3.8'
-
 # Simple Login Application - MongoDB Only
 # This is the simplified configuration for local development
 # Students run backend and frontend locally, only MongoDB in Docker

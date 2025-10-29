@@ -1,5 +1,3 @@
-version: '3.8'
-
 # FULL DOCKER DEPLOYMENT
 # This is the complete docker-compose configuration for deploying all services
 # Most users should use the simplified docker-compose.yml in the root (MongoDB only)

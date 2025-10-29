@@ -4,7 +4,7 @@ Spring Boot backend application providing JWT-based authentication and user mana
 
 ## 🏗️ Technology Stack
 
-- **Framework**: Spring Boot 3.1.5
+- **Framework**: Spring Boot 3.5.7
 - **Java Version**: 21 LTS
 - **Database**: MongoDB
 - **Authentication**: JWT (JSON Web Tokens)

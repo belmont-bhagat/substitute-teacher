@@ -24,7 +24,7 @@ That guide will walk you through:
 
 ## 🏗️ Technology Stack
 
-- **Backend**: Spring Boot 3.1.5 + Java 21 LTS + MongoDB
+- **Backend**: Spring Boot 3.5.7 + Java 21 LTS + MongoDB
 - **Frontend**: React 18 + TypeScript + Vite
 - **Authentication**: JWT tokens
 
