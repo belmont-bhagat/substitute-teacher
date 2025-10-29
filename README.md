@@ -102,6 +102,102 @@ substitute-teacher/
 | GET | `/profile` | Get user profile | Yes (JWT) |
 | GET | `/users` | List all users | Yes (JWT) |
 
+### 🔧 cURL Commands
+
+**1. Login (POST /api/login)**
+
+Successful login:
+```bash
+curl -X POST http://localhost:8080/api/login \
+  -H "Content-Type: application/json" \
+  -d '{"username":"admin","password":"password"}'
+```
+
+Response:
+```json
+{"token":"eyJhbGciOiJIUzI1NiJ9..."}
+```
+
+Failed login:
+```bash
+curl -X POST http://localhost:8080/api/login \
+  -H "Content-Type: application/json" \
+  -d '{"username":"wrong","password":"wrong"}'
+```
+
+Response:
+```json
+{"error":"Invalid credentials"}
+```
+
+---
+
+**2. Get Profile (GET /api/profile)**
+
+```bash
+# First, get a token from login
+TOKEN=$(curl -s -X POST http://localhost:8080/api/login \
+  -H "Content-Type: application/json" \
+  -d '{"username":"admin","password":"password"}' | grep -o '"token":"[^"]*' | cut -d'"' -f4)
+
+# Then use it to get profile
+curl -X GET http://localhost:8080/api/profile \
+  -H "Authorization: Bearer $TOKEN"
+```
+
+Response:
+```json
+{"username":"admin","role":"admin"}
+```
+
+Without token (error):
+```bash
+curl -X GET http://localhost:8080/api/profile
+```
+
+Response:
+```json
+{"error":"Unauthorized"}
+```
+
+---
+
+**3. List All Users (GET /api/users)**
+
+```bash
+# Using the token from login
+curl -X GET http://localhost:8080/api/users \
+  -H "Authorization: Bearer $TOKEN"
+```
+
+Response:
+```json
+{
+  "users": [
+    {"username":"admin","role":"admin"},
+    {"username":"student1","role":"student"},
+    {"username":"student2","role":"student"}
+  ],
+  "count": 11
+}
+```
+
+---
+
+**One-liner to test all endpoints:**
+```bash
+# Login and save token
+TOKEN=$(curl -s -X POST http://localhost:8080/api/login \
+  -H "Content-Type: application/json" \
+  -d '{"username":"admin","password":"password"}' | grep -o '"token":"[^"]*' | cut -d'"' -f4)
+
+# Get profile
+curl -X GET http://localhost:8080/api/profile -H "Authorization: Bearer $TOKEN"
+
+# Get all users
+curl -X GET http://localhost:8080/api/users -H "Authorization: Bearer $TOKEN"
+```
+
 **Full API documentation**: See [docs/for-developers/api.md](./docs/for-developers/api.md)
 
 ## 🎓 Documentation
