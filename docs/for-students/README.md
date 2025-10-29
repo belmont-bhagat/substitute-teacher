@@ -26,6 +26,17 @@ All the student guides you need are in the **root directory** for easy access:
 
 ---
 
+## 🎨 Customize the Project
+
+### [MAKE-IT-YOUR-OWN.md](./MAKE-IT-YOUR-OWN.md)
+**→ Make this project yours!** Learn how to customize the package structure and create your own private repository.
+- Change package name (e.g., `com.example` → `edu.belmont.yourname`)
+- Create your own private GitHub repository
+- Update all configuration files
+- Complete step-by-step instructions
+
+---
+
 ## 📚 Additional Resources
 
 - **API Testing**: Import the Postman collection from `postman/` folder

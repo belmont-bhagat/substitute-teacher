@@ -14,6 +14,8 @@ A full-stack authentication application built with Spring Boot backend and React
 
 **→ Need quick commands?** Bookmark **[QUICK-REFERENCE.md](./QUICK-REFERENCE.md)** for a one-page cheat sheet!
 
+**→ Want to make it yours?** Follow **[MAKE-IT-YOUR-OWN.md](./docs/for-students/MAKE-IT-YOUR-OWN.md)** to customize the package structure and create your own private repo!
+
 That guide will walk you through:
 - Installing everything you need
 - Running the project in Cursor
