@@ -4,7 +4,7 @@ services:
   # MongoDB Database
   mongodb:
     image: mongo:latest
-    container_name: simple-login-mongodb
+    container_name: mongodb-simple-login
     restart: unless-stopped
     ports:
       - "27017:27017"
@@ -12,7 +12,6 @@ services:
       MONGO_INITDB_DATABASE: simple_login
     volumes:
       - mongodb_data:/data/db
-      - ./scripts/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
     networks:
       - simple-login-network
 

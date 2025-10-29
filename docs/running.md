@@ -5,10 +5,11 @@
 docker compose up -d mongodb
 ```
 
-2) Start Backend (Java 17)
+2) Start Backend (Java 21)
 ```bash
 cd simple-login-backend
-export JAVA_HOME=/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home
+# JAVA_HOME must be properly set to Java 21 (example for macOS/Homebrew)
+export JAVA_HOME=/opt/homebrew/opt/openjdk@21
 ./mvnw spring-boot:run \
   -Dspring-boot.run.jvmArguments="-Dspring.data.mongodb.uri=mongodb://localhost:27017/simple_login -Dauth.jwt.secret=0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 ```

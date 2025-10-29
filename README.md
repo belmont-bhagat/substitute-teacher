@@ -6,7 +6,7 @@ This branch focuses on a minimal flow (Login → Profile). The dashboard impleme
 
 ## 🏗️ Architecture
 
-- **Backend**: Spring Boot 3.1.5 with Java 17
+- **Backend**: Spring Boot 3.1.5 with Java 21 LTS
 - **Frontend**: React 18 with TypeScript and Vite
 - **Database**: MongoDB with Docker
 - **Authentication**: JWT-based authentication
@@ -14,12 +14,14 @@ This branch focuses on a minimal flow (Login → Profile). The dashboard impleme
 
 ## 🚀 Quick Start
 
+> 📝 **Quick Reference**: See [RUNNING-NOTES.md](./RUNNING-NOTES.md) for a condensed version of startup instructions and troubleshooting.
+
 ### Prerequisites
 
-- Java 17 or higher
-- Node.js 18 or higher
+- Java 21 LTS or higher
+- Node.js 18 or higher (npm 9+ recommended)
 - Docker and Docker Compose
-- Maven (included via Maven Wrapper)
+- Maven (included via Maven Wrapper - `mvnw` script, no separate installation needed)
 
 ### Installation & Setup
 
@@ -34,13 +36,14 @@ This branch focuses on a minimal flow (Login → Profile). The dashboard impleme
    docker compose up -d mongodb
    ```
 
-3. **Start the backend (Java 17)**
+3. **Start the backend (Java 21)**
    ```bash
    cd simple-login-backend
-   # Optional (macOS/Homebrew)
-   export JAVA_HOME=/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home
+   # JAVA_HOME must be properly set to Java 21 (example for macOS/Homebrew)
+   export JAVA_HOME=/opt/homebrew/opt/openjdk@21
    
-   # Use a strong JWT secret (>= 64 chars)
+   # Use a strong JWT secret (>= 64 chars) for better security
+   # Note: For quick development, you can omit the JWT secret to use the default
    ./mvnw spring-boot:run \
      -Dspring-boot.run.jvmArguments="-Dspring.data.mongodb.uri=mongodb://localhost:27017/simple_login -Dauth.jwt.secret=0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
    ```
@@ -92,8 +95,7 @@ substitute-teacher/
 │   ├── start-all.sh            # Legacy helper (prefer commands above for this branch)
 │   └── stop-all.sh             # Stop all services
 ├── docker-compose.yml          # Docker services configuration
-├── Project Outline.md          # Project documentation
-├── subsitute-teacher-ouline.md # Teaching plan
+├── RUNNING-NOTES.md            # Quick reference for running the app
 └── README.md                   # This file
 ```
 
@@ -104,12 +106,14 @@ substitute-teacher/
 ```bash
 cd simple-login-backend
 
-# Set Java 17 (if needed)
-export JAVA_HOME=/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home
+# JAVA_HOME must be properly set to Java 21
+export JAVA_HOME=/opt/homebrew/opt/openjdk@21
 
-# Run the application
+# Run the application (uses default JWT secret from application.properties)
 ./mvnw spring-boot:run
 ```
+
+> **Note:** The Development setup uses the default JWT secret from `application.properties` which is fine for local development. For production or when testing with real data, use a strong custom JWT secret as shown in the Installation & Setup section above.
 
 ### Frontend Development
 
@@ -157,11 +161,11 @@ Import the Postman collection from `postman/Simple-Login.postman_collection.json
 
 ## 🎓 Teaching Materials
 
-This project includes comprehensive teaching materials:
+This project includes comprehensive teaching materials in the `docs/` directory:
 
-- **Project Outline.md**: Detailed project architecture and implementation plan
-- **subsitute-teacher-ouline.md**: 75-minute teaching session plan
-- **Postman Collection**: Ready-to-use API testing collection
+- **docs/Project-Outline.md**: Detailed project architecture and implementation plan
+- **docs/substitute-teacher-outline.md**: 75-minute teaching session plan
+- **postman/Simple-Login.postman_collection.json**: Ready-to-use API testing collection
 
 ### Teaching Session Overview
 
@@ -184,31 +188,51 @@ The teaching plan covers:
 - Input validation
 - Role-based access control
 
-## 📝 Environment Variables
+## 📝 Environment Variables (Optional)
 
-Create a `.env` file in the root directory:
+Instead of passing configuration via command-line arguments (as shown in Installation & Setup), you can optionally set environment variables that Spring Boot will automatically read from `application.properties`.
 
-```env
-# JWT Configuration (>= 64 characters)
-AUTH_JWT_SECRET=0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
-
-# MongoDB Configuration
-MONGO_URI=mongodb://localhost:27017/simple_login
-
-# Java Configuration
-JAVA_HOME=/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home
-```
-
-## 🐳 Docker Support
-
-The application includes Docker configuration for easy deployment:
+To use environment variables, export them in your shell before starting the backend:
 
 ```bash
-# Start only MongoDB
-docker-compose up -d mongodb
+# Set environment variables (alternative to command-line args)
+export AUTH_JWT_SECRET=0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
+export MONGO_URI=mongodb://localhost:27017/simple_login
+export JAVA_HOME=/opt/homebrew/opt/openjdk@21
 
-# Full docker-compose (frontend image build) may fail in this branch due to TypeScript build constraints. Prefer local dev: Docker for MongoDB + local Spring Boot + Vite dev server.
+# Then start the backend without command-line args
+cd simple-login-backend
+./mvnw spring-boot:run
 ```
+
+**When to use:**
+- ✅ Environment variables: Better for persistent development setup
+- ✅ Command-line arguments: Better for one-off runs or testing different configurations
+
+> **Note:** If not set, the backend uses defaults from `application.properties` (see `simple-login-backend/src/main/resources/application.properties`)
+
+## 🐳 Docker Management
+
+Useful Docker commands for managing the MongoDB container:
+
+```bash
+# View MongoDB logs
+docker logs mongodb-simple-login
+
+# Stop MongoDB
+docker compose down mongodb
+
+# Restart MongoDB
+docker restart mongodb-simple-login
+
+# Access MongoDB shell
+docker exec -it mongodb-simple-login mongosh simple_login
+
+# View running containers
+docker ps
+```
+
+> **Note:** Full Docker Compose deployment (with frontend/backend images) may fail in this branch due to build constraints. The recommended setup is: Docker for MongoDB + local Spring Boot + Vite dev server.
 
 ## 🤝 Contributing
 
@@ -249,25 +273,34 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ### Common Issues
 
 1. **Java Version Issues**
-   - Ensure Java 17 is installed and JAVA_HOME is set correctly
-   - Use: `export JAVA_HOME=/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home`
+   - Ensure Java 21 LTS is installed and JAVA_HOME is properly set
+   - Example (macOS/Homebrew): `export JAVA_HOME=/opt/homebrew/opt/openjdk@21`
+   - Verify with: `java -version` (should show 21.0.x)
 
-2. **MongoDB Connection Issues**
+2. **Backend Fails to Start (Bean Override Error)**
+   - If you see: "The bean 'corsConfigurationSource' could not be registered"
+   - This is already fixed in `application.properties`
+   - Ensure you're using the latest version with `spring.main.allow-bean-definition-overriding=true`
+
+3. **MongoDB Connection Issues**
    - Ensure Docker is running
    - Check if MongoDB container is running: `docker ps | grep mongodb`
+   - Container should be named: `mongodb-simple-login`
 
-3. **Port Conflicts**
+4. **Port Conflicts**
    - Backend: 8080
    - Frontend: 5173
    - MongoDB: 27017
+   - Check if ports are in use: `lsof -i :8080` or `lsof -i :5173`
 
-4. **Frontend Not Connecting to Backend**
+5. **Frontend Not Connecting to Backend**
    - Check if backend is running on port 8080
    - Verify CORS configuration in backend
+   - Check browser console for errors
 
 ### Getting Help
 
-- Check the logs in the `logs/` directory
+- Check backend logs: `./mvnw spring-boot:run` output or `logs/` directory (when running with Docker)
 - Review the Postman collection for API testing
 - Refer to the teaching materials for detailed explanations
 

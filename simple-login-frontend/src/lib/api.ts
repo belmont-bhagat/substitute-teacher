@@ -40,25 +40,4 @@ export const authApi = {
     api.get('/users')
 }
 
-// Admin endpoints
-export const adminApi = {
-  getUsers: (params?: { page?: number; size?: number; query?: string }) =>
-    api.get('/admin/users', { params }),
-  
-  updateUser: (userId: string, updates: any) =>
-    api.patch(`/admin/users/${userId}`, updates),
-  
-  getStats: () =>
-    api.get('/admin/stats')
-}
-
-// User endpoints
-export const userApi = {
-  updateProfile: (updates: any) =>
-    api.patch('/user/profile', updates),
-  
-  changePassword: (passwordData: { currentPassword: string; newPassword: string }) =>
-    api.post('/user/change-password', passwordData)
-}
-
 export default api

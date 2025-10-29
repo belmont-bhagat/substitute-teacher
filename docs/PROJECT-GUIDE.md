@@ -1,5 +1,7 @@
 # Simple Login Application - Complete Project Guide
 
+> **⚠️ IMPORTANT NOTE**: This guide describes the **full-featured version** of the project with dashboard functionality. If you're working with the **no-dashboard branch**, please refer to [docs/overview.md](./overview.md) and [docs/running.md](./running.md) for branch-specific documentation. This guide is kept for educational reference and teaching purposes.
+
 ## 🎯 Project Overview
 
 The Simple Login Application is a comprehensive full-stack web application designed for educational purposes. It demonstrates modern web development practices including authentication, user management, and dashboard functionality.
@@ -38,7 +40,7 @@ The Simple Login Application is a comprehensive full-stack web application desig
 
 ### Prerequisites
 
-- **Java**: JDK 17 or higher
+- **Java**: JDK 21 LTS or higher
 - **Node.js**: Version 18 or higher
 - **npm**: Latest version
 - **Docker**: Optional, for MongoDB
@@ -127,7 +129,7 @@ substitute-teacher/
 ## 🛠️ Technology Stack
 
 ### Backend
-- **Java 17+**: Programming language
+- **Java 21 LTS+**: Programming language
 - **Spring Boot 3.1.5**: Framework for REST APIs
 - **Spring Data MongoDB**: Database integration
 - **Maven**: Build and dependency management
@@ -393,8 +395,8 @@ docker restart mongodb-simple-login
 
 **Java version issues**:
 ```bash
-# Set correct Java version
-export JAVA_HOME=/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home
+# JAVA_HOME must be properly set to Java 21 (example for macOS/Homebrew)
+export JAVA_HOME=/opt/homebrew/opt/openjdk@21
 export PATH="$JAVA_HOME/bin:$PATH"
 ```
 

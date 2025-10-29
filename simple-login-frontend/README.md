@@ -16,7 +16,7 @@ React frontend application with TypeScript. In this branch, only the Login and P
 ### Prerequisites
 
 - Node.js 18 or higher
-- npm or yarn
+- npm 9+ or yarn (npm comes with Node.js)
 
 ### Installation & Setup
 

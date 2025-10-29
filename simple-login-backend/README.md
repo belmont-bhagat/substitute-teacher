@@ -1,11 +1,11 @@
 # Simple Login Backend (No Dashboard Branch)
 
-Spring Boot backend application providing JWT-based authentication and user management APIs. In this branch, the frontend consumes only `/api/login` and `/api/profile`.
+Spring Boot backend application providing JWT-based authentication and user management APIs. In this branch, the frontend primarily uses `/api/login`, `/api/profile`, and `/api/users` endpoints.
 
 ## 🏗️ Technology Stack
 
 - **Framework**: Spring Boot 3.1.5
-- **Java Version**: 17
+- **Java Version**: 21 LTS
 - **Database**: MongoDB
 - **Authentication**: JWT (JSON Web Tokens)
 - **Security**: Spring Security Crypto (BCrypt)
@@ -15,20 +15,21 @@ Spring Boot backend application providing JWT-based authentication and user mana
 
 ### Prerequisites
 
-- Java 17 or higher
-- Maven (included via Maven Wrapper)
+- Java 21 LTS or higher
+- Maven Wrapper (included - `mvnw` script, no separate Maven installation needed)
 - MongoDB (via Docker)
 
 ### Running the Application
 
-1. **Set Java 17 environment**
+1. **Ensure JAVA_HOME is properly set to Java 21**
    ```bash
-   export JAVA_HOME=/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home
+   # Example for macOS/Homebrew
+   export JAVA_HOME=/opt/homebrew/opt/openjdk@21
    ```
 
 2. **Start MongoDB**
    ```bash
-   docker-compose up -d mongodb
+   docker compose up -d mongodb
    ```
 
 3. **Run the application**
@@ -45,9 +46,12 @@ The application will start on `http://localhost:8080`
 src/main/java/com/example/simpleloginbackend/
 ├── config/
 │   ├── DataSeeder.java          # Database seeding
-│   └── JwtConfig.java           # JWT configuration
+│   ├── JwtConfig.java           # JWT configuration
+│   ├── SecurityConfig.java      # Security configuration
+│   └── CorsConfig.java          # CORS configuration
 ├── controller/
-│   └── AuthController.java      # REST API endpoints
+│   ├── AuthController.java      # Authentication & user endpoints
+│   └── AdminController.java     # Admin-only endpoints
 ├── model/
 │   ├── LoginRequest.java        # Login request DTO
 │   └── UserDocument.java        # MongoDB user document
@@ -69,28 +73,41 @@ Key configuration in `src/main/resources/application.properties`:
 # Server Configuration
 server.port=8080
 
+# Allow bean definition overriding (for CORS configuration)
+spring.main.allow-bean-definition-overriding=true
+
 # MongoDB Configuration
 spring.data.mongodb.uri=mongodb://localhost:27017/simple_login
 
 # JWT Configuration (>= 64 characters recommended)
-auth.jwt.secret=0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
+auth.jwt.secret=default-jwt-secret-change-me-in-production-min-64-chars-required
 auth.jwt.ttlSeconds=3600
 ```
 
+> **Note:** Bean definition overriding is enabled to allow both `CorsConfig` and `SecurityConfig` to define CORS configurations without conflicts.
+
 ### Environment Variables
 
-- `MONGO_URI`: MongoDB connection string
-- `AUTH_JWT_SECRET`: JWT signing secret
-- `AUTH_JWT_TTL_SECONDS`: JWT token time-to-live
+The application reads configuration from `application.properties` which supports environment variable substitution:
+
+- `MONGO_URI` (env var) → `spring.data.mongodb.uri` (property key)
+- `AUTH_JWT_SECRET` (env var) → `auth.jwt.secret` (property key)  
+- `AUTH_JWT_TTL_SECONDS` (env var) → `auth.jwt.ttlSeconds` (property key)
+
+**Example:** `spring.data.mongodb.uri=${MONGO_URI:mongodb://localhost:27017/simple_login}`
+- If `MONGO_URI` environment variable is set, it uses that value
+- Otherwise, it uses the default: `mongodb://localhost:27017/simple_login`
 
 ## 🧪 API Endpoints
 
-### Authentication (used by frontend in this branch)
+### Public Endpoints
 
 #### Login
 - **POST** `/api/login`
 - **Body**: `{"username": "admin", "password": "password"}`
 - **Response**: `{"token": "jwt-token"}`
+
+### Protected Endpoints (Used by Frontend)
 
 #### Profile
 - **GET** `/api/profile`
@@ -101,6 +118,19 @@ auth.jwt.ttlSeconds=3600
 - **GET** `/api/users`
 - **Headers**: `Authorization: Bearer <token>`
 - **Response**: `{"users": [...], "count": 11}`
+
+### Admin Endpoints (Available but not used by frontend in no-dashboard branch)
+
+#### Admin User List
+- **GET** `/api/admin/users`
+- **Headers**: `Authorization: Bearer <token>`
+- **Query Params**: `page`, `size`, `query`
+- **Response**: Paginated user list
+
+#### Dashboard Stats
+- **GET** `/api/admin/stats`
+- **Headers**: `Authorization: Bearer <token>`
+- **Response**: Dashboard statistics
 
 ## 🔒 Security Features
 
@@ -114,8 +144,8 @@ auth.jwt.ttlSeconds=3600
 - Salt rounds: 10 (configurable)
 
 ### CORS Configuration
-- Allows all origins (`*`) for development
-- Configured in `AuthController`
+- Allows specific origins for security: `http://localhost:5173`, `http://localhost:3000`, `http://127.0.0.1:5173`
+- Configured in `application.properties` and enforced by Spring Security
 
 ## 🗄️ Database Schema
 
@@ -129,9 +159,9 @@ auth.jwt.ttlSeconds=3600
 ```
 
 ### Seeded Data
-The application automatically seeds the database with:
-- 1 admin user (`admin` / `password`)
-- 10 student users (`student1` to `student10`)
+The application automatically seeds the database with **11 total users**:
+- 1 admin user: `admin` / `password` (role: instructor)
+- 10 student users: `student1` through `student10` / `password` (role: student)
 
 ## 🛠️ Development
 
@@ -156,7 +186,7 @@ The application automatically seeds the database with:
 docker build -t simple-login-backend .
 
 # Run with Docker Compose
-docker-compose up backend
+docker compose up backend
 ```
 
 ## 📊 Logging
@@ -176,18 +206,24 @@ logging.level.com.example.simpleloginbackend=DEBUG
 ### Common Issues
 
 1. **Java Version Error**
-   - Ensure Java 17 is installed and JAVA_HOME is set
+   - Ensure Java 21 LTS is installed and JAVA_HOME is properly set
    - Check: `java -version`
+   - Set JAVA_HOME: `export JAVA_HOME=/opt/homebrew/opt/openjdk@21` (macOS/Homebrew)
 
-2. **MongoDB Connection Failed**
+2. **Bean Definition Override Error**
+   - Error: `The bean 'corsConfigurationSource'... could not be registered`
+   - Solution: Already fixed in `application.properties` with `spring.main.allow-bean-definition-overriding=true`
+   - This allows both SecurityConfig and CorsConfig to define CORS beans
+
+3. **MongoDB Connection Failed**
    - Ensure MongoDB is running: `docker ps | grep mongodb`
    - Check connection string in application.properties
 
-3. **JWT Token Issues**
+4. **JWT Token Issues**
    - Verify JWT secret is set
    - Check token expiration time
 
-4. **CORS Errors**
+5. **CORS Errors**
    - Ensure CORS is configured for your frontend URL
    - Check browser developer tools for CORS errors
 

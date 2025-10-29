@@ -1,9 +1,17 @@
 ## Project Outline
 
+> **⚠️ IMPORTANT NOTE**: This outline describes the **full-featured version** of the project. The **no-dashboard branch** is a simplified version focusing only on authentication (login + profile). See [docs/overview.md](./overview.md) for what's included in the no-dashboard branch.
+
+### Full Version Features
 - Backend with simple login features (Spring Boot + MongoDB + JWT)
 - Frontend with simple login features (React + Vite + TypeScript + Tailwind)
 - Dashboard capabilities (role-based access, users management)
 - Cross-cutting: testing, CI/CD, environments, security, observability, deployment
+
+### No-Dashboard Branch Features
+- Backend: Authentication with JWT (Spring Boot + MongoDB)
+- Frontend: Login page + Profile page only (React + Vite + TypeScript + Tailwind)
+- No dashboard, no user management UI
 
 ## Frameworks Used (and Why)
 
@@ -42,8 +50,8 @@
   - `createdAt`, `updatedAt`, `lastLoginAt`
 
 ### API Endpoints
-- POST `/api/auth/login` – authenticate user and return JWT
-- GET `/api/auth/profile` – return current user profile (requires JWT)
+- POST `/api/login` – authenticate user and return JWT
+- GET `/api/profile` – return current user profile (requires JWT)
 
 ### Files to Add/Edit
 - `simple-login-backend/src/main/java/.../controller/AuthController.java`
@@ -62,7 +70,7 @@
 ### Security & Validation
 - Hash passwords with bcrypt.
 - Validate email and password on login.
-- Guard `/api/auth/profile` with JWT.
+- Guard `/api/profile` with JWT.
 - Configure CORS for `http://localhost:5173` (Vite default).
 
 ### Testing
@@ -80,9 +88,9 @@
 
 ### Screens & Flows
 - `LoginPage.tsx`
-  - Email/password form → call `/api/auth/login` → store token → redirect to Profile.
+  - Email/password form → call `/api/login` → store token → redirect to Profile.
 - `ProfilePage.tsx`
-  - Fetch `/api/auth/profile` → display user data; handle 401 by redirecting to Login.
+  - Fetch `/api/profile` → display user data; handle 401 by redirecting to Login.
 
 ### Files to Add/Edit
 - `simple-login-frontend/src/lib/api.ts`

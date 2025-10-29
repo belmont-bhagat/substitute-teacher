@@ -1,5 +1,7 @@
 # Simple Login Application - Integration Tests
 
+> **⚠️ BRANCH NOTE**: These tests were designed for the full-featured version. In the **no-dashboard branch**, only the authentication endpoints (`/api/login`, `/api/profile`, `/api/users`) are used by the frontend. Admin dashboard endpoints exist in the backend but are not consumed by the frontend.
+
 This directory contains comprehensive integration tests to verify that the frontend and backend are properly connected and all APIs are working correctly.
 
 ## 🚀 Quick Start
@@ -43,11 +45,14 @@ The integration tests verify:
 - JWT token generation and validation
 - Role-based access control
 
-### ✅ API Endpoints
-- `POST /api/auth/login` - User authentication
-- `GET /api/auth/profile` - User profile retrieval
-- `GET /api/admin/stats` - Dashboard statistics (Admin only)
-- `GET /api/admin/users` - User management (Admin only)
+### ✅ API Endpoints (No Dashboard Branch)
+- `POST /api/login` - User authentication
+- `GET /api/profile` - User profile retrieval
+- `GET /api/users` - List all users (Admin only)
+
+### Admin Endpoints (Backend only - not used in no-dashboard frontend)
+- `GET /api/admin/stats` - Dashboard statistics
+- `GET /api/admin/users` - Paginated user management
 - `PATCH /api/admin/users/{id}` - User updates (Admin only)
 
 ### ✅ Security Features

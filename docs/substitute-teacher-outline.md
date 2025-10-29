@@ -22,8 +22,8 @@
   - Explain JWT, roles (USER/ADMIN), and CORS.
 - 15–30 min: Postman Demo — Login and Profile Flow
   - Open `postman/Simple-Login.postman_collection.json`.
-  - Demo: POST `/api/auth/login` with sample credentials; copy/inspect JWT.
-  - Demo: GET `/api/auth/profile` with Bearer token; show success and an error case (missing/expired token).
+  - Demo: POST `/api/login` with sample credentials; copy/inspect JWT.
+  - Demo: GET `/api/profile` with Bearer token; show success and an error case (missing/expired token).
   - Emphasize request/response structure, validation, and error handling.
 - 30–45 min: Frontend Walkthrough (React + Vite + TS + Tailwind)
   - Show structure: `simple-login-frontend/`
@@ -52,7 +52,7 @@
 
 ## Demonstration Scripts and Talking Points
 - Backend (10 min)
-  - Show `AuthController` endpoints and how JWT validation gates `/api/auth/profile`.
+  - Show `AuthController` endpoints and how JWT validation gates `/api/profile`.
   - Explain `JwtService` for signing/validation; confirm expiry settings in `JwtConfig` and allowed origins in `application.properties`.
   - Mention `UserRepository` and the unique email index in `UserDocument`.
 - Postman (15 min)
