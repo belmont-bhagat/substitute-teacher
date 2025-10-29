@@ -2,7 +2,7 @@
   "info": {
     "_postman_id": "d3a0a5fd-1b0e-4f2d-9e0b-0f2c9a7b90f1",
     "name": "Simple Login API - No Dashboard Branch",
-    "description": "Minimal API collection for the Login → Profile flow (no dashboard endpoints)",
+    "description": "Minimal API collection for the Login → Profile flow (no dashboard endpoints)\n\nBuilt with Spring Boot 3.5.7 + Java 21 LTS + MongoDB\n\nEndpoints:\n- POST /api/login - User authentication\n- GET /api/profile - Get authenticated user profile\n- GET /api/users - List all users (requires authentication)\n\nDefault credentials: admin/password",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "variable": [
