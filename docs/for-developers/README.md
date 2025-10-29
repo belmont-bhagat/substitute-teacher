@@ -13,6 +13,9 @@ System architecture, technology stack, and authentication flow.
 ### [overview.md](./overview.md)
 Project overview - what's included in this no-dashboard branch.
 
+### [ENVIRONMENT-SETUP.md](./ENVIRONMENT-SETUP.md)
+Advanced: How to configure environment variables (optional).
+
 ---
 
 ## 🛠️ Technical Stack
