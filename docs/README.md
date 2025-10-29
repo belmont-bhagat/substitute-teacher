@@ -1,18 +1,62 @@
-## Documentation Index (No Dashboard Branch)
+# 📚 Documentation
 
-### Core Documentation
-- **[Overview](./overview.md)** - What's included in this branch
-- **[How to Run Locally](./running.md)** - Setup and run instructions
-- **[Architecture](./architecture.md)** - Technical architecture and flow
-- **[API Reference](./api.md)** - Endpoint documentation
+Welcome to the Simple Login Application documentation!
 
-### Teaching Materials
-- **[Substitute Teacher Outline](./substitute-teacher-outline.md)** - 75-minute teaching session plan
-- **[Teaching Guide](./PROJECT-GUIDE.md)** - Comprehensive project guide (describes full-featured version)
-- **[Project Outline](./Project-Outline.md)** - Detailed project architecture (describes full-featured version)
+## 🗂️ Documentation is Organized by Role
 
-### Testing
-- **[Test Guide](./TEST-README.md)** - Integration test documentation
+Choose the folder that matches your role:
 
-> **Note**: Some teaching materials describe the full-featured version of this project with dashboard functionality. The no-dashboard branch is a simplified version for focused learning on authentication basics.
+### 🎓 [for-students/](./for-students/)
+**If you're a student learning to code**
+- Quick reference guides
+- Running instructions
+- Troubleshooting help
 
+→ **Start with** [GETTING-STARTED.md](../GETTING-STARTED.md) in the root folder!
+
+---
+
+### 💻 [for-developers/](./for-developers/)
+**If you're developing or extending this project**
+- API documentation
+- Architecture diagrams
+- Technical specifications
+
+---
+
+### 👨‍🏫 [for-instructors/](./for-instructors/)
+**If you're teaching this project**
+- 75-minute lesson plan
+- Teaching guides
+- Project outlines
+
+---
+
+### 🔧 [admin/](./admin/)
+**If you're managing the repository**
+- Branch protection setup
+- Contributing guidelines
+- Maintenance tasks
+
+---
+
+## 🧪 Tests
+
+Testing documentation and files are in the [../tests/](../tests/) directory.
+
+---
+
+## 📖 Quick Navigation
+
+| I want to... | Go to... |
+|--------------|----------|
+| Run the app for the first time | [GETTING-STARTED.md](../GETTING-STARTED.md) |
+| See API endpoints | [for-developers/api.md](./for-developers/api.md) |
+| Understand the architecture | [for-developers/architecture.md](./for-developers/architecture.md) |
+| Teach this project | [for-instructors/](./for-instructors/) |
+| Run tests | [../tests/README.md](../tests/README.md) |
+| Contribute code | [admin/CONTRIBUTING.md](./admin/CONTRIBUTING.md) |
+
+---
+
+**Choose your path and happy learning/teaching/developing!** 🚀

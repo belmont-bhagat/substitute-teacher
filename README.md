@@ -53,36 +53,32 @@ cd simple-login-frontend && npm install && npm run dev
 
 ```
 substitute-teacher/
-├── simple-login-backend/          # Spring Boot backend
-│   ├── src/main/java/            # Java source code
-│   ├── src/main/resources/       # Configuration files
-│   ├── pom.xml                   # Maven dependencies
-│   └── Dockerfile               # Docker configuration
-├── simple-login-frontend/        # React frontend (Login + Profile only in this branch)
-│   ├── src/                     # React source code
-│   ├── public/                  # Static assets
-│   ├── package.json            # Node.js dependencies
-│   └── vite.config.ts          # Vite configuration
-├── postman/                     # API testing collection
-│   └── Simple-Login.postman_collection.json
-├── docs/                        # Centralized documentation for this branch
-│   ├── README.md                # Docs index
-│   ├── overview.md              # What this branch includes
-│   ├── running.md               # How to run locally
-│   ├── api.md                   # Minimal API reference
-│   ├── architecture.md          # High-level architecture
-│   ├── Project-Outline.md       # Project outline
-│   ├── PROJECT-GUIDE.md         # Teaching guide
-│   ├── TEST-README.md           # Testing guide
-│   └── substitute-teacher-outline.md # Session outline
-├── scripts/                     # Utility scripts
-│   ├── start-all.sh            # Legacy helper (prefer commands above for this branch)
-│   └── stop-all.sh             # Stop all services
-├── docker-compose.yml          # Docker services configuration
-├── GETTING-STARTED.md          # 🎓 Beginner guide (START HERE!)
-├── RUNNING-NOTES.md            # Quick reference for running the app
-└── README.md                   # This file
+├── README.md                      # ⭐ You are here!
+├── GETTING-STARTED.md             # 🎓 Beginner guide (START HERE!)
+│
+├── simple-login-backend/          # ☕ Spring Boot backend
+├── simple-login-frontend/         # ⚛️ React frontend
+│
+├── docs/                          # 📚 All documentation
+│   ├── README.md                  # Documentation index
+│   ├── for-students/              # 🎓 Student resources
+│   ├── for-developers/            # 💻 Technical docs
+│   ├── for-instructors/           # 👨‍🏫 Teaching materials
+│   └── admin/                     # 🔧 Setup & maintenance
+│
+├── tests/                         # 🧪 Integration tests
+│   ├── README.md                  # Testing guide
+│   └── integration/               # Test files
+│
+├── postman/                       # 📬 API testing collection
+└── docker-compose.yml             # 🐳 Docker configuration
 ```
+
+**Where should I look?**
+- **Student?** → Start with [GETTING-STARTED.md](./GETTING-STARTED.md)
+- **Developer?** → Check [docs/for-developers/](./docs/for-developers/)
+- **Instructor?** → See [docs/for-instructors/](./docs/for-instructors/)
+- **Testing?** → Go to [tests/](./tests/)
 
 ## 🔧 Development Tips
 
@@ -101,15 +97,18 @@ substitute-teacher/
 | GET | `/profile` | Get user profile | Yes (JWT) |
 | GET | `/users` | List all users | Yes (JWT) |
 
-**Full API documentation**: See [docs/api.md](./docs/api.md)
+**Full API documentation**: See [docs/for-developers/api.md](./docs/for-developers/api.md)
 
 ## 🎓 Documentation
 
-- **[GETTING-STARTED.md](./GETTING-STARTED.md)** - Beginner-friendly setup guide
-- **[docs/api.md](./docs/api.md)** - API endpoint reference
-- **[docs/architecture.md](./docs/architecture.md)** - System architecture
-- **[docs/overview.md](./docs/overview.md)** - What's included in this branch
-- **Teaching Materials** - See `docs/PROJECT-GUIDE.md` and `docs/substitute-teacher-outline.md`
+Documentation is now organized by role in the `docs/` folder:
+
+- **[docs/for-students/](./docs/for-students/)** - Student guides and quick references
+- **[docs/for-developers/](./docs/for-developers/)** - API, architecture, technical specs  
+- **[docs/for-instructors/](./docs/for-instructors/)** - Teaching materials and lesson plans
+- **[docs/admin/](./docs/admin/)** - Repository setup and maintenance
+
+**Complete documentation index**: [docs/README.md](./docs/README.md)
 
 ## 🛑 Stopping the Application
 
@@ -128,7 +127,7 @@ MIT License - See [LICENSE](LICENSE) file for details.
 
 ## 🤝 Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+See [docs/admin/CONTRIBUTING.md](./docs/admin/CONTRIBUTING.md) for guidelines.
 
 ## 🆘 Having Issues?
 
