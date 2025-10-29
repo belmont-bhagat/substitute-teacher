@@ -1,0 +1,80 @@
+version: '3.8'
+
+# FULL DOCKER DEPLOYMENT
+# This is the complete docker-compose configuration for deploying all services
+# Most users should use the simplified docker-compose.yml in the root (MongoDB only)
+
+services:
+  # MongoDB Database
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb-simple-login
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_DATABASE: simple_login
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - simple-login-network
+
+  # Spring Boot Backend
+  backend:
+    build:
+      context: ../../simple-login-backend
+      dockerfile: Dockerfile
+    container_name: simple-login-backend
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - MONGO_URI=mongodb://mongodb:27017/simple_login
+      - AUTH_JWT_SECRET=${AUTH_JWT_SECRET:-your-super-secure-jwt-secret-key-at-least-64-characters-long}
+    depends_on:
+      - mongodb
+    networks:
+      - simple-login-network
+
+  # React Frontend
+  frontend:
+    build:
+      context: ../../simple-login-frontend
+      dockerfile: Dockerfile
+    container_name: simple-login-frontend
+    restart: unless-stopped
+    ports:
+      - "3000:80"
+    environment:
+      - VITE_API_BASE_URL=http://backend:8080/api
+    depends_on:
+      - backend
+    networks:
+      - simple-login-network
+
+  # Optional: Nginx Reverse Proxy
+  nginx:
+    image: nginx:alpine
+    container_name: simple-login-nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./ssl:/etc/nginx/ssl:ro
+    depends_on:
+      - frontend
+      - backend
+    networks:
+      - simple-login-network
+
+volumes:
+  mongodb_data:
+    driver: local
+
+networks:
+  simple-login-network:
+    driver: bridge
+

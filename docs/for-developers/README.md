@@ -16,6 +16,10 @@ Project overview - what's included in this no-dashboard branch.
 ### [ENVIRONMENT-SETUP.md](./ENVIRONMENT-SETUP.md)
 Advanced: How to configure environment variables (optional).
 
+### [docker-compose.full.yml](./docker-compose.full.yml)
+Full Docker deployment configuration (backend + frontend + nginx).  
+**Note**: The root `docker-compose.yml` only runs MongoDB for local development.
+
 ---
 
 ## 🛠️ Technical Stack

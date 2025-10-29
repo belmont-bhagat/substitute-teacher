@@ -1,8 +1,10 @@
-# Simple Login Application (No Dashboard Branch)
+# Simple Login Application
 
 A full-stack authentication application built with Spring Boot backend and React frontend, designed for educational purposes.
 
 **Features**: Login → Profile (minimal authentication flow for learning)
+
+> 💡 **Note**: This is the simplified version. For the full-featured version with dashboard, see the `dashboard` branch.
 
 ---
 
