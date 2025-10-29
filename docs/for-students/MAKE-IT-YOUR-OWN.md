@@ -4,6 +4,39 @@
 
 This guide will help you transform this template project into your own personalized version with your custom package structure and private GitHub repository.
 
+> **Important**: This guide uses placeholders like `YOUR-INSTITUTION`, `YOUR-NAME`, and `YOUR-PROJECT-NAME`. You should replace these with your own choices throughout the process!
+
+---
+
+## 📝 Quick Planning Sheet
+
+**Before you start, fill in YOUR choices here:**
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│  MY CUSTOMIZATION CHOICES                                   │
+├─────────────────────────────────────────────────────────────┤
+│                                                              │
+│  Package Name:    _________________________________          │
+│  Example: edu.belmont.pranish                                │
+│                                                              │
+│  Project Name:    _________________________________          │
+│  Example: my-login-app                                       │
+│                                                              │
+│  Repository Name: _________________________________          │
+│  Example: johns-auth-project                                 │
+│                                                              │
+│  Your Name:       _________________________________          │
+│  Example: Pranish Bhagat                                     │
+│                                                              │
+│  Institution:     _________________________________          │
+│  Example: Belmont University                                 │
+│                                                              │
+└─────────────────────────────────────────────────────────────┘
+
+Keep this handy! You'll use these throughout the guide.
+```
+
 ---
 
 ## 📚 What You'll Learn
@@ -15,40 +48,113 @@ This guide will help you transform this template project into your own personali
 
 ---
 
-## 🎯 Step 1: Choose Your Package Name
+## 🎯 Step 1: Choose Your Customization Options
 
-### Package Naming Convention
+### A. Choose Your Package Name
+
+**Current Package (Template):**
+```
+com.example.simpleloginbackend
+```
+
+**Your New Package - YOU DECIDE!**
 
 Follow the reverse domain name convention:
 ```
-edu.institution.yourname
+edu.YOUR-INSTITUTION.YOUR-NAME
 ```
 
-**Examples:**
-- `edu.belmont.pranish` - Belmont University, student Pranish
-- `edu.vanderbilt.john` - Vanderbilt University, student John
-- `edu.myschool.jane` - My School, student Jane
-- `com.yourname.project` - Personal project
+**Example Options** (Choose what fits you):
 
-**Rules:**
+| Type | Pattern | Your Choice | Example |
+|------|---------|-------------|---------|
+| University | `edu.institution.yourname` | _____________ | `edu.belmont.pranish` |
+| University | `edu.institution.lastname` | _____________ | `edu.vanderbilt.smith` |
+| Personal | `com.yourname.projectname` | _____________ | `com.john.loginapp` |
+| Organization | `org.groupname.projectname` | _____________ | `org.myteam.authservice` |
+
+**Naming Rules:**
 - ✅ All lowercase
-- ✅ No special characters except dots (.)
-- ✅ Use your institution's domain (edu, com, org)
-- ✅ End with your name or username
+- ✅ No spaces or special characters (except dots)
+- ✅ Use reverse domain convention (edu/com/org first)
+- ✅ Make it meaningful to you
+
+**Write your choice here:**
+```
+MY PACKAGE NAME: _________________________________
+```
+
+---
+
+### B. Choose Your Project Name
+
+**Current Project Name:** `simple-login-backend`
+
+**Your New Project Name - YOU DECIDE!**
+
+This will be:
+- Your Maven artifact ID
+- Your repository name (if you choose)
+- Your project folder name
+
+**Example Options:**
+
+| Type | Your Choice | Example |
+|------|-------------|---------|
+| Keep similar | _____________ | `my-login-app` |
+| Descriptive | _____________ | `student-auth-system` |
+| Personal | _____________ | `johns-auth-project` |
+| Creative | _____________ | `secure-login-app` |
+
+**Naming Rules:**
+- ✅ All lowercase
+- ✅ Use hyphens for spaces
+- ✅ Keep it short and descriptive
+- ✅ No special characters
+
+**Write your choice here:**
+```
+MY PROJECT NAME: _________________________________
+```
+
+---
+
+### C. Choose Your Repository Name
+
+**Your Repository Name - YOU DECIDE!**
+
+This can be:
+- Same as your project name
+- Something different
+- Whatever makes sense to you
+
+**Write your choice here:**
+```
+MY REPOSITORY NAME: _________________________________
+```
 
 ---
 
 ## 🔧 Step 2: Rename the Package Structure
 
-### Current Package Structure:
+### Your Decisions Summary:
+
+Before proceeding, confirm your choices:
+
 ```
-com.example.simpleloginbackend
+✏️ Current Package:  com.example.simpleloginbackend
+✏️ New Package:      _____________________________ (your choice from Step 1A)
+
+✏️ Current Project:  simple-login-backend
+✏️ New Project:      _____________________________ (your choice from Step 1B)
+
+✏️ Repository Name:  _____________________________ (your choice from Step 1C)
 ```
 
-### Your New Package (Example):
-```
-edu.belmont.pranish
-```
+**Important:** In the examples below, replace:
+- `YOUR-PACKAGE` with your package name choice
+- `YOUR-PROJECT` with your project name choice
+- `YOUR-REPO` with your repository name choice
 
 ---
 
@@ -69,7 +175,9 @@ edu.belmont.pranish
 
 4. **Enable "Search in comments and strings"** and **"Search for text occurrences"**
 
-5. **Enter your new package name**: `edu.belmont.pranish`
+5. **Enter YOUR chosen package name** (from Step 1A)
+   
+   Example: `edu.belmont.pranish` or `com.yourname.loginapp`
 
 6. **Click "Refactor"** - Your IDE will automatically:
    - Rename all package declarations
@@ -77,16 +185,22 @@ edu.belmont.pranish
    - Move files to new directory structure
    - Update references in configuration files
 
-7. **Verify the new structure**:
+7. **Verify the new structure** matches your choice:
    ```
-   simple-login-backend/src/main/java/edu/belmont/pranish/
+   simple-login-backend/src/main/java/YOUR-PACKAGE-PATH/
    ```
+   
+   For example:
+   - If you chose `edu.belmont.pranish` → `edu/belmont/pranish/`
+   - If you chose `com.john.auth` → `com/john/auth/`
 
 ---
 
 ### Method 2: Manual Changes (If IDE refactoring doesn't work)
 
 If you prefer to do it manually or your IDE doesn't support refactoring, follow these steps:
+
+> **Remember**: Replace the example paths with YOUR chosen package name!
 
 #### A. Update Directory Structure
 
@@ -95,14 +209,24 @@ If you prefer to do it manually or your IDE doesn't support refactoring, follow 
    cd simple-login-backend/src/main/java
    ```
 
-2. **Create new directory structure**:
+2. **Create YOUR new directory structure**:
+   
+   Convert your package name to a path:
+   - `edu.belmont.pranish` → `edu/belmont/pranish`
+   - `com.john.auth` → `com/john/auth`
+   
    ```bash
-   mkdir -p edu/belmont/pranish
+   # Replace with YOUR package path
+   mkdir -p YOUR/PACKAGE/PATH
+   
+   # Example: mkdir -p edu/belmont/pranish
+   # Example: mkdir -p com/john/auth
    ```
 
 3. **Move all files**:
    ```bash
-   mv com/example/simpleloginbackend/* edu/belmont/pranish/
+   # Replace YOUR/PACKAGE/PATH with your actual path
+   mv com/example/simpleloginbackend/* YOUR/PACKAGE/PATH/
    ```
 
 4. **Delete old directories**:
@@ -113,23 +237,30 @@ If you prefer to do it manually or your IDE doesn't support refactoring, follow 
 5. **Do the same for test directory**:
    ```bash
    cd ../../test/java
-   mkdir -p edu/belmont/pranish
-   mv com/example/simpleloginbackend/* edu/belmont/pranish/
+   
+   # Replace with YOUR package path
+   mkdir -p YOUR/PACKAGE/PATH
+   mv com/example/simpleloginbackend/* YOUR/PACKAGE/PATH/
    rm -rf com
    ```
 
 #### B. Update Package Declarations in ALL Java Files
 
-Open each `.java` file in `edu/belmont/pranish/` and its subdirectories and change:
+Open each `.java` file in YOUR package directory and its subdirectories and change:
 
 **OLD:**
 ```java
 package com.example.simpleloginbackend;
 ```
 
-**NEW:**
+**NEW (Replace with YOUR package):**
 ```java
-package edu.belmont.pranish;
+package YOUR.PACKAGE.NAME;
+
+// Examples:
+// package edu.belmont.pranish;
+// package com.john.auth;
+// package org.myteam.login;
 ```
 
 **Files to update:**
@@ -153,10 +284,14 @@ import com.example.simpleloginbackend.model.LoginRequest;
 import com.example.simpleloginbackend.service.AuthService;
 ```
 
-**NEW:**
+**NEW (Replace with YOUR package):**
 ```java
-import edu.belmont.pranish.model.LoginRequest;
-import edu.belmont.pranish.service.AuthService;
+import YOUR.PACKAGE.NAME.model.LoginRequest;
+import YOUR.PACKAGE.NAME.service.AuthService;
+
+// Examples:
+// import edu.belmont.pranish.model.LoginRequest;
+// import com.john.auth.service.AuthService;
 ```
 
 #### C. Update Maven Configuration
@@ -169,23 +304,35 @@ import edu.belmont.pranish.service.AuthService;
 <artifactId>simple-login-backend</artifactId>
 ```
 
-**NEW:**
+**NEW (Replace with YOUR choices):**
 ```xml
+<groupId>YOUR.PACKAGE.NAME</groupId>
+<artifactId>YOUR-PROJECT-NAME</artifactId>
+
+<!-- Examples:
 <groupId>edu.belmont.pranish</groupId>
-<artifactId>simple-login-backend</artifactId>
+<artifactId>my-login-app</artifactId>
+
+<groupId>com.john.auth</groupId>
+<artifactId>johns-auth-project</artifactId>
+-->
 ```
 
 #### D. Update Application Properties (Optional but Recommended)
 
 **File:** `simple-login-backend/src/main/resources/application.properties`
 
-**Change logging configuration:**
+**Change logging configuration to YOUR package:**
 ```properties
 # OLD
 logging.level.com.example.simpleloginbackend=INFO
 
-# NEW
-logging.level.edu.belmont.pranish=INFO
+# NEW (Replace with YOUR package)
+logging.level.YOUR.PACKAGE.NAME=INFO
+
+# Examples:
+# logging.level.edu.belmont.pranish=INFO
+# logging.level.com.john.auth=INFO
 ```
 
 ---
@@ -239,7 +386,7 @@ logging.level.edu.belmont.pranish=INFO
 5. **Update your local repository**:
    ```bash
    cd substitute-teacher
-   git remote set-url origin https://github.com/YOUR-USERNAME/substitute-teacher.git
+   git remote set-url origin https://github.com/YOUR-USERNAME/PROJECT-NAME.git
    git push -u origin main
    ```
 
@@ -262,7 +409,7 @@ logging.level.edu.belmont.pranish=INFO
    git remote remove origin
    
    # Add your new remote
-   git remote add origin https://github.com/YOUR-USERNAME/simple-login-app.git
+   git remote add origin https://github.com/YOUR-USERNAME/PROJECT-NAME.git
    
    # Push to your new repository
    git push -u origin main
@@ -272,19 +419,36 @@ logging.level.edu.belmont.pranish=INFO
 
 ## 📋 Step 6: Update Documentation
 
-Update these files to reflect your changes:
+Update these files to reflect YOUR changes:
 
 ### 1. `README.md`
-Change any references from `com.example` to your package name.
+Change any references from `com.example` to YOUR package name.
 
-### 2. Add Your Name
-Update the README to add:
+### 2. Add Your Information
+Update the README to add YOUR details:
 ```markdown
 ## 👨‍💻 Author
 
-**Your Name**
+**YOUR-NAME**
+- Institution: YOUR-INSTITUTION
+- Package: YOUR.PACKAGE.NAME
+- Project: YOUR-PROJECT-NAME
+
+<!-- Examples:
+## 👨‍💻 Author
+
+**Pranish Bhagat**
 - Institution: Belmont University
 - Package: edu.belmont.pranish
+- Project: my-login-app
+
+## 👨‍💻 Author
+
+**John Smith**
+- Institution: My University
+- Package: com.john.auth
+- Project: johns-auth-system
+-->
 ```
 
 ---
