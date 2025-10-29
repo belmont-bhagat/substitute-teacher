@@ -8,6 +8,16 @@ This guide will help you use AI coding assistants (like Claude in Cursor, ChatGP
 
 ---
 
+## ⚡ Quick Start (3 Steps)
+
+1) Open your project and start an AI chat (Cursor or ChatGPT)
+2) Copy the prompt below and replace [YOUR-PACKAGE-NAME]
+3) Apply changes one file at a time, build and test after each step
+
+> Tip: Make a Git commit BEFORE you start. If something breaks, you can easily roll back.
+
+---
+
 ## 📋 Before You Start
 
 ### ✅ Prerequisites
@@ -137,6 +147,8 @@ The AI will typically respond with:
 
 ## ⚠️ Common Problems & Solutions
 
+> Expect that you may see some errors on the first try. That's normal. Use these fixes.
+
 ### Problem 1: AI Uses Wrong Package Names
 
 **Symptom:**
@@ -149,6 +161,18 @@ Tell the AI:
 ```
 Please update the package name to [YOUR-PACKAGE-NAME] instead of com.example.demo
 ```
+
+---
+
+### Problem 2.5: AI Mentions Files or Folders You Don't Have
+
+**Symptom:**
+AI refers to paths like `src/app/router.tsx` or `services/UserService.java` that don't exist in your project.
+
+**Solution:**
+1. Ask the AI to adapt to your actual structure (show it your existing files)
+2. Create missing files only when needed, in the correct folders
+3. Use the existing patterns in this repo (e.g., `controller/`, `service/`, `model/`)
 
 ---
 
