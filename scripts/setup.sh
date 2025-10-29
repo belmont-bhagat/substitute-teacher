@@ -39,13 +39,13 @@ check_prerequisites() {
     
     # Check Java
     if ! command -v java &> /dev/null; then
-        print_error "Java is not installed. Please install Java 17 or higher."
+        print_error "Java is not installed. Please install Java 21 LTS or higher."
         exit 1
     fi
     
     JAVA_VERSION=$(java -version 2>&1 | head -n 1 | cut -d'"' -f2 | cut -d'.' -f1)
-    if [ "$JAVA_VERSION" -lt 17 ]; then
-        print_error "Java version $JAVA_VERSION is too old. Please install Java 17 or higher."
+    if [ "$JAVA_VERSION" -lt 21 ]; then
+        print_error "Java version $JAVA_VERSION is too old. Please install Java 21 LTS or higher."
         exit 1
     fi
     print_success "Java $JAVA_VERSION found"
@@ -96,7 +96,7 @@ setup_environment() {
 NODE_ENV=development
 
 # Backend Configuration
-JAVA_HOME=/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home
+JAVA_HOME=/opt/homebrew/opt/openjdk@21/libexec/openjdk.jdk/Contents/Home
 AUTH_JWT_SECRET=your-super-secure-jwt-secret-key-at-least-64-characters-long-change-this-in-production
 MONGO_URI=mongodb://localhost:27017/simple_login
 
@@ -237,7 +237,7 @@ substitute-teacher/
 - [Frontend README](simple-login-frontend/README.md)
 
 ## 🛠️ Technologies Used
-- Java 17+
+- Java 21 LTS
 - Spring Boot 3.1.5
 - React 18.2.0
 - TypeScript 5.9.3

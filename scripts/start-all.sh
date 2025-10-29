@@ -70,11 +70,11 @@ start_backend() {
     
     cd simple-login-backend
     
-    # Set Java environment to use Java 17
-    if [ -d "/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home" ]; then
-        export JAVA_HOME="/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home"
+    # Set Java environment to use Java 21
+    if [ -d "/opt/homebrew/opt/openjdk@21/libexec/openjdk.jdk/Contents/Home" ]; then
+        export JAVA_HOME="/opt/homebrew/opt/openjdk@21/libexec/openjdk.jdk/Contents/Home"
         export PATH="$JAVA_HOME/bin:$PATH"
-        print_status "Using Java 17 from Homebrew"
+        print_status "Using Java 21 from Homebrew"
     elif [ ! -z "$JAVA_HOME" ]; then
         export JAVA_HOME
         export PATH="$JAVA_HOME/bin:$PATH"

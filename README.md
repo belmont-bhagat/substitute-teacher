@@ -10,6 +10,8 @@ A full-stack authentication application built with Spring Boot backend and React
 
 **→ New to this project?** Read **[GETTING-STARTED.md](./GETTING-STARTED.md)** for a step-by-step beginner guide.
 
+**→ Need quick commands?** Bookmark **[QUICK-REFERENCE.md](./QUICK-REFERENCE.md)** for a one-page cheat sheet!
+
 That guide will walk you through:
 - Installing everything you need
 - Running the project in Cursor
@@ -55,6 +57,7 @@ cd simple-login-frontend && npm install && npm run dev
 substitute-teacher/
 ├── README.md                      # ⭐ You are here!
 ├── GETTING-STARTED.md             # 🎓 Beginner guide (START HERE!)
+├── QUICK-REFERENCE.md             # ⚡ Command cheat sheet (BOOKMARK THIS!)
 │
 ├── simple-login-backend/          # ☕ Spring Boot backend
 ├── simple-login-frontend/         # ⚛️ React frontend
