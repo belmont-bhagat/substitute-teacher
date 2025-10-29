@@ -37,6 +37,18 @@ All the student guides you need are in the **root directory** for easy access:
 
 ---
 
+## 🤖 Extend with AI
+
+### [USING-AI-TO-ADD-DASHBOARD.md](./USING-AI-TO-ADD-DASHBOARD.md)
+**→ Learn to code with AI!** Use AI assistants like Claude, ChatGPT, or Copilot to add new features.
+- Complete prompt template for adding a student dashboard
+- Which AI models to use (Claude 3.5 Sonnet, GPT-4, etc.)
+- 10+ common problems and solutions
+- Step-by-step workflow with AI
+- Tips for working effectively with AI coding assistants
+
+---
+
 ## 📚 Additional Resources
 
 - **API Testing**: Import the Postman collection from `postman/` folder

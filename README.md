@@ -16,7 +16,9 @@ A full-stack authentication application built with Spring Boot backend and React
 
 **→ Want to make it yours?** Follow **[MAKE-IT-YOUR-OWN.md](./docs/for-students/MAKE-IT-YOUR-OWN.md)** to customize the package structure and create your own private repo!
 
-That guide will walk you through:
+**→ Ready to extend with AI?** Check out **[USING-AI-TO-ADD-DASHBOARD.md](./docs/for-students/USING-AI-TO-ADD-DASHBOARD.md)** to learn how to use AI assistants like Claude to add new features!
+
+These guides will walk you through:
 - Installing everything you need
 - Running the project in Cursor
 - Testing the application
