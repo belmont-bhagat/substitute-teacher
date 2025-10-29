@@ -1,4 +1,4 @@
-package edu.belmont.pranish.service;
+package com.example.simpleloginbackend.service;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

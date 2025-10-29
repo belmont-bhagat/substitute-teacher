@@ -1,6 +1,6 @@
-package edu.belmont.pranish.controller;
+package com.example.simpleloginbackend.controller;
 
-import edu.belmont.pranish.model.LoginRequest;
+import com.example.simpleloginbackend.model.LoginRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.List;
-import edu.belmont.pranish.service.AuthService;
-import edu.belmont.pranish.service.JwtService;
-import edu.belmont.pranish.model.UserDocument;
+import com.example.simpleloginbackend.service.AuthService;
+import com.example.simpleloginbackend.service.JwtService;
+import com.example.simpleloginbackend.model.UserDocument;
 
 /**
  * REST Controller for handling authentication operations.

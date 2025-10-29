@@ -1,7 +1,7 @@
-package edu.belmont.pranish.config;
+package com.example.simpleloginbackend.config;
 
-import edu.belmont.pranish.model.UserDocument;
-import edu.belmont.pranish.repository.UserRepository;
+import com.example.simpleloginbackend.model.UserDocument;
+import com.example.simpleloginbackend.repository.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

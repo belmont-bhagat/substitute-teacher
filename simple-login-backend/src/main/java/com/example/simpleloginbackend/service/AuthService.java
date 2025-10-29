@@ -1,7 +1,7 @@
-package edu.belmont.pranish.service;
+package com.example.simpleloginbackend.service;
 
-import edu.belmont.pranish.model.UserDocument;
-import edu.belmont.pranish.repository.UserRepository;
+import com.example.simpleloginbackend.model.UserDocument;
+import com.example.simpleloginbackend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

@@ -1,6 +1,6 @@
-package edu.belmont.pranish.repository;
+package com.example.simpleloginbackend.repository;
 
-import edu.belmont.pranish.model.UserDocument;
+import com.example.simpleloginbackend.model.UserDocument;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.repository.MongoRepository;

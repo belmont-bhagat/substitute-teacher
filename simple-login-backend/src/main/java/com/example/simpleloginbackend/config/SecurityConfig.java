@@ -1,4 +1,4 @@
-package edu.belmont.pranish.config;
+package com.example.simpleloginbackend.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

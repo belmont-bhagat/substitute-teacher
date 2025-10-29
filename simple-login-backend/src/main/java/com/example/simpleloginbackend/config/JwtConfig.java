@@ -1,6 +1,6 @@
-package edu.belmont.pranish.config;
+package com.example.simpleloginbackend.config;
 
-import edu.belmont.pranish.service.JwtService;
+import com.example.simpleloginbackend.service.JwtService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

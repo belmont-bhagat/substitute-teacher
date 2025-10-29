@@ -1,4 +1,4 @@
-package edu.belmont.pranish;
+package com.example.simpleloginbackend;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

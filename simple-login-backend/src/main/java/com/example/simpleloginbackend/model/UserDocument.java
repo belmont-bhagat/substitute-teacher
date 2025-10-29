@@ -1,4 +1,4 @@
-package edu.belmont.pranish.model;
+package com.example.simpleloginbackend.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.CreatedDate;
