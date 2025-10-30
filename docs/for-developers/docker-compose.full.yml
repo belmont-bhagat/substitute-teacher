@@ -20,9 +20,9 @@ services:
   # Spring Boot Backend
   backend:
     build:
-      context: ../../backend-demo # <-- customize this
+      context: ../../your-backend-folder # <-- customize this
       dockerfile: Dockerfile
-    container_name: backend-demo # <-- customize this
+    container_name: your-backend-folder # <-- customize this
     restart: unless-stopped
     ports:
       - "8080:8080"
@@ -38,9 +38,9 @@ services:
   # React Frontend
   frontend:
     build:
-      context: ../../frontend-demo # <-- customize this
+      context: ../../demo.frontned # <-- customize this
       dockerfile: Dockerfile
-    container_name: frontend-demo # <-- customize this
+    container_name: demo.frontned # <-- customize this
     restart: unless-stopped
     ports:
       - "3000:80"

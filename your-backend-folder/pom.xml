@@ -12,9 +12,9 @@
   </parent>
 
   <groupId>edu.belmont.demo</groupId>
-  <artifactId>backend-demo</artifactId>
+  <artifactId>your-backend-folder</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <name>backend-demo</name>
+  <name>your-backend-folder</name>
   <description>Simple Login Backend</description>
 
   <properties>

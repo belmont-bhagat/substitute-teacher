@@ -58,21 +58,117 @@ if [ -d "$BACKEND_FOLDER/src/test/java/com/example/simpleloginbackend" ]; then
 fi
 
 # Step 5: Update package declarations in Java files
-grep -rl "package com.example.simpleloginbackend" "$BACKEND_FOLDER/src/main/java/$PKG_PATH" | xargs sed -i '' "s|package com.example.simpleloginbackend;|package $PACKAGE_NAME;|g"
+grep -rl "package com.example.simpleloginbackend" "$BACKEND_FOLDER/src/main/java/$PKG_PATH" | xargs sed -i '' "s|package com.example.simpleloginbackend;|package $PACKAGE_NAME;|g" 2>/dev/null || true
 grep -rl "package com.example.simpleloginbackend" "$BACKEND_FOLDER/src/test/java/$PKG_PATH" | xargs sed -i '' "s|package com.example.simpleloginbackend;|package $PACKAGE_NAME;|g" 2>/dev/null || true
 
 # Step 5b: Update import statements in Java files
-find "$BACKEND_FOLDER/src/main/java/$PKG_PATH" -type f -name '*.java' -exec sed -i '' "s|import com.example.simpleloginbackend|import $PACKAGE_NAME|g" {} +
+find "$BACKEND_FOLDER/src/main/java/$PKG_PATH" -type f -name '*.java' -exec sed -i '' "s|import com.example.simpleloginbackend|import $PACKAGE_NAME|g" {} + 2>/dev/null || true
 find "$BACKEND_FOLDER/src/test/java/$PKG_PATH" -type f -name '*.java' -exec sed -i '' "s|import com.example.simpleloginbackend|import $PACKAGE_NAME|g" {} + 2>/dev/null || true
 
 # Step 6: Update Maven groupId and artifactId
 POM="$BACKEND_FOLDER/pom.xml"
-sed -i '' "s|<groupId>.*</groupId>|<groupId>$PACKAGE_NAME</groupId>|" "$POM"
-sed -i '' "s|<artifactId>.*</artifactId>|<artifactId>$BACKEND_FOLDER</artifactId>|" "$POM"
+# If a Spring Boot parent is not present, ensure valid Boot parent and coordinates
+if ! grep -q "spring-boot-starter-parent" "$POM" 2>/dev/null; then
+  cat > "$POM" <<EOPOM
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>3.5.7</version>
+    <relativePath/>
+  </parent>
+  <groupId>$PACKAGE_NAME</groupId>
+  <artifactId>$BACKEND_FOLDER</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>$BACKEND_FOLDER</name>
+  <description>Simple Login Backend</description>
+  <properties>
+    <java.version>21</java.version>
+  </properties>
+  <dependencies>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-security</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-data-mongodb</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.jsonwebtoken</groupId>
+      <artifactId>jjwt-api</artifactId>
+      <version>0.11.5</version>
+    </dependency>
+    <dependency>
+      <groupId>io.jsonwebtoken</groupId>
+      <artifactId>jjwt-impl</artifactId>
+      <version>0.11.5</version>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>io.jsonwebtoken</groupId>
+      <artifactId>jjwt-jackson</artifactId>
+      <version>0.11.5</version>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-devtools</artifactId>
+      <scope>runtime</scope>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.13.0</version>
+        <configuration>
+          <source>${java.version}</source>
+          <target>${java.version}</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>
+EOPOM
+else
+  sed -i '' "s|<groupId>.*</groupId>|<groupId>$PACKAGE_NAME</groupId>|" "$POM"
+  sed -i '' "s|<artifactId>.*</artifactId>|<artifactId>$BACKEND_FOLDER</artifactId>|" "$POM"
+fi
 
-# Step 7: Update logging config
+# Step 7: Update Spring app name to reflect chosen backend folder
 APP_PROPS="$BACKEND_FOLDER/src/main/resources/application.properties"
-sed -i '' "s|logging.level.com.example.simpleloginbackend=INFO|logging.level.$PACKAGE_NAME=INFO|g" "$APP_PROPS"
+if [ -f "$APP_PROPS" ]; then
+  if grep -q "^spring.application.name=" "$APP_PROPS"; then
+    sed -i '' "s|^spring.application.name=.*|spring.application.name=$BACKEND_FOLDER|" "$APP_PROPS"
+  else
+    echo "spring.application.name=$BACKEND_FOLDER" >> "$APP_PROPS"
+  fi
+fi
 
 # Step 8: Install frontend deps
 pushd "$FRONTEND_FOLDER" > /dev/null
