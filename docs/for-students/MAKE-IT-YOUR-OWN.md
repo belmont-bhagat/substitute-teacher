@@ -41,6 +41,8 @@ This will:
 
 Start the app with hot reload:
 ```bash
+# (Optional, but recommended) Stop any running development services to avoid conflicts:
+bash scripts/stop-all.sh
 bash scripts/dev.sh
 ```
 
