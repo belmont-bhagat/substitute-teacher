@@ -4,25 +4,23 @@ A full-stack authentication starter – Spring Boot backend and React frontend, 
 
 ---
 
-## 🚦 Personalize & Run (Quick Start for Students)
+## 📌 Start here (by role)
 
-1. Fill these blanks with your name choices:
-    ```
-    Backend folder: ______________________ (ex: backend-demo)
-    Frontend folder: ______________________ (ex: frontend-demo)
-    Java package:   ______________________ (ex: edu.belmont.demo)
-    ```
-2. From project root:
-    ```bash
-    bash scripts/setup-my-project.sh <backend-folder> <frontend-folder> <java.package>
-    bash scripts/dev.sh
-    ```
-    - Example: `bash scripts/setup-my-project.sh backend-demo frontend-demo edu.belmont.demo`
+**Students**
+- Getting started: `GETTING-STARTED.md`
+- Customize your copy: `docs/for-students/MAKE-IT-YOUR-OWN.md`
+- Quick commands + tips: `QUICK-REFERENCE.md`
 
-- Frontend: http://localhost:5173
-- Backend:  http://localhost:8080/api
+**Developers**
+- Overview: `docs/for-developers/overview.md`
+- API reference: `docs/for-developers/api.md`
+- Architecture: `docs/for-developers/architecture.md`
+- Environment setup: `docs/for-developers/ENVIRONMENT-SETUP.md`
 
-For troubleshooting and workflow, see [Make It Your Own](docs/for-students/MAKE-IT-YOUR-OWN.md).
+**Instructors**
+- Guide: `docs/for-instructors/PROJECT-GUIDE.md`
+- Outline: `docs/for-instructors/Project-Outline.md`
+- Instructor README: `docs/for-instructors/README.md`
 
 ---
 
@@ -33,33 +31,17 @@ For troubleshooting and workflow, see [Make It Your Own](docs/for-students/MAKE-
 
 ---
 
-## 📚 Documentation Index
+## 📚 More docs
 
-**For Students:**
-- [Getting Started Guide](./GETTING-STARTED.md): Step-by-step beginner setup
-- [Make It Your Own (Customization)](docs/for-students/MAKE-IT-YOUR-OWN.md): Personalize folders, package, run one script
-- [AI Dashboard Extension](docs/for-students/USING-AI-TO-ADD-DASHBOARD.md): Learn to extend with AI
-- [Quick Reference Cheat Sheet](./QUICK-REFERENCE.md): Essential commands, login, tips
-
-**For Developers:**
-- [API Docs](docs/for-developers/api.md): REST API endpoints, requests/responses
-- [Architecture & Advanced Setup](docs/for-developers/architecture.md)
-- [Docker Compose Setup](docs/for-developers/docker-compose.full.yml): Full deployment sample
-
-**For Instructors:**
-- [Teaching & Assessment Guide](docs/for-instructors/PROJECT-GUIDE.md)
-- [Project Outline](docs/for-instructors/Project-Outline.md)
-- [Instructor Resources](docs/for-instructors/): Slides, exam, onboarding tips
-
-**Testing & Admin:**
-- [Integration Tests](./tests/README.md)
-- [Admin Guides & Maintenance](docs/admin/README.md)
+- Students: `GETTING-STARTED.md`, `docs/for-students/MAKE-IT-YOUR-OWN.md`, `QUICK-REFERENCE.md`, `docs/for-students/USING-AI-TO-ADD-DASHBOARD.md`
+- Developers: `docs/for-developers/overview.md`, `docs/for-developers/api.md`, `docs/for-developers/architecture.md`, `docs/for-developers/ENVIRONMENT-SETUP.md`, `docs/for-developers/docker-compose.full.yml`
+- Instructors: `docs/for-instructors/README.md`, `docs/for-instructors/PROJECT-GUIDE.md`, `docs/for-instructors/Project-Outline.md`
+- Testing & admin: `tests/README.md`, `docs/admin/README.md`
 
 ---
 
 ## 🛠️ More Resources
-- [Environment Setup (Dev/Manual)](docs/for-developers/ENVIRONMENT-SETUP.md)
-- [Troubleshooting](GETTING-STARTED.md#-troubleshooting)
+- Run & troubleshooting instructions live in `GETTING-STARTED.md` and `docs/for-developers/ENVIRONMENT-SETUP.md`.
 
 ---
 
@@ -71,4 +53,4 @@ See [docs/admin/CONTRIBUTING.md](docs/admin/CONTRIBUTING.md) before making a pul
 
 ---
 
-For any question, start with your role’s docs above, or ask your instructor!
+For any question, pick your role above and follow those docs first.
