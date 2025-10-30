@@ -78,7 +78,7 @@ The Simple Login Application is a comprehensive full-stack web application desig
 
 ```
 substitute-teacher/
-├── simple-login-backend/          # Spring Boot backend
+├── custom-backend-name/          # Backend code (customize, e.g., spring-login-api)
 │   ├── src/main/java/com/example/simpleloginbackend/
 │   │   ├── controller/          # REST controllers
 │   │   ├── service/             # Business logic
@@ -88,7 +88,7 @@ substitute-teacher/
 │   │   └── resources/           # Application properties
 │   ├── Dockerfile               # Backend container
 │   └── pom.xml                  # Maven dependencies
-├── simple-login-frontend/        # React frontend
+├── custom-frontend-name/        # Frontend code (customize, e.g., student-react-frontend)
 │   ├── src/
 │   │   ├── components/          # Reusable UI components
 │   │   ├── pages/               # Page components
@@ -245,16 +245,16 @@ Authorization: Bearer <jwt_token>
 
 **Backend**:
 ```bash
-cd simple-login-backend
-docker build -t simple-login-backend .
-docker run -p 8080:8080 simple-login-backend
+cd custom-backend-name
+docker build -t custom-backend-name .
+docker run -p 8080:8080 custom-backend-name
 ```
 
 **Frontend**:
 ```bash
-cd simple-login-frontend
-docker build -t simple-login-frontend .
-docker run -p 3000:80 simple-login-frontend
+cd custom-frontend-name
+docker build -t custom-frontend-name .
+docker run -p 3000:80 custom-frontend-name
 ```
 
 ## 🧪 Testing
@@ -273,10 +273,10 @@ docker run -p 3000:80 simple-login-frontend
 npm test
 
 # Run backend tests only
-cd simple-login-backend && ./mvnw test
+cd custom-backend-name && ./mvnw test
 
 # Run frontend tests only
-cd simple-login-frontend && npm test
+cd custom-frontend-name && npm test
 ```
 
 ## 🔒 Security Features
@@ -403,7 +403,7 @@ export PATH="$JAVA_HOME/bin:$PATH"
 **Frontend build errors**:
 ```bash
 # Clean and reinstall
-cd simple-login-frontend
+cd custom-frontend-name
 rm -rf node_modules package-lock.json
 npm install
 ```
@@ -414,14 +414,14 @@ npm install
 ```bash
 # Enable debug logging
 export LOG_LEVEL=DEBUG
-cd simple-login-backend
+cd custom-backend-name
 ./mvnw spring-boot:run
 ```
 
 **Frontend debugging**:
 ```bash
 # Start with debug mode
-cd simple-login-frontend
+cd custom-frontend-name
 npm run dev
 # Check browser developer tools
 ```

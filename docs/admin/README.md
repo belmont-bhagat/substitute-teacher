@@ -42,22 +42,22 @@ For contribution guidelines, see [CONTRIBUTING.md](./CONTRIBUTING.md).
 ### Update Dependencies
 ```bash
 # Backend (Maven)
-cd simple-login-backend
+cd my-backend
 ./mvnw versions:display-dependency-updates
 
 # Frontend (npm)
-cd simple-login-frontend
+cd my-frontend
 npm outdated
 ```
 
 ### Clean Build Artifacts
 ```bash
 # Backend
-cd simple-login-backend
+cd my-backend
 ./mvnw clean
 
 # Frontend
-cd simple-login-frontend
+cd my-frontend
 rm -rf node_modules dist
 npm install
 ```

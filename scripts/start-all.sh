@@ -207,3 +207,5 @@ main() {
     echo "  Import postman/Simple-Login.postman_collection.json into Postman"
     echo "  Set base_url environment variable to http://localhost:8080"
 }
+
+main

@@ -25,10 +25,10 @@
 
 ## Current Repository Components
 
-- Backend (Spring Boot): `simple-login-backend/`
+- Backend (Spring Boot): `custom-backend-name/`   # e.g. api-auth
   - Key classes: `AuthController`, `AuthService`, `JwtService`, `UserRepository`, `UserDocument`, `DataSeeder`.
   - Config: `application.properties`, `JwtConfig`.
-- Frontend (React/Vite/TS): `simple-login-frontend/`
+- Frontend (React/Vite/TS): `custom-frontend-name/`   # e.g. portal-ui
   - Key components/pages: `LoginPage.tsx`, `ProfilePage.tsx`, `UsersDashboard.tsx`, `AuthLayout.tsx`.
   - API helpers: `src/lib/api.ts`, `src/lib/auth.ts`.
 - Reference Node/TS auth example: `mongo-auth-service/`.
@@ -54,17 +54,17 @@
 - GET `/api/profile` – return current user profile (requires JWT)
 
 ### Files to Add/Edit
-- `simple-login-backend/src/main/java/.../controller/AuthController.java`
+- `custom-backend-name/src/main/java/.../controller/AuthController.java`
   - Ensure endpoints: login, profile.
-- `simple-login-backend/src/main/java/.../service/AuthService.java`
+- `custom-backend-name/src/main/java/.../service/AuthService.java`
   - Credential verification, password hashing checks, last login update.
-- `simple-login-backend/src/main/java/.../service/JwtService.java`
+- `custom-backend-name/src/main/java/.../service/JwtService.java`
   - JWT generation/validation, expiry handling.
-- `simple-login-backend/src/main/java/.../model/UserDocument.java`
+- `custom-backend-name/src/main/java/.../model/UserDocument.java`
   - Fields above + unique index on email.
-- `simple-login-backend/src/main/java/.../config/JwtConfig.java`
+- `custom-backend-name/src/main/java/.../config/JwtConfig.java`
   - Secret, expiry, JWT filter if used; enable CORS.
-- `simple-login-backend/src/main/resources/application.properties`
+- `custom-backend-name/src/main/resources/application.properties`
   - Mongo URI, JWT secret, CORS origins.
 
 ### Security & Validation
@@ -93,15 +93,15 @@
   - Fetch `/api/profile` → display user data; handle 401 by redirecting to Login.
 
 ### Files to Add/Edit
-- `simple-login-frontend/src/lib/api.ts`
+- `custom-frontend-name/src/lib/api.ts`
   - Base URL, auth header injection, error handling.
-- `simple-login-frontend/src/lib/auth.ts`
+- `custom-frontend-name/src/lib/auth.ts`
   - Token storage/getter, login/logout helpers.
-- `simple-login-frontend/src/components/*`
+- `custom-frontend-name/src/components/*`
   - Reuse `Input`, `Button`, `Card`, and `AuthLayout` for protected routing.
-- `simple-login-frontend/src/pages/LoginPage.tsx`
+- `custom-frontend-name/src/pages/LoginPage.tsx`
   - Submit to backend; navigate on success; show errors.
-- `simple-login-frontend/src/pages/ProfilePage.tsx`
+- `custom-frontend-name/src/pages/ProfilePage.tsx`
   - Fetch protected profile; display fields.
 
 ### Testing

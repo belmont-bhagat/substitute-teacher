@@ -124,8 +124,8 @@ Please maintain the existing project structure:
 
 ```
 substitute-teacher/
-├── simple-login-backend/     # Backend code (Spring Boot)
-├── simple-login-frontend/    # Frontend code (React)
+├── my-backend/     # Backend code (Spring Boot)
+├── my-frontend/    # Frontend code (React)
 ├── postman/                  # API testing files
 ├── scripts/                  # Automation scripts
 ├── docs/                     # Documentation

@@ -5,7 +5,7 @@
 - Date: October 23, 2025
 - Duration: 75 minutes
 - Location/Modality: [Room / Virtual]
-- Materials: `simple-login-backend/` (Spring Boot), `simple-login-frontend/` (React + Vite + TS), Postman collection `postman/Simple-Login.postman_collection.json`, `Project Outline.md`, Cursor editor
+- Materials: `my-backend/` (Spring Boot), `my-frontend/` (React + Vite + TS), Postman collection `postman/Simple-Login.postman_collection.json`, `Project Outline.md`, Cursor editor
 
 ## Learning Objectives
 - Understand the project architecture and frameworks (Spring Boot, MongoDB, React).
@@ -18,7 +18,7 @@
   - Set expectations: guided tour + small live build.
   - Present `Project Outline.md` to frame the session.
 - 5–15 min: Existing Backend Overview (Spring Boot + MongoDB + JWT)
-  - Show structure: `simple-login-backend/` and key classes: `AuthController`, `AuthService`, `JwtService`, `UserRepository`, `UserDocument`, config in `JwtConfig`, `application.properties`.
+  - Show structure: `my-backend/` and key classes: `AuthController`, `AuthService`, `JwtService`, `UserRepository`, `UserDocument`, config in `JwtConfig`, `application.properties`.
   - Explain JWT, roles (USER/ADMIN), and CORS.
 - 15–30 min: Postman Demo — Login and Profile Flow
   - Open `postman/Simple-Login.postman_collection.json`.
@@ -26,7 +26,7 @@
   - Demo: GET `/api/profile` with Bearer token; show success and an error case (missing/expired token).
   - Emphasize request/response structure, validation, and error handling.
 - 30–45 min: Frontend Walkthrough (React + Vite + TS + Tailwind)
-  - Show structure: `simple-login-frontend/`
+  - Show structure: `my-frontend/`
     - Pages: `src/pages/LoginPage.tsx`, `src/pages/ProfilePage.tsx`, `src/pages/UsersDashboard.tsx`
     - Layout: `src/components/AuthLayout.tsx`
     - Auth helpers: `src/lib/api.ts`, `src/lib/auth.ts`

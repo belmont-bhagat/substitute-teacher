@@ -130,3 +130,5 @@ main() {
     echo "  Development mode: npm run dev"
     echo "  Clean build: npm run clean"
 }
+
+main

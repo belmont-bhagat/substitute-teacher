@@ -14,7 +14,7 @@ The application can be configured using environment variables or a `.env` file.
 
 ```bash
 # Set environment variables inline
-cd simple-login-backend
+cd my-backend
 ./mvnw spring-boot:run -Dspring-boot.run.jvmArguments="-Dauth.jwt.secret=your-secret"
 ```
 

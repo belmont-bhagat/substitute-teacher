@@ -1,248 +1,74 @@
-# Simple Login Application
+# Substitute Teacher: Simple Login Application
 
-A full-stack authentication application built with Spring Boot backend and React frontend, designed for educational purposes.
-
-**Features**: Login → Profile (minimal authentication flow for learning)
-
-> 💡 **Note**: This is the simplified version. For the full-featured version with dashboard, see the `dashboard` branch.
+A full-stack authentication starter – Spring Boot backend and React frontend, built for student experiments, demos, and classroom learning.
 
 ---
 
-## 🎓 **FOR STUDENTS: Start Here**
+## 🚦 Personalize & Run (Quick Start for Students)
 
-**→ New to this project?** Read **[GETTING-STARTED.md](./GETTING-STARTED.md)** for a step-by-step beginner guide.
+1. Fill these blanks with your name choices:
+    ```
+    Backend folder: ______________________ (ex: backend-demo)
+    Frontend folder: ______________________ (ex: frontend-demo)
+    Java package:   ______________________ (ex: edu.belmont.demo)
+    ```
+2. From project root:
+    ```bash
+    bash scripts/setup-my-project.sh <backend-folder> <frontend-folder> <java.package>
+    bash scripts/dev.sh
+    ```
+    - Example: `bash scripts/setup-my-project.sh backend-demo frontend-demo edu.belmont.demo`
 
-**→ Need quick commands?** Bookmark **[QUICK-REFERENCE.md](./QUICK-REFERENCE.md)** for a one-page cheat sheet!
+- Frontend: http://localhost:5173
+- Backend:  http://localhost:8080/api
 
-**→ Want to make it yours?** Follow **[MAKE-IT-YOUR-OWN.md](./docs/for-students/MAKE-IT-YOUR-OWN.md)** to customize the package structure and create your own private repo!
-
-**→ Ready to extend with AI?** Check out **[USING-AI-TO-ADD-DASHBOARD.md](./docs/for-students/USING-AI-TO-ADD-DASHBOARD.md)** to learn how to use AI assistants like Claude to add new features!
-
-These guides will walk you through:
-- Installing everything you need
-- Running the project in Cursor
-- Testing the application
-- Troubleshooting common issues
-
----
-
-## 🏗️ Technology Stack
-
-- **Backend**: Spring Boot 3.5.7 + Java 21 LTS + MongoDB
-- **Frontend**: React 18 + TypeScript + Vite
-- **Authentication**: JWT tokens
+For troubleshooting and workflow, see [Make It Your Own](docs/for-students/MAKE-IT-YOUR-OWN.md).
 
 ---
 
-## 🚀 Quick Start (For Experienced Developers)
-
-### Prerequisites
-- Java 21 LTS, Node.js 18+, Docker Desktop
-
-### Three Commands to Run
-
-```bash
-# 1. Start database
-docker compose up -d mongodb
-
-# 2. Start backend (new terminal)
-cd simple-login-backend && ./mvnw spring-boot:run
-
-# 3. Start frontend (another new terminal)  
-cd simple-login-frontend && npm install && npm run dev
-```
-
-**Access**: http://localhost:5173  
-**Login**: `admin` / `password`
-
-> 💡 **Note**: See [GETTING-STARTED.md](./GETTING-STARTED.md) for detailed instructions including Java setup.
-
-## 📁 Project Structure
-
-```
-substitute-teacher/
-├── README.md                      # ⭐ You are here!
-├── GETTING-STARTED.md             # 🎓 Beginner guide (START HERE!)
-├── QUICK-REFERENCE.md             # ⚡ Command cheat sheet (BOOKMARK THIS!)
-│
-├── simple-login-backend/          # ☕ Spring Boot backend
-├── simple-login-frontend/         # ⚛️ React frontend
-│
-├── docs/                          # 📚 All documentation
-│   ├── README.md                  # Documentation index
-│   ├── for-students/              # 🎓 Student resources
-│   ├── for-developers/            # 💻 Technical docs
-│   ├── for-instructors/           # 👨‍🏫 Teaching materials
-│   └── admin/                     # 🔧 Setup & maintenance
-│
-├── tests/                         # 🧪 Integration tests
-│   ├── README.md                  # Testing guide
-│   └── integration/               # Test files
-│
-├── postman/                       # 📬 API testing collection
-└── docker-compose.yml             # 🐳 Docker configuration
-```
-
-**Where should I look?**
-- **Student?** → Start with [GETTING-STARTED.md](./GETTING-STARTED.md)
-- **Developer?** → Check [docs/for-developers/](./docs/for-developers/)
-- **Instructor?** → See [docs/for-instructors/](./docs/for-instructors/)
-- **Testing?** → Go to [tests/](./tests/)
-
-## 🔧 Development Tips
-
-- **Backend**: Runs on port 8080, auto-reloads on code changes
-- **Frontend**: Runs on port 5173, hot module replacement enabled  
-- **Database**: MongoDB auto-seeds with 11 test users (1 admin + 10 students)
-- **Default Users**: `admin/password`, `student1/password` through `student10/password`
-
-## 📚 API Endpoints
-
-**Base URL**: `http://localhost:8080/api`
-
-| Method | Endpoint | Description | Auth Required |
-|--------|----------|-------------|---------------|
-| POST | `/login` | User authentication | No |
-| GET | `/profile` | Get user profile | Yes (JWT) |
-| GET | `/users` | List all users | Yes (JWT) |
-
-### 🔧 cURL Commands
-
-**1. Login (POST /api/login)**
-
-Successful login:
-```bash
-curl -X POST http://localhost:8080/api/login \
-  -H "Content-Type: application/json" \
-  -d '{"username":"admin","password":"password"}'
-```
-
-Response:
-```json
-{"token":"eyJhbGciOiJIUzI1NiJ9..."}
-```
-
-Failed login:
-```bash
-curl -X POST http://localhost:8080/api/login \
-  -H "Content-Type: application/json" \
-  -d '{"username":"wrong","password":"wrong"}'
-```
-
-Response:
-```json
-{"error":"Invalid credentials"}
-```
+## ⚡ Tech Stack
+- Java 21, Spring Boot 3, MongoDB
+- React 18, TypeScript, Vite
+- Auth: JWT, Secure password hash
 
 ---
 
-**2. Get Profile (GET /api/profile)**
+## 📚 Documentation Index
 
-```bash
-# First, get a token from login
-TOKEN=$(curl -s -X POST http://localhost:8080/api/login \
-  -H "Content-Type: application/json" \
-  -d '{"username":"admin","password":"password"}' | grep -o '"token":"[^"]*' | cut -d'"' -f4)
+**For Students:**
+- [Getting Started Guide](./GETTING-STARTED.md): Step-by-step beginner setup
+- [Make It Your Own (Customization)](docs/for-students/MAKE-IT-YOUR-OWN.md): Personalize folders, package, run one script
+- [AI Dashboard Extension](docs/for-students/USING-AI-TO-ADD-DASHBOARD.md): Learn to extend with AI
+- [Quick Reference Cheat Sheet](./QUICK-REFERENCE.md): Essential commands, login, tips
 
-# Then use it to get profile
-curl -X GET http://localhost:8080/api/profile \
-  -H "Authorization: Bearer $TOKEN"
-```
+**For Developers:**
+- [API Docs](docs/for-developers/api.md): REST API endpoints, requests/responses
+- [Architecture & Advanced Setup](docs/for-developers/architecture.md)
+- [Docker Compose Setup](docs/for-developers/docker-compose.full.yml): Full deployment sample
 
-Response:
-```json
-{"username":"admin","role":"admin"}
-```
+**For Instructors:**
+- [Teaching & Assessment Guide](docs/for-instructors/PROJECT-GUIDE.md)
+- [Project Outline](docs/for-instructors/Project-Outline.md)
+- [Instructor Resources](docs/for-instructors/): Slides, exam, onboarding tips
 
-Without token (error):
-```bash
-curl -X GET http://localhost:8080/api/profile
-```
-
-Response:
-```json
-{"error":"Unauthorized"}
-```
+**Testing & Admin:**
+- [Integration Tests](./tests/README.md)
+- [Admin Guides & Maintenance](docs/admin/README.md)
 
 ---
 
-**3. List All Users (GET /api/users)**
-
-```bash
-# Using the token from login
-curl -X GET http://localhost:8080/api/users \
-  -H "Authorization: Bearer $TOKEN"
-```
-
-Response:
-```json
-{
-  "users": [
-    {"username":"admin","role":"admin"},
-    {"username":"student1","role":"student"},
-    {"username":"student2","role":"student"}
-  ],
-  "count": 11
-}
-```
-
----
-
-**One-liner to test all endpoints:**
-```bash
-# Login and save token
-TOKEN=$(curl -s -X POST http://localhost:8080/api/login \
-  -H "Content-Type: application/json" \
-  -d '{"username":"admin","password":"password"}' | grep -o '"token":"[^"]*' | cut -d'"' -f4)
-
-# Get profile
-curl -X GET http://localhost:8080/api/profile -H "Authorization: Bearer $TOKEN"
-
-# Get all users
-curl -X GET http://localhost:8080/api/users -H "Authorization: Bearer $TOKEN"
-```
-
-**Full API documentation**: See [docs/for-developers/api.md](./docs/for-developers/api.md)
-
-## 🎓 Documentation
-
-Documentation is now organized by role in the `docs/` folder:
-
-- **[docs/for-students/](./docs/for-students/)** - Student guides and quick references
-- **[docs/for-developers/](./docs/for-developers/)** - API, architecture, technical specs  
-- **[docs/for-instructors/](./docs/for-instructors/)** - Teaching materials and lesson plans
-- **[docs/admin/](./docs/admin/)** - Repository setup and maintenance
-
-**Complete documentation index**: [docs/README.md](./docs/README.md)
-
-## 🛑 Stopping the Application
-
-```bash
-# Stop backend & frontend: Press Ctrl+C in their terminals
-
-# Stop MongoDB:
-docker compose down
-```
+## 🛠️ More Resources
+- [Environment Setup (Dev/Manual)](docs/for-developers/ENVIRONMENT-SETUP.md)
+- [Troubleshooting](GETTING-STARTED.md#-troubleshooting)
 
 ---
 
 ## 📄 License
-
-MIT License - See [LICENSE](LICENSE) file for details.
+MIT – see [LICENSE](./LICENSE)
 
 ## 🤝 Contributing
-
-See [docs/admin/CONTRIBUTING.md](./docs/admin/CONTRIBUTING.md) for guidelines.
-
-## 🆘 Having Issues?
-
-**→ See [GETTING-STARTED.md](./GETTING-STARTED.md#-troubleshooting)** for detailed troubleshooting steps.
-
-**Common quick fixes:**
-- Docker not running? Open Docker Desktop first
-- Port conflicts? Check if something is using ports 8080, 5173, or 27017
-- Java errors? Make sure Java 21 is installed and JAVA_HOME is set
+See [docs/admin/CONTRIBUTING.md](docs/admin/CONTRIBUTING.md) before making a pull request.
 
 ---
 
-**Built for educational purposes** 🎓
+For any question, start with your role’s docs above, or ask your instructor!
