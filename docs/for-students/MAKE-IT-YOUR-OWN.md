@@ -1,59 +1,78 @@
-# 🚦 How to Make This Project Your Own
+# 🚦 Make It Yours (do this first)
 
-## 1. 📁 Rename Your Folders FIRST
-
-Choose your project folder names:
-- Backend:  `YOUR-BACKEND-NAME`   (ex: `login-backend`)
-- Frontend: `YOUR-FRONTEND-NAME`  (ex: `student-app`)
-
-From the project root, **RENAME FIRST**:
+## 1) Rename folders (do this first)
+From the project root, replace CURRENT_* with your actual current folder names and run:
 ```bash
-# Example – change to YOUR names!
-git mv backend-demo your-backend-folder
-git mv frontend-demo your-frontend-folder
+git mv CURRENT_BACKEND_NAME your-backend-folder
+git mv CURRENT_FRONTEND_NAME your-frontend-folder
 ```
-- Use ONLY hyphens/underscores (e.g. `my-backend`), **NO dots or spaces!**
-- Confirm folder names after renaming: run `ls` in project root.
+Rules:
+- Folder names use hyphens/underscores (no spaces/dots).
 
----
+## 2) Update pom.xml manually
+Open `your-backend-folder/pom.xml` and change the project coordinates:
+- Change `<groupId>` to your Java package (example: `edu.school.demo`)
+- Change `<artifactId>` to your backend folder name (example: `your-backend-folder`)
+Do NOT change anything inside `<parent> ... </parent>`.
 
-## 2. 🛠️ Run the Customization Script
+Example (before → after):
+```xml
+<project>
+  <parent>
+    <!-- keep parent as-is -->
+  </parent>
+  <groupId>edu.school.demo</groupId>
+  <artifactId>your-backend-folder</artifactId>
+  <!-- ... -->
+</project>
+```
+
+## 3) Apply Java package (one command)
+Now run the script to update Java packages/imports and finish wiring:
 ```bash
-bash scripts/setup-my-project.sh your-backend-folder your-frontend-folder edu.yourorg.yourname
+bash scripts/setup-my-project.sh your-backend-folder your-frontend-folder edu.school.demo
+```
+This will:
+- Move Java files under the new package and update `package`/`import` lines
+- Update Spring `spring.application.name`
+- Update Docker Compose dev config where needed
+- Create/update `.env` with your folder names
+- Install frontend dependencies
 
+Start the app with hot reload:
+```bash
 bash scripts/dev.sh
 ```
-- Fill in: **your backend folder, your frontend folder, and your Java package** (ex: `edu.school.yourname`).
 
 ---
 
-## 3. ✅ Open Your App
-- Frontend: http://localhost:5173
-- Backend: http://localhost:8080/api
-- Default login: admin / password
+### Tip
+To keep your current folder names (no rename), pass those exact names in step 3.
 
 ---
 
-## 4. 🆘 Troubleshooting
-- If you see `No such file or directory`, you likely skipped the folder rename or mistyped a folder name—**fix the names, then re-run the script**.
-- If anything fails, run:
+## 4) Verify in these exact places (takes 30 seconds)
+- `your-backend-folder/pom.xml`
+  - `<groupId>` should be: `edu.yourorg.yourname`
+- `your-backend-folder/src/main/java/.../*.java`
+  - First line should be: `package edu.yourorg.yourname;`
+- Browser
+  - Frontend: http://localhost:5173
+  - API: http://localhost:8080/api
+  - Login: `admin` / `password`
+
+---
+
+## 5) Troubleshooting (fast fixes)
+- “No such file or directory”: double-check the two folder names you passed into the script.
+- Change package only: re-run the same command but keep the same folder names and change only the last argument.
+- Stuck? Restart services:
   ```bash
   bash scripts/stop-all.sh
   bash scripts/dev.sh
   ```
-- Want to only change Java package? Use the current folder names in the script and change only the last argument.
 
 ---
 
-## 🙋 Advanced Setup
-For full manual refactoring or advanced options: [Advanced Dev Docs](../for-developers/ENVIRONMENT-SETUP.md) or ask your instructor!
-
----
-
-# 📝 Quick Planning Sheet
-```
-Backend folder: ______________________ (ex: your-backend-folder)
-Frontend folder: ______________________ (ex: your-frontend-folder)
-Java package:   ______________________ (ex: edu.school.yourname)
-```
+Need more control? See: [Advanced Dev Docs](../for-developers/ENVIRONMENT-SETUP.md)
 

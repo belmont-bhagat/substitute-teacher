@@ -20,9 +20,9 @@ services:
   # Spring Boot Backend
   backend:
     build:
-      context: ../../your-backend-folder # <-- customize this
+      context: ../../login-backend # <-- customize this
       dockerfile: Dockerfile
-    container_name: your-backend-folder # <-- customize this
+    container_name: login-backend # <-- customize this
     restart: unless-stopped
     ports:
       - "8080:8080"

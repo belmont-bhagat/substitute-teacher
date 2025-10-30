@@ -12,12 +12,47 @@ if [[ -z "$BACKEND_FOLDER" || -z "$FRONTEND_FOLDER" || -z "$PACKAGE_NAME" ]]; th
   exit 1
 fi
 
-# Step 1: Rename folders (if needed, uses git to preserve history)
-if [ -d custom-backend-name ]; then
-  git mv custom-backend-name "$BACKEND_FOLDER"
+# Step 1: Ensure backend/frontend folders exist; rename from common defaults if needed
+# Determine and move backend folder
+if [ ! -d "$BACKEND_FOLDER" ]; then
+  for CANDIDATE in custom-backend-name your-backend-folder pranish-demo-backend simple-login-backend backend; do
+    if [ -d "$CANDIDATE" ]; then
+      if command -v git >/dev/null 2>&1; then
+        git mv "$CANDIDATE" "$BACKEND_FOLDER"
+      else
+        mv "$CANDIDATE" "$BACKEND_FOLDER"
+      fi
+      break
+    fi
+  done
 fi
-if [ -d custom-frontend-name ]; then
-  git mv custom-frontend-name "$FRONTEND_FOLDER"
+
+# Determine and move frontend folder
+if [ ! -d "$FRONTEND_FOLDER" ]; then
+  for CANDIDATE in custom-frontend-name your-frontend-folder pranish-demo-frontend simple-login-frontend frontend; do
+    if [ -d "$CANDIDATE" ]; then
+      if command -v git >/dev/null 2>&1; then
+        git mv "$CANDIDATE" "$FRONTEND_FOLDER"
+      else
+        mv "$CANDIDATE" "$FRONTEND_FOLDER"
+      fi
+      break
+    fi
+  done
+fi
+
+# Validate folders now exist
+if [ ! -d "$BACKEND_FOLDER" ]; then
+  echo "[ERROR] Could not find or create backend folder '$BACKEND_FOLDER'." >&2
+  echo "        Pass the CURRENT backend folder name as the first argument (e.g., 'your-backend-folder')," >&2
+  echo "        or rename your folder before running this script." >&2
+  exit 1
+fi
+if [ ! -d "$FRONTEND_FOLDER" ]; then
+  echo "[ERROR] Could not find or create frontend folder '$FRONTEND_FOLDER'." >&2
+  echo "        Pass the CURRENT frontend folder name as the second argument (e.g., 'your-frontend-folder')," >&2
+  echo "        or rename your folder before running this script." >&2
+  exit 1
 fi
 
 # Step 2: Set up .env
@@ -58,18 +93,26 @@ if [ -d "$BACKEND_FOLDER/src/test/java/com/example/simpleloginbackend" ]; then
 fi
 
 # Step 5: Update package declarations in Java files
-grep -rl "package com.example.simpleloginbackend" "$BACKEND_FOLDER/src/main/java/$PKG_PATH" | xargs sed -i '' "s|package com.example.simpleloginbackend;|package $PACKAGE_NAME;|g" 2>/dev/null || true
-grep -rl "package com.example.simpleloginbackend" "$BACKEND_FOLDER/src/test/java/$PKG_PATH" | xargs sed -i '' "s|package com.example.simpleloginbackend;|package $PACKAGE_NAME;|g" 2>/dev/null || true
+if [ -d "$BACKEND_FOLDER/src/main/java/$PKG_PATH" ]; then
+  grep -rl "package com.example.simpleloginbackend" "$BACKEND_FOLDER/src/main/java/$PKG_PATH" 2>/dev/null | xargs sed -i '' "s|package com.example.simpleloginbackend;|package $PACKAGE_NAME;|g" 2>/dev/null || true
+fi
+if [ -d "$BACKEND_FOLDER/src/test/java/$PKG_PATH" ]; then
+  grep -rl "package com.example.simpleloginbackend" "$BACKEND_FOLDER/src/test/java/$PKG_PATH" 2>/dev/null | xargs sed -i '' "s|package com.example.simpleloginbackend;|package $PACKAGE_NAME;|g" 2>/dev/null || true
+fi
 
 # Step 5b: Update import statements in Java files
-find "$BACKEND_FOLDER/src/main/java/$PKG_PATH" -type f -name '*.java' -exec sed -i '' "s|import com.example.simpleloginbackend|import $PACKAGE_NAME|g" {} + 2>/dev/null || true
-find "$BACKEND_FOLDER/src/test/java/$PKG_PATH" -type f -name '*.java' -exec sed -i '' "s|import com.example.simpleloginbackend|import $PACKAGE_NAME|g" {} + 2>/dev/null || true
+if [ -d "$BACKEND_FOLDER/src/main/java/$PKG_PATH" ]; then
+  find "$BACKEND_FOLDER/src/main/java/$PKG_PATH" -type f -name '*.java' -exec sed -i '' "s|import com.example.simpleloginbackend|import $PACKAGE_NAME|g" {} + 2>/dev/null || true
+fi
+if [ -d "$BACKEND_FOLDER/src/test/java/$PKG_PATH" ]; then
+  find "$BACKEND_FOLDER/src/test/java/$PKG_PATH" -type f -name '*.java' -exec sed -i '' "s|import com.example.simpleloginbackend|import $PACKAGE_NAME|g" {} + 2>/dev/null || true
+fi
 
 # Step 6: Update Maven groupId and artifactId
 POM="$BACKEND_FOLDER/pom.xml"
 # If a Spring Boot parent is not present, ensure valid Boot parent and coordinates
 if ! grep -q "spring-boot-starter-parent" "$POM" 2>/dev/null; then
-  cat > "$POM" <<EOPOM
+  cat > "$POM" <<'EOPOM'
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -156,8 +199,23 @@ if ! grep -q "spring-boot-starter-parent" "$POM" 2>/dev/null; then
 </project>
 EOPOM
 else
-  sed -i '' "s|<groupId>.*</groupId>|<groupId>$PACKAGE_NAME</groupId>|" "$POM"
-  sed -i '' "s|<artifactId>.*</artifactId>|<artifactId>$BACKEND_FOLDER</artifactId>|" "$POM"
+  # Safely update only the project's groupId and artifactId (do not touch <parent>)
+  TMP_POM=$(mktemp)
+  awk '
+    BEGIN { inside_parent=0; replaced_g=0; replaced_a=0 }
+    /<parent>/ { inside_parent=1 }
+    /<\/parent>/ { inside_parent=0 }
+    {
+      if (!inside_parent && !replaced_g && match($0, /<groupId>[^<]*<\/groupId>/)) {
+        sub(/<groupId>[^<]*<\/groupId>/, "<groupId>'"$PACKAGE_NAME"'</groupId>")
+        replaced_g=1
+      } else if (!inside_parent && !replaced_a && match($0, /<artifactId>[^<]*<\/artifactId>/)) {
+        sub(/<artifactId>[^<]*<\/artifactId>/, "<artifactId>'"$BACKEND_FOLDER"'</artifactId>")
+        replaced_a=1
+      }
+      print
+    }
+  ' "$POM" > "$TMP_POM" && mv "$TMP_POM" "$POM"
 fi
 
 # Step 7: Update Spring app name to reflect chosen backend folder
