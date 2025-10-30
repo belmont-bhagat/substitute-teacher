@@ -171,7 +171,7 @@ The workflow file `.github/workflows/protect.yml` is already created and will:
 The following files are committed to enforce protection:
 
 - ✅ `.github/workflows/protect.yml` - GitHub Actions workflow
-- ✅ `CONTRIBUTING.md` - Contribution guidelines
+- ✅ [CONTRIBUTING.md](./CONTRIBUTING.md) - Contribution guidelines
 - ⚠️ **Manual Setup Required**: Branch protection rules in GitHub Settings
 
 ## 🔗 Quick Links

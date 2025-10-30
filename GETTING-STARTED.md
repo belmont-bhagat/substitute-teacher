@@ -68,7 +68,7 @@ You should see a container named `mongodb-simple-login` running.
 In the same terminal:
 
 ```bash
-cd simple-login-backend
+cd login-backend
 ./mvnw spring-boot:run
 ```
 
@@ -100,7 +100,7 @@ Terminal 2: Frontend (open now) 👈 You are here
 In the **NEW terminal**:
 
 ```bash
-cd simple-login-frontend
+cd login-frontend
 npm install
 npm run dev
 ```
@@ -208,8 +208,8 @@ Before diving into troubleshooting, make sure you didn't make these common mista
 ### ❌ **Mistake 6: Ran commands in wrong directory**
 **Symptom**: "command not found" or "No such file or directory"  
 **Fix**: Make sure you're in the correct folder:
-- For backend: `cd simple-login-backend`
-- For frontend: `cd simple-login-frontend`
+- For backend: `cd login-backend`
+- For frontend: `cd login-frontend`
 
 ---
 
@@ -259,8 +259,8 @@ git pull origin main
 ```bash
 # Start everything (in order):
 docker compose up -d mongodb
-cd simple-login-backend && ./mvnw spring-boot:run    # Terminal 1
-cd simple-login-frontend && npm run dev              # Terminal 2
+cd login-backend && ./mvnw spring-boot:run          # Terminal 1
+cd login-frontend && npm run dev                    # Terminal 2
 
 # Stop everything:
 Ctrl+C in both terminals
@@ -286,9 +286,9 @@ lsof -i :5173               # Check Frontend (Mac/Linux)
 ## 🎓 Ready to Learn More?
 
 Once you have it running, check out:
-- `README.md` - Full project documentation
-- `docs/api.md` - API endpoint details
-- `docs/architecture.md` - How everything connects
+- [README.md](./README.md) - Full project documentation
+- [docs/for-developers/api.md](./docs/for-developers/api.md) - API endpoint details
+- [docs/for-developers/architecture.md](./docs/for-developers/architecture.md) - How everything connects
 
 **Happy coding!** 🚀
 

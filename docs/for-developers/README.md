@@ -34,8 +34,8 @@ Full Docker deployment configuration (backend + frontend + nginx).
 For setup instructions, see the main [README.md](../../README.md).
 
 For detailed development workflows, check the component READMEs:
-- Backend: `my-backend/README.md`
-- Frontend: `my-frontend/README.md`
+- Backend: [login-backend/README.md](../../login-backend/README.md)
+- Frontend: [login-frontend/README.md](../../login-frontend/README.md)
 
 ---
 

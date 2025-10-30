@@ -5,7 +5,7 @@
 - Date: October 23, 2025
 - Duration: 75 minutes
 - Location/Modality: [Room / Virtual]
-- Materials: `my-backend/` (Spring Boot), `my-frontend/` (React + Vite + TS), Postman collection `postman/Simple-Login.postman_collection.json`, `Project Outline.md`, Cursor editor
+- Materials: `login-backend/` (Spring Boot), `login-frontend/` (React + Vite + TS), Postman collection `postman/Simple-Login.postman_collection.json`, [Project-Outline.md](./Project-Outline.md), Cursor editor
 
 ## Learning Objectives
 - Understand the project architecture and frameworks (Spring Boot, MongoDB, React).
@@ -16,7 +16,7 @@
 ## Session Agenda (with Timings)
 - 0–5 min: Opening and Context
   - Set expectations: guided tour + small live build.
-  - Present `Project Outline.md` to frame the session.
+  - Present [Project-Outline.md](./Project-Outline.md) to frame the session.
 - 5–15 min: Existing Backend Overview (Spring Boot + MongoDB + JWT)
   - Show structure: `my-backend/` and key classes: `AuthController`, `AuthService`, `JwtService`, `UserRepository`, `UserDocument`, config in `JwtConfig`, `application.properties`.
   - Explain JWT, roles (USER/ADMIN), and CORS.
@@ -26,7 +26,7 @@
   - Demo: GET `/api/profile` with Bearer token; show success and an error case (missing/expired token).
   - Emphasize request/response structure, validation, and error handling.
 - 30–45 min: Frontend Walkthrough (React + Vite + TS + Tailwind)
-  - Show structure: `my-frontend/`
+  - Show structure: `login-frontend/`
     - Pages: `src/pages/LoginPage.tsx`, `src/pages/ProfilePage.tsx`, `src/pages/UsersDashboard.tsx`
     - Layout: `src/components/AuthLayout.tsx`
     - Auth helpers: `src/lib/api.ts`, `src/lib/auth.ts`
@@ -47,7 +47,7 @@
   - Ask students to summarize the auth flow end-to-end.
   - Quick quiz: "Where is JWT created?" "Which file injects auth headers?"
 - 72–75 min: Wrap-Up
-  - Revisit `Project Outline.md` milestones (M1–M5).
+  - Revisit [Project-Outline.md](./Project-Outline.md) milestones (M1–M5).
   - Suggest next steps: add one metric to `DashboardHome.tsx` and submit a PR.
 
 ## Demonstration Scripts and Talking Points
@@ -76,7 +76,7 @@
 - Start frontend: Vite dev server (`http://localhost:5173`).
 - Postman: import `postman/Simple-Login.postman_collection.json`.
 - Test credentials: ensure one working user; have email/password ready.
-- Editor: open Cursor at repo root; keep `Project Outline.md` accessible.
+- Editor: open Cursor at repo root; keep [Project-Outline.md](./Project-Outline.md) accessible.
 
 ## Assessment and Participation
 - In-class activity: demonstrate the login and profile flow (live or via screenshare/recorded steps).
@@ -89,6 +89,6 @@
 - Time constraints: skip metrics fetch; still deliver the `/dashboard` route and shell.
 
 ## Deliverables for Students
-- `Project Outline.md` (architecture reference)
+- [Project-Outline.md](./Project-Outline.md) (architecture reference)
 - Postman collection: `postman/Simple-Login.postman_collection.json`
 - Key files to review: `AuthController`, `JwtService`, `AuthLayout.tsx`, `LoginPage.tsx`, `ProfilePage.tsx`, `UsersDashboard.tsx`
