@@ -539,3 +539,102 @@ After making this project your own:
 
 If you have questions, reach out to your instructor or check the documentation in `docs/for-developers/`.
 
+## 🗂️ Optional: Rename the Backend and Frontend Folders
+
+You can rename the project folders to anything you like (for example, rename `simple-login-backend` to `my-backend` and `simple-login-frontend` to `my-frontend`). Follow these steps to keep everything working.
+
+### 1) Pick your new folder names
+- **Backend folder**: `________________________` (e.g., `my-backend`)
+- **Frontend folder**: `________________________` (e.g., `my-frontend`)
+
+### 2) Stop anything running
+```bash
+npm run stop 2>/dev/null || true
+```
+
+### 3) Rename the folders (use git so history is preserved)
+```bash
+cd /Users/bhagatpranish/Documents/substitute-teacher
+
+git mv simple-login-backend YOUR-BACKEND-FOLDER
+
+git mv simple-login-frontend YOUR-FRONTEND-FOLDER
+```
+
+### 4) Update references to the old folder names
+Use this search to see all places that reference the original names:
+```bash
+grep -R "simple-login-backend\|simple-login-frontend" -n .
+```
+Update the matches below at a minimum:
+
+- **Full Docker compose (if you use it)**: `docs/for-developers/docker-compose.full.yml`
+  - Update build contexts:
+    - `context: ../../simple-login-backend` → `context: ../../YOUR-BACKEND-FOLDER`
+    - `context: ../../simple-login-frontend` → `context: ../../YOUR-FRONTEND-FOLDER`
+  - Optionally update container names (purely cosmetic):
+    - `container_name: simple-login-backend` → `container_name: YOUR-BACKEND-FOLDER`
+    - `container_name: simple-login-frontend` → `container_name: YOUR-FRONTEND-FOLDER`
+
+- **Scripts** in `scripts/` that `cd` into these folders:
+  - `scripts/build.sh`
+  - `scripts/dev.sh`
+  - `scripts/start-all.sh`
+  - Any other custom scripts you add
+  
+  Update occurrences of:
+  - `cd simple-login-backend` → `cd YOUR-BACKEND-FOLDER`
+  - `cd simple-login-frontend` → `cd YOUR-FRONTEND-FOLDER`
+
+- **Docs/README references** (optional but recommended for clarity):
+  - `README.md`
+  - `docs/**` where the old folder names appear in examples
+
+Notes:
+- The root `docker-compose.yml` only runs MongoDB and does not reference folder names.
+- The frontend uses `VITE_API_BASE_URL` for the backend URL; folder names don’t affect this.
+
+### 5) Verify
+- Re-run the search to ensure nothing is missed:
+```bash
+grep -R "simple-login-backend\|simple-login-frontend" -n .
+```
+- Start dev setup again:
+```bash
+npm run dev
+```
+- If you use the full Docker setup, build it from the `docs/for-developers` folder after updating the compose file:
+```bash
+cd docs/for-developers
+docker compose -f docker-compose.full.yml build --no-cache
+docker compose -f docker-compose.full.yml up -d
+```
+
+### 6) Commit your changes
+```bash
+git add -A
+git commit -m "chore: rename frontend/backend folders and update references"
+```
+
+> Tip: If something doesn’t start, check the logs and re-run the grep to find any missed references.
+
+### 🛠️ Make Folder Names Work Automatically (Recommended)
+
+Instead of changing scripts, you can set your folder names as environment variables:
+
+**Create a `.env` file in your project root (if it doesn't exist) and add lines like:**
+
+```env
+BACKEND_FOLDER=my-backend
+FRONTEND_FOLDER=my-frontend
+```
+
+Or set them in your shell before running scripts:
+
+```bash
+export BACKEND_FOLDER=my-backend
+export FRONTEND_FOLDER=my-frontend
+```
+
+> All provided scripts now use these variables, so you only need to set them ONCE—even after renaming the folders!
+

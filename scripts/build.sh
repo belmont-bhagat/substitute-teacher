@@ -48,7 +48,7 @@ create_build_dir() {
 build_backend() {
     print_status "Building Spring Boot backend..."
     
-    cd simple-login-backend
+    cd "${BACKEND_FOLDER:-simple-login-backend}"
     
     # Set Java environment
     if [ ! -z "$JAVA_HOME" ]; then
@@ -72,7 +72,7 @@ build_backend() {
 build_frontend() {
     print_status "Building React frontend..."
     
-    cd simple-login-frontend
+    cd "${FRONTEND_FOLDER:-simple-login-frontend}"
     
     # Install dependencies
     npm ci

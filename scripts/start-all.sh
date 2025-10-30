@@ -68,7 +68,7 @@ start_mongodb() {
 start_backend() {
     print_status "Starting Spring Boot backend..."
     
-    cd simple-login-backend
+    cd "${BACKEND_FOLDER:-simple-login-backend}"
     
     # Set Java environment to use Java 21
     if [ -d "/opt/homebrew/opt/openjdk@21/libexec/openjdk.jdk/Contents/Home" ]; then
@@ -106,7 +106,7 @@ start_backend() {
 start_frontend() {
     print_status "Starting React frontend..."
     
-    cd simple-login-frontend
+    cd "${FRONTEND_FOLDER:-simple-login-frontend}"
     
     # Start frontend in background
     nohup npm run dev > ../logs/frontend.log 2>&1 &

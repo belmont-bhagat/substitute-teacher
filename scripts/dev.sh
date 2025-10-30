@@ -49,7 +49,7 @@ start_mongodb() {
 start_backend_dev() {
     print_status "Starting backend in development mode..."
     
-    cd simple-login-backend
+    cd "${BACKEND_FOLDER:-simple-login-backend}"
     
     # Set Java environment
     if [ ! -z "$JAVA_HOME" ]; then
@@ -78,7 +78,7 @@ start_backend_dev() {
 start_frontend_dev() {
     print_status "Starting frontend in development mode..."
     
-    cd simple-login-frontend
+    cd "${FRONTEND_FOLDER:-simple-login-frontend}"
     
     # Start with Vite dev server (hot reloading enabled by default)
     npm run dev &
