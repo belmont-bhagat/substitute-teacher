@@ -336,10 +336,10 @@ You added the component but it doesn't appear in the browser.
 2. **Create new components** (e.g., `Dashboard.tsx`)
 3. **Update routing** if needed
 4. **Test in browser**:
-   ```bash
-   cd simple-login-frontend
-   npm run dev
-   ```
+  ```bash
+  cd <FRONTEND_DIR>   # default: login-frontend
+  npm run dev
+  ```
 5. **Check browser console** (F12) for errors
 
 ### Phase 3: Integration Testing

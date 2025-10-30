@@ -1,6 +1,6 @@
 # Simple Login Application - Complete Project Guide
 
-> **⚠️ IMPORTANT NOTE**: This guide describes the **full-featured version** of the project with dashboard functionality. If you're working with the **no-dashboard branch**, please refer to [docs/overview.md](./overview.md) and [docs/running.md](./running.md) for branch-specific documentation. This guide is kept for educational reference and teaching purposes.
+> **⚠️ IMPORTANT NOTE**: This guide describes the **full-featured version** of the project with dashboard functionality. If you're working with the **no-dashboard branch**, please refer to [for-developers/overview.md](../for-developers/overview.md) and [GETTING-STARTED.md](../../GETTING-STARTED.md) for branch-specific documentation. This guide is kept for educational reference and teaching purposes.
 
 ## 🎯 Project Overview
 
@@ -125,6 +125,8 @@ substitute-teacher/
 | **Build** | `npm run build` | Build project for production |
 | **Test** | `npm test` | Run all tests |
 | **Clean** | `npm run clean` | Clean build artifacts and temporary files |
+
+> Note: In this simplified branch, root-level npm scripts are not provided. Use the shell scripts in `scripts/` (e.g., `scripts/start-all.sh`, `scripts/stop-all.sh`, `scripts/dev.sh`) and follow [GETTING-STARTED.md](../../GETTING-STARTED.md).
 
 ## 🛠️ Technology Stack
 
@@ -360,7 +362,7 @@ cd custom-frontend-name && npm test
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](../../LICENSE) file for details.
 
 ## 🆘 Support
 

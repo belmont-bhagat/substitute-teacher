@@ -30,4 +30,4 @@ This branch provides a **minimal authentication flow** for educational purposes.
 - **Authentication**: JWT tokens
 
 ## Quick Start
-See [running.md](./running.md) for setup instructions.
+See [GETTING-STARTED.md](../../GETTING-STARTED.md) and [ENVIRONMENT-SETUP.md](./ENVIRONMENT-SETUP.md) for setup instructions.

@@ -100,19 +100,19 @@ The integration tests verify:
 
 ### Backend Not Running
 ```bash
-cd simple-login-backend
+cd <BACKEND_DIR>   # default: login-backend
 ./mvnw spring-boot:run
 ```
 
 ### Frontend Not Running
 ```bash
-cd simple-login-frontend
+cd <FRONTEND_DIR>   # default: login-frontend
 npm run dev
 ```
 
 ### MongoDB Not Running
 ```bash
-docker-compose up -d mongodb
+docker compose up -d mongodb
 ```
 
 ### Port Conflicts

@@ -1,6 +1,6 @@
 ## Project Outline
 
-> **⚠️ IMPORTANT NOTE**: This outline describes the **full-featured version** of the project. The **no-dashboard branch** is a simplified version focusing only on authentication (login + profile). See [docs/overview.md](./overview.md) for what's included in the no-dashboard branch.
+> **⚠️ IMPORTANT NOTE**: This outline describes the **full-featured version** of the project. The **no-dashboard branch** is a simplified version focusing only on authentication (login + profile). See [for-developers/overview.md](../for-developers/overview.md) for what's included in the no-dashboard branch.
 
 ### Full Version Features
 - Backend with simple login features (Spring Boot + MongoDB + JWT)

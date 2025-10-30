@@ -28,6 +28,17 @@ Before starting, make sure you have these installed:
 
 ---
 
+## Directory Names Used in This Guide (Customize-friendly)
+
+Throughout this guide, commands use placeholders so you can rename folders:
+
+- <BACKEND_DIR>: your backend folder (default: `login-backend`)
+- <FRONTEND_DIR>: your frontend folder (default: `login-frontend`)
+
+If you didn’t rename anything, use the defaults shown above.
+
+---
+
 ## Step 2: Set Up Java (Mac Users)
 
 Open a **new terminal** in Cursor (Terminal → New Terminal) and run:
@@ -68,7 +79,7 @@ You should see a container named `mongodb-simple-login` running.
 In the same terminal:
 
 ```bash
-cd login-backend
+cd <BACKEND_DIR>   # default: login-backend
 ./mvnw spring-boot:run
 ```
 
@@ -100,7 +111,7 @@ Terminal 2: Frontend (open now) 👈 You are here
 In the **NEW terminal**:
 
 ```bash
-cd login-frontend
+cd <FRONTEND_DIR>   # default: login-frontend
 npm install
 npm run dev
 ```
@@ -199,7 +210,7 @@ Before diving into troubleshooting, make sure you didn't make these common mista
 
 ### ❌ **Mistake 4: Forgot to run `npm install`**
 **Symptom**: Frontend errors about missing modules  
-**Fix**: Run `npm install` in the `simple-login-frontend` folder
+**Fix**: Run `npm install` in the `login-frontend` folder
 
 ### ❌ **Mistake 5: Wrong Java version**
 **Symptom**: "Unsupported class file major version" error  
@@ -208,8 +219,8 @@ Before diving into troubleshooting, make sure you didn't make these common mista
 ### ❌ **Mistake 6: Ran commands in wrong directory**
 **Symptom**: "command not found" or "No such file or directory"  
 **Fix**: Make sure you're in the correct folder:
-- For backend: `cd login-backend`
-- For frontend: `cd login-frontend`
+- For backend: `cd <BACKEND_DIR>` (default: `login-backend`)
+- For frontend: `cd <FRONTEND_DIR>` (default: `login-frontend`)
 
 ---
 
@@ -259,8 +270,8 @@ git pull origin main
 ```bash
 # Start everything (in order):
 docker compose up -d mongodb
-cd login-backend && ./mvnw spring-boot:run          # Terminal 1
-cd login-frontend && npm run dev                    # Terminal 2
+cd <BACKEND_DIR> && ./mvnw spring-boot:run          # Terminal 1 (default: login-backend)
+cd <FRONTEND_DIR> && npm run dev                    # Terminal 2 (default: login-frontend)
 
 # Stop everything:
 Ctrl+C in both terminals

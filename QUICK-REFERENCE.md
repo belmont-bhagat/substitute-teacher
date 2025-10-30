@@ -11,10 +11,10 @@
 docker compose up -d mongodb
 
 # 2. Start Backend (Terminal 1)
-cd simple-login-backend && ./mvnw spring-boot:run
+cd <BACKEND_DIR> && ./mvnw spring-boot:run   # default: login-backend
 
 # 3. Start Frontend (Terminal 2 - NEW window!)
-cd simple-login-frontend && npm run dev
+cd <FRONTEND_DIR> && npm run dev             # default: login-frontend
 ```
 
 ---
@@ -57,7 +57,7 @@ lsof -i :5173
 
 ### Backend (Spring Boot)
 ```bash
-cd simple-login-backend
+cd <BACKEND_DIR>   # default: login-backend
 
 # Run backend
 ./mvnw spring-boot:run
@@ -71,7 +71,7 @@ cd simple-login-backend
 
 ### Frontend (React)
 ```bash
-cd simple-login-frontend
+cd <FRONTEND_DIR>   # default: login-frontend
 
 # Install dependencies
 npm install
@@ -125,8 +125,7 @@ docker ps        # Check Docker is running
 ┌─────────────────────────┐  ┌─────────────────────────┐
 │   Terminal 1: Backend   │  │   Terminal 2: Frontend  │
 │                         │  │                         │
-│ $ cd simple-login-      │  │ $ cd simple-login-      │
-│   backend               │  │   frontend              │
+│ $ cd <BACKEND_DIR>      │  │ $ cd <FRONTEND_DIR>     │
 │ $ ./mvnw spring-boot:   │  │ $ npm run dev           │
 │   run                   │  │                         │
 │                         │  │ VITE ready in XXX ms ✅ │
